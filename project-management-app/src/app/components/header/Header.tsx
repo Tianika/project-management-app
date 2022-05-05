@@ -1,6 +1,6 @@
-import { mainPageTranslation } from '../../../locales/mainPageTranslation';
 import HeaderButton from '../headerButton/HeaderButton';
 import { HeaderContainer } from './styles';
+import { mainPageTranslation } from '../../../locales/mainPageTranslation';
 
 const buttons = [
   {

@@ -1,13 +1,13 @@
-import GlobalStyle from './style';
 import { Route, Routes } from 'react-router-dom';
-import { BoardPage } from './pages/BoardPage/BoardPage';
-import { LoginPage } from './pages/LoginPage/LoginPage';
-import MainPage from './pages/MainPage/MainPage';
-import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
-import { RegisterPage } from './pages/RegisterPage/RegisterPage';
-import { WelcomePage } from './pages/WelcomPage/WelcomePage';
-import { setupStore } from '../redux/store/store';
 import { Provider } from 'react-redux';
+import GlobalStyle from './style';
+import MainPage from './pages/MainPage/MainPage';
+import WelcomePage from './pages/WelcomPage/WelcomePage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
+import BoardPage from './pages/BoardPage/BoardPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import { setupStore } from '../redux/store/store';
 
 const App = () => {
   const store = setupStore();
