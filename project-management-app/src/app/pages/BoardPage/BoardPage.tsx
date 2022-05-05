@@ -1,5 +1,7 @@
 import React from 'react';
 
-export const BoardPage = () => {
+const BoardPage = () => {
   return <div>BoardPage</div>;
 };
+
+export default BoardPage;
