@@ -2,7 +2,7 @@ import GlobalStyle from './style';
 import { Route, Routes } from 'react-router-dom';
 import { BoardPage } from './pages/BoardPage/BoardPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
-import { MainPage } from './pages/MainPage/MainPage';
+import MainPage from './pages/MainPage/MainPage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { RegisterPage } from './pages/RegisterPage/RegisterPage';
 import { WelcomePage } from './pages/WelcomPage/WelcomePage';

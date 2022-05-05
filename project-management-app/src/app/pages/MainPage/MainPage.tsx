@@ -1,5 +1,12 @@
-import React from 'react';
+import Header from '../../components/header/Header';
+import { MainPageContainer } from './styles';
 
-export const MainPage = () => {
-  return <div>MainPage</div>;
+const MainPage = () => {
+  return (
+    <MainPageContainer>
+      <Header />
+    </MainPageContainer>
+  );
 };
+
+export default MainPage;
