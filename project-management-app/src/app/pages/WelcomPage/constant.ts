@@ -1,7 +1,7 @@
 import { welcomePageTranslation } from '../../../locales/welcomePageTranslation';
-import photo from './accets/Tatyana.jpg';
-import photo2 from './accets/Yauhen.jpg';
-import photo3 from './accets/Mariya.jpg';
+import photo1 from '../../../assets/jpg/Tatyana.jpg';
+import photo2 from '../../../assets/jpg/Yauhen.jpg';
+import photo3 from '../../../assets/jpg/Mariya.jpg';
 
 export const RoutersMap = {
   login: '/login',
@@ -31,19 +31,22 @@ export const list = [
 
 export const persons = [
   {
-    photo: photo,
+    photo: photo1,
+    alternative: welcomePageTranslation.en.cards.name1,
     link: 'https://github.com/tianika',
     name: welcomePageTranslation.ru.cards.name1,
     description: welcomePageTranslation.ru.cards.descrip1,
   },
   {
     photo: photo2,
+    alternative: welcomePageTranslation.en.cards.name2,
     link: 'https://github.com/amidawolf',
     name: welcomePageTranslation.ru.cards.name2,
     description: welcomePageTranslation.ru.cards.descrip2,
   },
   {
     photo: photo3,
+    alternative: welcomePageTranslation.en.cards.name3,
     link: 'https://github.com/mrsmariya',
     name: welcomePageTranslation.ru.cards.name3,
     description: welcomePageTranslation.ru.cards.descrip3,
