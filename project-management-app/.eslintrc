@@ -10,7 +10,8 @@
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
-    "project": "./tsconfig.json",
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "./project-management-app/",
     "ecmaFeatures": {
       "jsx": true
     },
