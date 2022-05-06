@@ -1,22 +1,23 @@
-import { Section, Card, ImgStyles, CardTitle } from '../Styles';
+import { Card, ImgStyles, CardTitle } from '../Styles';
 
 type PersonsCardsType = {
   link: string;
   photo: string;
   name: string;
   description: string;
+  alternative: string;
 };
 
-export const PersonsCards = ({ link, photo, name, description }: PersonsCardsType) => {
+const PersonsCards = ({ link, photo, name, description, alternative }: PersonsCardsType) => {
   return (
-    <Section>
-      <Card>
-        <a href={link} target="_blank" rel="noopener norefferer noreferrer">
-          <ImgStyles src={photo} alt="Tatyana Tsybina" />
-          <CardTitle>{name}</CardTitle>
-          <p>{description}</p>
-        </a>
-      </Card>
-    </Section>
+    <Card>
+      <a href={link} target="_blank" rel="noopener noreferrer">
+        <ImgStyles src={photo} alt={alternative} />
+        <CardTitle>{name}</CardTitle>
+        <p>{description}</p>
+      </a>
+    </Card>
   );
 };
+
+export default PersonsCards;

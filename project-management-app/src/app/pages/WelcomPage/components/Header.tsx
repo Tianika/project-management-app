@@ -1,7 +1,7 @@
 import { RoutersMap } from '../constant';
 import { HeaderWrapper, Wrapper, HeaderLink } from '../Styles';
 
-export const Header = () => {
+const Header = () => {
   return (
     <HeaderWrapper>
       <Wrapper>
@@ -12,3 +12,5 @@ export const Header = () => {
     </HeaderWrapper>
   );
 };
+
+export default Header;
