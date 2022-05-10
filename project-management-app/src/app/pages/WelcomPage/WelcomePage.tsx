@@ -1,10 +1,11 @@
-import Header from './components/Header';
+import Header from '../../components/welcomePageHeader/Header';
 import { Container, NewWrapper, Section, Subtitle, Title } from './Styles';
-import PersonsCards from './components/PersonsCards';
+import PersonsCards from '../../components/personsCards/PersonsCards';
 import { list, persons } from './constant';
 import { welcomePageTranslation } from '../../../locales/welcomePageTranslation';
+import Footer from '../../components/footer/Footer';
 
-export const WelcomePage = () => {
+const WelcomePage = () => {
   return (
     <>
       <Header />
@@ -38,6 +39,7 @@ export const WelcomePage = () => {
           })}
         </NewWrapper>
       </Container>
+      <Footer />
     </>
   );
 };

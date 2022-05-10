@@ -45,7 +45,7 @@ export const welcomePageTranslation = {
       descrip1: 'Repository creation, project assembly, layout, design',
       name2: 'Evgeny Voropaev (lead developer)',
       descrip2: 'Application architecture, breakdown into components',
-      name3: 'Maria Pastushonok (developer)',
+      name3: 'Mariya Pastushonok (developer)',
       descrip3: 'Routing, layout, design.',
     },
   },
