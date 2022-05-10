@@ -1,5 +1,6 @@
-import { RoutersMap } from '../constant';
-import { HeaderWrapper, Wrapper, HeaderLink } from '../Styles';
+import { Wrapper } from '../../../styles/global';
+import { RoutersMap } from '../../pages/WelcomPage/constant';
+import { HeaderWrapper, HeaderLink } from '../../pages/WelcomPage/Styles';
 
 const Header = () => {
   return (

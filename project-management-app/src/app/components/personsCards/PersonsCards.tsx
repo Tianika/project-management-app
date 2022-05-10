@@ -1,4 +1,4 @@
-import { Card, ImgStyles, CardTitle } from '../Styles';
+import { Card, ImgStyles, CardTitle } from '../../pages/WelcomPage/Styles';
 
 type PersonsCardsType = {
   link: string;

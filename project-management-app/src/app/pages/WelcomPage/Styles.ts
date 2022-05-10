@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { adaptive } from '../../../styles/adaptive';
 import { colors } from '../../../styles/colors';
+import { Wrapper } from '../../../styles/global';
 
 export const Container = styled.div`
   width: 100%;
@@ -13,13 +14,6 @@ export const Container = styled.div`
 
 export const HeaderWrapper = styled.header`
   background: ${colors.secondaryBg};
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 2rem;
 `;
 
 export const NewWrapper = styled(Wrapper)`
