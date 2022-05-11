@@ -1,15 +1,15 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { LoginRequestType, LoginResponseType } from '../../utils/types/types';
+import { commonApi } from './common.api';
 
-export const authAPI = createApi({
-  reducerPath: 'authAPI',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000' }),
-  tagTypes: ['Auth'],
-  endpoints: (build) => ({
-    signIn: build.mutation<string[], string[]>({
-      query: (post) => ({
+const authApiTags = commonApi.enhanceEndpoints({ addTagTypes: ['Auth'] });
+
+export const authApi = authApiTags.injectEndpoints({
+  endpoints: (builder) => ({
+    signIn: builder.mutation<LoginResponseType, LoginRequestType>({
+      query: (signinData) => ({
         url: `/signin`,
         method: 'POST',
-        body: post,
+        body: signinData,
       }),
       invalidatesTags: ['Auth'],
     }),

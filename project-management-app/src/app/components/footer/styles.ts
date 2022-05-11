@@ -5,7 +5,7 @@ import logo from '../../../assets/svg/rs_school_js.svg';
 import { adaptive } from '../../../styles/adaptive';
 import { Wrapper } from '../../../styles/global';
 
-export const FooterWrapper = styled.div`
+export const FooterWrapper = styled.footer`
   display: flex;
   justify-content: space-around;
   padding: 0.5rem 0;

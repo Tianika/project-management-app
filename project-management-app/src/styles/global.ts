@@ -30,11 +30,36 @@ export const Wrapper = styled.div`
 
 export const LoadingAnimation = keyframes`
    to {
-    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 `;
 
 export const LoadingWrapper = styled.div`
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.2rem solid ${colors.headerBg};
+  border-radius: 50%;
+  border-top-color: ${colors.lightFont};
+  animation: ${LoadingAnimation} 1s ease-in-out infinite;
+`;
+
+export const ColumnCenteredWrapper = styled(Wrapper)`
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const H1 = styled.h1`
+  padding: 2rem;
+
+  font-size: 1.5em;
+  font-style: italic;
+  color: ${colors.secondaryBg};
+  text-decoration: underline;
+  text-align: center;
+`;
+
+export const Loading = styled.div`
   display: block;
   width: 2rem;
   height: 2rem;

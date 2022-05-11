@@ -12,10 +12,10 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    addFormData(state, action: PayloadAction<boolean>) {
+    toggleUserLogged(state, action: PayloadAction<boolean>) {
       state.userLogged = action.payload;
     },
   },
 });
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

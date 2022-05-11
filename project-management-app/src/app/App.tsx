@@ -5,8 +5,8 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import BoardPage from './pages/BoardPage/BoardPage';
 import Modal from './components/modal/Modal';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import WelcomePage from './pages/WelcomPage/WelcomePage';
-import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 
 const App = () => {
   return (
