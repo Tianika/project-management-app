@@ -1,7 +1,7 @@
 import gitLogo from '../../../assets/svg/github.svg';
 import { footerTranslation } from '../../../locales/footerTranslation';
 
-export const Links = [
+export const LINKS = [
   {
     href: 'https://github.com/tianika',
     gitLogo,

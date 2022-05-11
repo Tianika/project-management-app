@@ -1,5 +1,5 @@
 import { FooterLink, FooterLinkPersonal, FooterWrapper, SectionLink } from './styles';
-import { Links } from './footerConstants';
+import { LINKS } from './footerConstants';
 import { Wrapper } from '../../../styles/global';
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
       </Wrapper>
       <Wrapper>2022</Wrapper>
       <SectionLink>
-        {Links.map(({ href, name }) => (
+        {LINKS.map(({ href, name }) => (
           <FooterLinkPersonal key={href} target="_blank" href={href}>
             {name}
           </FooterLinkPersonal>
