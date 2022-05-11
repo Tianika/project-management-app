@@ -1,7 +1,7 @@
 import Header from '../../components/welcomePageHeader/Header';
 import { Container, NewWrapper, Section, Subtitle, Title } from './Styles';
 import PersonsCards from '../../components/personsCards/PersonsCards';
-import { list, persons } from './constant';
+import { LIST, PERSONS } from './constant';
 import { welcomePageTranslation } from '../../../locales/welcomePageTranslation';
 import Footer from '../../components/footer/Footer';
 
@@ -17,7 +17,7 @@ const WelcomePage = () => {
       <Section>
         <Subtitle>{welcomePageTranslation.ru.captions.caption1}:</Subtitle>
         <ul>
-          {list.map(({ text }) => {
+          {LIST.map(({ text }) => {
             return <li key={text}>{text}</li>;
           })}
         </ul>
@@ -25,7 +25,7 @@ const WelcomePage = () => {
       <Container>
         <Subtitle>{welcomePageTranslation.ru.captions.caption2}</Subtitle>
         <NewWrapper>
-          {persons.map(({ photo, link, name, description, alternative }) => {
+          {PERSONS.map(({ photo, link, name, description, alternative }) => {
             return (
               <PersonsCards
                 key={name}

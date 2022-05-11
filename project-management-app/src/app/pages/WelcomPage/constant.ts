@@ -8,7 +8,7 @@ export const RoutersMap = {
   register: '/register',
 };
 
-export const list = [
+export const LIST = [
   {
     text: welcomePageTranslation.ru.list.list1,
   },
@@ -29,7 +29,7 @@ export const list = [
   },
 ];
 
-export const persons = [
+export const PERSONS = [
   {
     photo: photo1,
     alternative: welcomePageTranslation.en.cards.name1,
