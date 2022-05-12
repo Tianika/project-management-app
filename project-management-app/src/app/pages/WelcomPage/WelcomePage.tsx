@@ -1,21 +1,33 @@
+import { useTranslation } from 'react-i18next';
 import Header from '../../components/welcomePageHeader/Header';
 import { Container, NewWrapper, Section, Subtitle, Title } from './Styles';
 import PersonsCards from '../../components/personsCards/PersonsCards';
-import { LIST, PERSONS } from './constant';
-import { welcomePageTranslation } from '../../../locales/welcomePageTranslation';
 import Footer from '../../components/footer/Footer';
 
+type ListType = { text: string };
+type PersonsType = {
+  photo: string;
+  link: string;
+  name: string;
+  description: string;
+  alternative: string;
+};
+
 const WelcomePage = () => {
+  const { t } = useTranslation();
+  const LIST: Array<ListType> = t('list', { returnObjects: true });
+  const PERSONS: Array<PersonsType> = t('persons', { returnObjects: true });
+
   return (
     <>
       <Header />
       <Section>
-        <Title>{welcomePageTranslation.ru.title}</Title>
+        <Title>{t('title')}</Title>
         <Subtitle>Project management app</Subtitle>
-        <p>-{welcomePageTranslation.ru.description}</p>
+        <p>-{t('description')}</p>
       </Section>
       <Section>
-        <Subtitle>{welcomePageTranslation.ru.captions.caption1}:</Subtitle>
+        <Subtitle>{t('captions.caption1')}:</Subtitle>
         <ul>
           {LIST.map(({ text }) => {
             return <li key={text}>{text}</li>;
@@ -23,7 +35,7 @@ const WelcomePage = () => {
         </ul>
       </Section>
       <Container>
-        <Subtitle>{welcomePageTranslation.ru.captions.caption2}</Subtitle>
+        <Subtitle>{t('captions.caption2')}</Subtitle>
         <NewWrapper>
           {PERSONS.map(({ photo, link, name, description, alternative }) => {
             return (

@@ -1,14 +1,18 @@
+import { useTranslation } from 'react-i18next';
 import { Wrapper } from '../../../styles/global';
 import { RoutersMap } from '../../pages/WelcomPage/constant';
 import { HeaderWrapper, HeaderLink } from '../../pages/WelcomPage/Styles';
+import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
 
 const Header = () => {
+  const { t } = useTranslation();
   return (
     <HeaderWrapper>
       <Wrapper>
-        <HeaderLink to={RoutersMap.login}>Log in</HeaderLink>
+        <LocalesCheckBox />
+        <HeaderLink to={RoutersMap.login}>{t('headerLinks.logIn')}</HeaderLink>
         <span>/</span>
-        <HeaderLink to={RoutersMap.register}>Sign up</HeaderLink>
+        <HeaderLink to={RoutersMap.register}>{t('headerLinks.signUp')}</HeaderLink>
       </Wrapper>
     </HeaderWrapper>
   );
