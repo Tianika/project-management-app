@@ -6,6 +6,7 @@ import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
 
 const Header = () => {
   const { t } = useTranslation();
+
   return (
     <HeaderWrapper>
       <Wrapper>
