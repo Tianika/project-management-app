@@ -1,8 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { FooterLink, FooterLinkPersonal, FooterWrapper, SectionLink } from './styles';
-import { LINKS } from './footerConstants';
 import { Wrapper } from '../../../styles/global';
 
+type LinksType = { href: string; name: string };
+
 const Footer = () => {
+  const { t } = useTranslation();
+  const LINKS: Array<LinksType> = t('footerNames', { returnObjects: true });
   return (
     <FooterWrapper>
       <Wrapper>

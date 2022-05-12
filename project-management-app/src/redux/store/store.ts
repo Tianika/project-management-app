@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from '../reducers/AuthSlice';
+import changeToggleReducer from '../reducers/CheckBoxSlice';
 import { authAPI } from '../services/AuthService';
 
 const rootReducer = combineReducers({
   authReducer,
   [authAPI.reducerPath]: authAPI.reducer,
+  changeToggleReducer,
 });
 
 export const setupStore = () => {

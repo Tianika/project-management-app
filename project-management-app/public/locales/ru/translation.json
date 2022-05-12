@@ -1,0 +1,77 @@
+{
+  "title": "Project management app - must have для фрилансеров и небольших компаний!",
+  "description":
+    "это визуальный инструмент для управления рабочим процессом, который позволяет командам обдумывать, планировать и вести совместную работу, а также отмечать успехи каждого члена команды. С этим инструментом работа команды будет сплоченной, продуктивной и организованной.",
+  "captions": {
+    "caption1": "С Project management app вы можете",
+    "caption2": "Наша команда"
+  },
+  "headerLinks": {
+    "signUp": "зарегистрироваться",
+    "logIn": "войти"
+  },
+  "list": [
+    {
+      "text": "cоздавать и удалять борды"
+    },
+    {
+      "text": "добавлять и удалять колонки"
+    },
+    {
+      "text": "добавлять чек листы на карточки"
+    },
+    {
+      "text": "загружать файлы"
+    },
+    {
+      "text": "обмениваться комментариями с друзьями"
+    },
+    {
+      "text": "изменять рабочие процессы в зависимости от проекта"
+    }
+],
+  "persons": [
+    {
+    "name": "Татьяна Цыбина (тимлид)",
+    "alternative": "Татьяна Цыбина (тимлид)",
+    "description": "Создание репозитория, сборка проекта, верстка, дизайн",
+    "link": "https://github.com/tianika",
+    "photo": "../../../assets/jpg/Tatyana.jpg"
+  },
+  {
+    "name": "Евгений Воропаев (ведущий разработчик)",
+    "alternative": "Евгений Воропаев (ведущий разработчик)",
+    "description": "Архитектура приложения, разбивка на компоненты",
+    "link": "https://github.com/amidawolf",
+    "photo": "../../../assets/jpg/Yauhen.jpg"
+  },
+  {
+    "name": "Мария Пастушонок (разработчик)",
+    "alternative": "Мария Пастушонок (разработчик)",
+    "description": "Роутинг, верстка, дизайн",
+    "link": "https://github.com/mrsmariya",
+    "photo": "../../../assets/jpg/Mariya.jpg"
+  }
+],
+  "footerNames": [
+    {
+      "name": "Татьяна",
+      "href": "https://github.com/tianika",
+      "gitLogo": "../../../locales/footerTranslation"
+    },
+    {
+      "name": "Евгений",
+      "href": "https://github.com/amidawolf",
+      "gitLogo": "../../../locales/footerTranslation"
+    },
+    {
+      "name": "Мария",
+      "href": "https://github.com/mrsmariya",
+      "gitLogo": "../../../locales/footerTranslation"
+    }
+  ],
+  "notFoundPageTranslation": {
+    "title": "Страница не найдена",
+    "linkTitle": "Перейти на главную страницу"
+  }
+}

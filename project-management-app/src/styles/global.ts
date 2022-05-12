@@ -1,5 +1,7 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
 import { adaptive } from './adaptive';
+import { colors } from './colors';
 
 export const styles = {
   media: {
@@ -24,4 +26,20 @@ export const Wrapper = styled.div`
   ${adaptive.maxWidth.mobile} {
     padding: 0 1rem;
   }
+`;
+
+export const LoadingAnimation = keyframes`
+   to {
+    -webkit-transform: rotate(360deg);
+  }
+`;
+
+export const LoadingWrapper = styled.div`
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.2rem solid ${colors.headerBg};
+  border-radius: 50%;
+  border-top-color: ${colors.lightFont};
+  animation: ${LoadingAnimation} 1s ease-in-out infinite;
 `;

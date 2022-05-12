@@ -1,4 +1,4 @@
-import { NotFoundPageTranslation } from '../../../locales/notFoundPageTranslation';
+import { useTranslation } from 'react-i18next';
 import { NotFoundPageLink, NotFoundPageTitle, NotFoundPageWrapper, WrapperLink } from './styles';
 
 const RoutersMap = {
@@ -6,12 +6,13 @@ const RoutersMap = {
 };
 
 const NotFoundPage = () => {
+  const { t } = useTranslation();
   return (
     <NotFoundPageWrapper>
-      <NotFoundPageTitle>{NotFoundPageTranslation.ru.title}</NotFoundPageTitle>
+      <NotFoundPageTitle>{t('notFoundPageTranslation.title')}</NotFoundPageTitle>
       <WrapperLink>
         <NotFoundPageLink to={RoutersMap.main}>
-          {NotFoundPageTranslation.ru.linkTitle}
+          {t('notFoundPageTranslation.linkTitle')}
         </NotFoundPageLink>
       </WrapperLink>
     </NotFoundPageWrapper>
