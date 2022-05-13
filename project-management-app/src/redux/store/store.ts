@@ -1,22 +1,26 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../reducers/AuthSlice';
+import { authReducer } from '../reducers/AuthSlice';
 import changeToggleReducer from '../reducers/CheckBoxSlice';
-import { authAPI } from '../services/AuthService';
+import { authApi } from '../services/AuthService';
 import { modalReducer } from '../reducers/ModalSlice';
 import { boardsReducer } from '../reducers/BoardsSlice';
+import { loginReducer } from '../reducers/LoginFormSlice';
+import { commonApi } from '../services/common.api';
 
 const rootReducer = combineReducers({
   authReducer,
-  [authAPI.reducerPath]: authAPI.reducer,
+  [authApi.reducerPath]: authApi.reducer,
   changeToggleReducer,
   modal: modalReducer,
   boards: boardsReducer,
+  loginReducer,
+  [commonApi.reducerPath]: commonApi.reducer,
 });
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authAPI.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(authApi.middleware),
 });
 
 export { store };
