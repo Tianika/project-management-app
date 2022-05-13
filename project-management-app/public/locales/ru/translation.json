@@ -73,5 +73,10 @@
   "notFoundPageTranslation": {
     "title": "Страница не найдена",
     "linkTitle": "Перейти на главную страницу"
+  },
+  "confirmWindow": {
+    "title": "Вы действительно хотите удалить доску?",
+    "buttonY": "да",
+    "buttonN": "нет"
   }
 }

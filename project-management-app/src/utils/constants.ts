@@ -17,4 +17,5 @@ export enum ModalIds {
   newBoard = 'newBoard',
   error = 'error',
   loading = 'loading',
+  confirmationWindow = 'confirmationWindow',
 }

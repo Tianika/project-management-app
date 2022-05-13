@@ -6,6 +6,7 @@ import { ErrorMessageSelector } from '../../../redux/selectors/BoardsSelector';
 import { modalStateSelector } from '../../../redux/selectors/ModalSelectors';
 import { LoadingWrapper } from '../../../styles/global';
 import { ModalTypes, ModalIds } from '../../../utils/constants';
+import ConfirmationWindow from '../confirmationWindow/ConfirmationWindow';
 import Message from '../message/Message';
 import NewBoard from '../newBoard/NewBoard';
 import { ModalContainer } from './styles';
@@ -18,6 +19,7 @@ const Modal = () => {
   const MODALS: Record<string, JSX.Element | null> = {
     [ModalIds.empty]: null,
     [ModalIds.newBoard]: <NewBoard />,
+    [ModalIds.confirmationWindow]: <ConfirmationWindow />,
     [ModalIds.error]: <Message message={errorMessage} />,
     [ModalIds.loading]: <LoadingWrapper />,
   };
