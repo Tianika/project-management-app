@@ -1,20 +1,28 @@
 import { SyntheticEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { setID } from '../../../redux/reducers/ConfirmWindowSlice';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { BoardsSelector } from '../../../redux/selectors/BoardsSelector';
-import { ModalIds, ModalTypes } from '../../../utils/constants';
+import { ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
+import { saveBoardId } from '../../../redux/reducers/BoardSlice';
 import { BoardPreviewInfo, BoardPreviewStyled, RemoveBoardButton } from './styles';
-
-const openBoard = ({ target }: SyntheticEvent<HTMLElement>) => {
-  if (target instanceof HTMLElement) {
-    // дальше используем target.dataset.boardid
-  }
-};
 
 const BoardPreview = () => {
   const dispatch = useAppDispatch();
   const boards = useAppSelector(BoardsSelector);
+  const navigate = useNavigate();
+
+  const openBoard = ({ target }: SyntheticEvent<HTMLElement>) => {
+    if (target instanceof HTMLElement) {
+      const { boardid } = target.dataset;
+
+      if (boardid) {
+        dispatch(saveBoardId(boardid));
+        navigate(RoutersMap.board);
+      }
+    }
+  };
 
   const openConfirmWindow = ({ target }: SyntheticEvent<HTMLElement>) => {
     if (target instanceof HTMLElement) {

@@ -1,35 +1,33 @@
-import { ChangeEvent, useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { mainPageTranslation } from '../../../locales/mainPageTranslation';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
 import { createNewBoard } from '../../../redux/reducers/BoardsSlice';
-import { NewBoardButton, NewBoardInput, NewBoardStyles, NewBoardTitle } from './styles';
+import { NewBoardButton, NewBoardInput, NewBoardForm, NewBoardTitle } from './styles';
 
 const language = 'ru';
 
-const { newBoardTitle, newBoardBtn } = mainPageTranslation[language];
+const { newBoardTitle, newBoardBtn, placeholder } = mainPageTranslation[language];
 
 const NewBoard = () => {
-  const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
-  };
+  const { register, handleSubmit } = useForm();
 
-  const createBoard = () => {
-    if (title) {
-      dispatch(createNewBoard({ title }));
-    }
+  const onSubmit: SubmitHandler<FieldValues> = ({ title }) => {
+    dispatch(createNewBoard({ title }));
   };
 
   return (
-    <NewBoardStyles>
+    <NewBoardForm onSubmit={handleSubmit(onSubmit)}>
       <NewBoardTitle>{newBoardTitle}</NewBoardTitle>
-      <NewBoardInput type="text" onChange={handleChange} />
-      <NewBoardButton type="submit" onClick={createBoard}>
-        {newBoardBtn}
-      </NewBoardButton>
-    </NewBoardStyles>
+      <NewBoardInput
+        type="text"
+        {...register('title', { required: true })}
+        placeholder={placeholder}
+        autoFocus
+      />
+      <NewBoardButton type="submit">{newBoardBtn}</NewBoardButton>
+    </NewBoardForm>
   );
 };
 

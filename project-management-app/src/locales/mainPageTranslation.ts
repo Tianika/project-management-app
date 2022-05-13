@@ -6,6 +6,7 @@ export const mainPageTranslation = {
     boardsTitle: 'Доски',
     newBoardTitle: 'Создать новую доску',
     newBoardBtn: 'Создать',
+    placeholder: 'Введите название',
   },
   en: {
     editButton: 'Edit profile',
@@ -14,5 +15,6 @@ export const mainPageTranslation = {
     boaboardsTitlerds: 'Boards',
     newBoardTitle: 'Create new board',
     newBoardBtn: 'Create',
+    placeholder: 'Enter title',
   },
 };
