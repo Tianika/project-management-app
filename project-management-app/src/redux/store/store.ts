@@ -7,11 +7,13 @@ import { modalReducer } from '../reducers/ModalSlice';
 import { boardsReducer } from '../reducers/BoardsSlice';
 import { loginReducer } from '../reducers/LoginFormSlice';
 import { commonApi } from '../services/common.api';
+import confirmReducer from '../reducers/ConfirmWindowSlice';
 
 const rootReducer = combineReducers({
   authReducer,
   [authApi.reducerPath]: authApi.reducer,
   changeToggleReducer,
+  confirmReducer,
   modal: modalReducer,
   boards: boardsReducer,
   loginReducer,

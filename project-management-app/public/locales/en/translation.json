@@ -73,5 +73,10 @@
 "notFoundPageTranslation": {
   "title": "Page not found",
   "linkTitle": "Go to the main page"
+},
+"confirmWindow": {
+  "title": "Are you sure you want to delete the board?",
+  "buttonY": "yes",
+  "buttonN": "no"
 }
 }

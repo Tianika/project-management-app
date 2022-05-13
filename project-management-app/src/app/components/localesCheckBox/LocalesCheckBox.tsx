@@ -15,7 +15,12 @@ const LocalesCheckBox = () => {
   return (
     <CheckBoxWrapper>
       <CheckBoxTitle>ru</CheckBoxTitle>
-      <CheckBox onClick={changeLanguage} checked={toggleLang} id="checkbox" type="checkbox" />
+      <CheckBox
+        onClick={changeLanguage}
+        defaultChecked={toggleLang}
+        id="checkbox"
+        type="checkbox"
+      />
       <CheckBoxLabel htmlFor="checkbox" />
       <CheckBoxTitle>en</CheckBoxTitle>
     </CheckBoxWrapper>
