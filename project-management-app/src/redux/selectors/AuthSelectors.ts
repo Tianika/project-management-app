@@ -1,5 +1,5 @@
 import { RootState } from '../store/store';
 
-export const LoginSelector = (state: RootState) => {
+export const loginSelector = (state: RootState) => {
   return state.loginReducer;
 };

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from '../reducers/AuthSlice';
-import changeToggleReducer from '../reducers/CheckBoxSlice';
+import changeToggleReducer from '../reducers/LanguageSlice';
 import { authApi } from '../services/AuthService';
 import { modalReducer } from '../reducers/ModalSlice';
 import { boardsReducer } from '../reducers/BoardsSlice';

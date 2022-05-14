@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { AuthErrorType, LoginFormValuesType } from '../../../utils/types/types';
@@ -17,11 +17,11 @@ import {
 import { Loading } from '../../../styles/global';
 import { authSlice } from '../../../redux/reducers/AuthSlice';
 import { loginPageTranslation } from '../../../locales/LoginPageTranslation';
-import { RoutersMap } from './constant';
-import { LoginSelector } from '../../../redux/selectors/AuthSelectors';
+import { loginSelector } from '../../../redux/selectors/AuthSelectors';
+import { RoutersMap } from '../../../utils/constants';
 
 export default function LoginForm() {
-  const { login } = useAppSelector(LoginSelector);
+  const { login } = useAppSelector(loginSelector);
   const { addFormData, setCredentials } = loginFormSlice.actions;
   const { toggleUserLogged } = authSlice.actions;
   const [signIn, { error, isLoading }] = authApi.useSignInMutation();

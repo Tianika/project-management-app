@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { setID } from '../../../redux/reducers/ConfirmWindowSlice';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
-import { BoardsSelector } from '../../../redux/selectors/BoardsSelector';
+import { boardsSelector } from '../../../redux/selectors/BoardsSelector';
 import { ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
 import { saveBoardId } from '../../../redux/reducers/BoardSlice';
 import { BoardPreviewInfo, BoardPreviewStyled, RemoveBoardButton } from './styles';
 
 const BoardPreview = () => {
   const dispatch = useAppDispatch();
-  const boards = useAppSelector(BoardsSelector);
+  const boards = useAppSelector(boardsSelector);
   const navigate = useNavigate();
 
   const openBoard = ({ target }: SyntheticEvent<HTMLElement>) => {

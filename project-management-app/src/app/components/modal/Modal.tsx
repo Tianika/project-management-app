@@ -1,8 +1,8 @@
 import { SyntheticEvent, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
-import { setModalChildren } from '../../../redux/reducers/ModalSlice';
-import { ErrorMessageSelector } from '../../../redux/selectors/BoardsSelector';
+import { closeModal } from '../../../redux/reducers/ModalSlice';
+import { errorMessageSelector } from '../../../redux/selectors/BoardsSelector';
 import { modalStateSelector } from '../../../redux/selectors/ModalSelectors';
 import { LoadingWrapper } from '../../../styles/global';
 import { ModalTypes, ModalIds } from '../../../utils/constants';
@@ -13,7 +13,7 @@ import { ModalContainer } from './styles';
 
 const Modal = () => {
   const dispatch = useAppDispatch();
-  const errorMessage = useAppSelector(ErrorMessageSelector);
+  const errorMessage = useAppSelector(errorMessageSelector);
   const { modalId, modalType } = useAppSelector(modalStateSelector);
 
   const MODALS: Record<string, JSX.Element | null> = {
@@ -32,7 +32,7 @@ const Modal = () => {
     const { target } = event;
 
     if (target instanceof HTMLElement && target.tagName === 'SECTION') {
-      dispatch(setModalChildren({ modalId: ModalIds.empty, modalType: ModalTypes.Overlay }));
+      dispatch(closeModal());
     }
   };
 

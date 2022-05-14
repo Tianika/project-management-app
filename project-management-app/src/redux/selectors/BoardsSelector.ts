@@ -1,17 +1,17 @@
 import { RootState } from '../store/store';
 
-export const BoardsStateSelector = (state: RootState) => {
+export const boardsStateSelector = (state: RootState) => {
   return state.boards;
 };
 
-export const BoardsSelector = (state: RootState) => {
+export const boardsSelector = (state: RootState) => {
   return state.boards.boards;
 };
 
-export const IsLoadingSelector = (state: RootState) => {
+export const isLoadingSelector = (state: RootState) => {
   return state.boards.isLoading;
 };
 
-export const ErrorMessageSelector = (state: RootState) => {
+export const errorMessageSelector = (state: RootState) => {
   return state.boards.errorMessage;
 };
