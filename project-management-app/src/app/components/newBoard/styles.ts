@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { adaptive } from '../../../styles/adaptive';
 import { colors } from '../../../styles/colors';
 
-export const NewBoardStyles = styled.div`
+export const NewBoardForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,6 +39,7 @@ export const NewBoardInput = styled.input`
   background-color: ${colors.inputBg};
   border: 2px solid ${colors.inputBorder};
   border-radius: 3px;
+  padding: 0 10px;
 
   ${adaptive.maxWidth.mobile} {
     width: 80vw;

@@ -1,5 +1,13 @@
 export const BASE_URL = 'https://pma-team38.herokuapp.com';
 
+export const RoutersMap = {
+  welcome: '',
+  main: '/main',
+  board: '/board',
+  login: '/login',
+  register: '/register',
+};
+
 export enum ModalTypes {
   Window = 'window',
   Overlay = 'overlay',

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { NewBoardButton, NewBoardStyles, NewBoardTitle } from '../newBoard/styles';
+import { NewBoardButton, NewBoardForm, NewBoardTitle } from '../newBoard/styles';
 
-export const ConfirmWindowStyles = styled(NewBoardStyles)`
+export const ConfirmWindowStyles = styled(NewBoardForm)`
   flex-direction: column;
 `;
 
