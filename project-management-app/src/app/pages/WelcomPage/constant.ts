@@ -3,11 +3,6 @@ import photo1 from '../../../assets/jpg/Tatyana.jpg';
 import photo2 from '../../../assets/jpg/Yauhen.jpg';
 import photo3 from '../../../assets/jpg/Mariya.jpg';
 
-export const RoutersMap = {
-  login: '/login',
-  register: '/register',
-};
-
 export const LIST = [
   {
     text: welcomePageTranslation.ru.list.list1,

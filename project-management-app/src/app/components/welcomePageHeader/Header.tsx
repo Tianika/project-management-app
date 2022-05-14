@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Wrapper } from '../../../styles/global';
-import { RoutersMap } from '../../pages/WelcomPage/constant';
+import { RoutersMap } from '../../../utils/constants';
 import { HeaderWrapper, HeaderLink } from '../../pages/WelcomPage/Styles';
 import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
 

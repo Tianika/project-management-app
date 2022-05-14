@@ -6,6 +6,7 @@ export const RoutersMap = {
   board: '/board',
   login: '/login',
   register: '/register',
+  notFound: '*',
 };
 
 export enum ModalTypes {
