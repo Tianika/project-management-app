@@ -2,6 +2,8 @@ export const colors = {
   baseBg: '#ffffff',
   headerBg: 'rgba(0, 0, 0, 0.1)',
   shadow: 'rgba(0, 0, 0, 0.25)',
+  darkShadowScroll: 'rgba(0, 0, 0, 0.3)',
+  lightShadowScroll: 'rgba(255, 255, 255, 0.8)',
   buttonBg: 'rgba(255, 255, 255, 0.4)',
   buttonHoverBg: 'rgba(255, 255, 255, 0.2)',
   buttonActiveBg: 'rgba(255, 255, 255, 0.6)',

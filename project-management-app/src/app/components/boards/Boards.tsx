@@ -14,10 +14,12 @@ const { boardsTitle } = mainPageTranslation[language];
 
 const Boards = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, isFetching } = useAppSelector(boardsStateSelector);
+  const { isLoading, isFetching, boards } = useAppSelector(boardsStateSelector);
 
   useEffect(() => {
-    dispatch(requestBoards());
+    if (!boards.length) {
+      dispatch(requestBoards());
+    }
   }, []);
 
   useEffect(() => {
