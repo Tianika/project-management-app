@@ -6,6 +6,7 @@ export const RoutersMap = {
   board: '/board',
   login: '/login',
   register: '/register',
+  edit: '/edit',
   notFound: '*',
 };
 
@@ -27,6 +28,7 @@ export enum ModalIds {
   error = 'error',
   loading = 'loading',
   confirmationWindow = 'confirmationWindow',
+  confirmWindowEditProf = 'confirmWindowEditProf',
 }
 
 export const LOCAL_STORAGE_KEYS = {

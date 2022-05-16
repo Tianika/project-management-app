@@ -23,4 +23,6 @@ export const colors = {
   submitButtonHoverBg: '#61bd4f',
   submitButtonActiveBg: '#5aac44',
   errorBg: '#eb5a46',
+  deleteButtonHoverBg: '#FF0000',
+  deleteButtonActiveBg: '#8B0000',
 };

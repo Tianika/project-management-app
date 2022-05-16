@@ -1,9 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import HeaderButton from '../headerButton/HeaderButton';
 import { HeaderContainer } from './styles';
 import { mainPageTranslation } from '../../../locales/mainPageTranslation';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
-import { ModalIds, ModalTypes } from '../../../utils/constants';
+import { RoutersMap, ModalIds, ModalTypes } from '../../../utils/constants';
 import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
 
 const language = 'ru';
@@ -12,11 +13,14 @@ const { editButton, createButton, logoutButton } = mainPageTranslation[language]
 
 const Header = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const BUTTONS = [
     {
       text: editButton,
-      onClick: () => {},
+      onClick: () => {
+        navigate(RoutersMap.edit);
+      },
     },
     {
       text: createButton,
