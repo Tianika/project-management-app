@@ -8,7 +8,7 @@ export const commonApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       headers.set('Content-Type', 'application/json;charset=UTF-8');
 
-      const { token } = (getState() as RootState).loginReducer;
+      const token = (getState() as RootState)?.loginReducer?.token;
       if (token) {
         headers.set('authentication', `Bearer ${token}`);
       }

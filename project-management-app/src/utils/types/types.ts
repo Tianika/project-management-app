@@ -24,3 +24,21 @@ export type AuthErrorType = {
     message: string;
   };
 };
+
+export type RegisterRequestType = {
+  name: string;
+  login: string;
+  password: string;
+};
+
+export type RegisterResponseType = {
+  id: string;
+  name: string;
+  login: string;
+};
+
+export type RegisterFormValuesType = {
+  nameValue: string;
+  loginValue: string;
+  passwordValue: string;
+};

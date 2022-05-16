@@ -48,10 +48,10 @@ export default function LoginForm() {
   const { loginError, passwordError } = loginPageTranslation.ru.loginForm.errors;
   const { hideButton, showButton, submitButton, apiErrorText } = loginPageTranslation.ru.loginForm;
 
-  const onSubmit: SubmitHandler<LoginFormValuesType> = async ({ loginValue, passwordValue }) => {
+  const onSubmit: SubmitHandler<LoginFormValuesType> = ({ loginValue, passwordValue }) => {
     dispatch(addFormData(loginValue));
 
-    await signIn({
+    signIn({
       login: loginValue,
       password: passwordValue,
     })
@@ -99,7 +99,9 @@ export default function LoginForm() {
       {isLoading && <Loading />}
 
       {authError && (
-        <ErrorApiMessage>{`${apiErrorText} ${authError.data.message}`}</ErrorApiMessage>
+        <ErrorApiMessage>{`${apiErrorText} ${
+          authError?.data?.message || JSON.stringify(authError)
+        }`}</ErrorApiMessage>
       )}
     </AuthForm>
   );

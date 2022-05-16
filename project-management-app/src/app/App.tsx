@@ -10,6 +10,7 @@ import WelcomePage from './pages/WelcomPage/WelcomePage';
 import { RoutersMap } from '../utils/constants';
 import EditProfilPage from './pages/EditProfilePage/EditProfilePage';
 import PrivetRoute from '../hok/PrivetRoute';
+import AnonymousRoute from '../hoc/AnonymousRoute';
 
 const App = () => {
   return (
@@ -17,8 +18,22 @@ const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path={RoutersMap.welcome} element={<WelcomePage />} />
-        <Route path={RoutersMap.login} element={<LoginPage />} />
-        <Route path={RoutersMap.register} element={<RegisterPage />} />
+        <Route
+          path={RoutersMap.login}
+          element={
+            <AnonymousRoute redirectPath={RoutersMap.main}>
+              <LoginPage />
+            </AnonymousRoute>
+          }
+        />
+        <Route
+          path={RoutersMap.register}
+          element={
+            <AnonymousRoute redirectPath={RoutersMap.main}>
+              <RegisterPage />
+            </AnonymousRoute>
+          }
+        />
         <Route path={RoutersMap.main} element={<MainPage />} />
         <Route path={RoutersMap.board} element={<BoardPage />} />
         <Route
