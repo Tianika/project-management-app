@@ -28,3 +28,8 @@ export enum ModalIds {
   loading = 'loading',
   confirmationWindow = 'confirmationWindow',
 }
+
+export const LOCAL_STORAGE_KEYS = {
+  i18nextLng: 'i18nextLng',
+  boardId: 'boardId',
+};

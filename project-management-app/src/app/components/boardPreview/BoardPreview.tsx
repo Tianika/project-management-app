@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks'
 import { setID } from '../../../redux/reducers/ConfirmWindowSlice';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { boardsSelector } from '../../../redux/selectors/BoardsSelector';
-import { ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
+import { LOCAL_STORAGE_KEYS, ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
 import { saveBoardId } from '../../../redux/reducers/BoardSlice';
 import { BoardPreviewInfo, BoardPreviewStyled, RemoveBoardButton } from './styles';
 
@@ -18,6 +18,7 @@ const BoardPreview = () => {
       const { boardid } = target.dataset;
 
       if (boardid) {
+        localStorage.setItem(LOCAL_STORAGE_KEYS.boardId, boardid);
         dispatch(saveBoardId(boardid));
         navigate(RoutersMap.board);
       }
