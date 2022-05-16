@@ -8,6 +8,8 @@ import Modal from './components/modal/Modal';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import WelcomePage from './pages/WelcomPage/WelcomePage';
 import { RoutersMap } from '../utils/constants';
+import EditProfilPage from './pages/EditProfilePage/EditProfilePage';
+import PrivetRoute from '../hok/PrivetRoute';
 
 const App = () => {
   return (
@@ -19,6 +21,14 @@ const App = () => {
         <Route path={RoutersMap.register} element={<RegisterPage />} />
         <Route path={RoutersMap.main} element={<MainPage />} />
         <Route path={RoutersMap.board} element={<BoardPage />} />
+        <Route
+          path={RoutersMap.edit}
+          element={
+            <PrivetRoute>
+              <EditProfilPage />
+            </PrivetRoute>
+          }
+        />
         <Route path={RoutersMap.notFound} element={<NotFoundPage />} />
       </Routes>
       <Modal />

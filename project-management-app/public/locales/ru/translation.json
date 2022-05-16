@@ -78,5 +78,13 @@
     "title": "Вы действительно хотите удалить доску?",
     "buttonY": "да",
     "buttonN": "нет"
+  },
+  "editProfile": {
+    "button": "Сохранить",
+    "buttonDelete": "Удалить профиль",
+    "namePlaceholder": "Введите имя",
+    "loginPlaceholder": "Введите логин",
+    "passwordPlaceholder": "Введите пароль",
+    "title": "Вы действительно хотите изменить данные?"
   }
 }

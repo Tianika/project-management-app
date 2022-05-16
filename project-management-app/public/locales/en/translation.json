@@ -78,5 +78,13 @@
   "title": "Are you sure you want to delete the board?",
   "buttonY": "yes",
   "buttonN": "no"
+},
+"editProfile": {
+  "button": "Save",
+  "buttonDelete": "Delete profile",
+  "namePlaceholder": "Enter username",
+  "loginPlaceholder": "Enter login",
+  "passwordPlaceholder": "Enter password",
+  "title": "Are you sure you want to change the data?"
 }
 }
