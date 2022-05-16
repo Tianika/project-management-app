@@ -2,7 +2,6 @@ import { SyntheticEvent, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { closeModal } from '../../../redux/reducers/ModalSlice';
-import { errorMessageSelector } from '../../../redux/selectors/BoardsSelector';
 import { modalStateSelector } from '../../../redux/selectors/ModalSelectors';
 import { LoadingWrapper } from '../../../styles/global';
 import { ModalTypes, ModalIds } from '../../../utils/constants';
@@ -10,11 +9,11 @@ import ConfirmationWindow from '../confirmationWindow/ConfirmationWindow';
 import ConfirmWindowEditProf from '../confirmWindowEditProf/ConfirmWindowEditProf';
 import Message from '../message/Message';
 import NewBoard from '../newBoard/NewBoard';
+import NewTask from '../newTask/NewTask';
 import { ModalContainer } from './styles';
 
 const Modal = () => {
   const dispatch = useAppDispatch();
-  const errorMessage = useAppSelector(errorMessageSelector);
   const { modalId, modalType } = useAppSelector(modalStateSelector);
 
   const MODALS: Record<string, JSX.Element | null> = {
@@ -22,8 +21,9 @@ const Modal = () => {
     [ModalIds.newBoard]: <NewBoard />,
     [ModalIds.confirmationWindow]: <ConfirmationWindow />,
     [ModalIds.confirmWindowEditProf]: <ConfirmWindowEditProf />,
-    [ModalIds.error]: <Message message={errorMessage} />,
+    [ModalIds.error]: <Message />,
     [ModalIds.loading]: <LoadingWrapper />,
+    [ModalIds.newTask]: <NewTask />,
   };
 
   const modal = useMemo(() => document.createElement('div'), []);

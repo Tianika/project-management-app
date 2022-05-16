@@ -29,9 +29,16 @@ export enum ModalIds {
   loading = 'loading',
   confirmationWindow = 'confirmationWindow',
   confirmWindowEditProf = 'confirmWindowEditProf',
+  newTask = 'newTask',
+}
+
+export enum FunctionIds {
+  empty = '',
+  forBoard = 'forBoard',
+  forColumn = 'forColumn',
+  forTask = 'forTask',
 }
 
 export const LOCAL_STORAGE_KEYS = {
   i18nextLng: 'i18nextLng',
-  boardId: 'boardId',
 };

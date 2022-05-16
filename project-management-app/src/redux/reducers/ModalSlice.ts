@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ModalIds, ModalTypes } from '../../utils/constants';
+import { FunctionIds, ModalIds, ModalTypes } from '../../utils/constants';
 
 type ModalState = {
-  modalId: string;
+  modalId: ModalIds;
   modalType: ModalTypes;
+  functionId?: FunctionIds;
 };
 
 const initialState: ModalState = {
   modalId: ModalIds.empty,
   modalType: ModalTypes.Window,
+  functionId: FunctionIds.empty,
 };
 
 const modalSlice = createSlice({
@@ -19,10 +21,11 @@ const modalSlice = createSlice({
       state.modalId = ModalIds.empty;
     },
     setModalChildren: (state, action: PayloadAction<ModalState>) => {
-      const { modalId, modalType } = action.payload;
+      const { modalId, modalType, functionId } = action.payload;
 
       state.modalId = modalId;
       state.modalType = modalType;
+      state.functionId = functionId;
     },
   },
 });

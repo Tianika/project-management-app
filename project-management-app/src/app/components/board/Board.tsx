@@ -1,42 +1,64 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
-import { requestBoard } from '../../../redux/reducers/BoardSlice';
-import { boardIdSelector } from '../../../redux/selectors/BoardSelectors';
-import { LOCAL_STORAGE_KEYS, RoutersMap } from '../../../utils/constants';
+import { clearBoardData, requestBoard } from '../../../redux/reducers/BoardSlice';
+import { closeModal, setModalChildren } from '../../../redux/reducers/ModalSlice';
+import { boardStateSelector } from '../../../redux/selectors/BoardSelectors';
+import { LoadingState, ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
 import Column from '../column/Column';
-import { BoardContainer, BoardTitle, ColumnsContainer, NewColumnButton } from './styles';
-
-const language = 'ru';
+import {
+  BoardContainer,
+  BoardTitle,
+  ColumnsContainer,
+  NewColumnButton,
+  StyledLink,
+} from './styles';
 
 const Board = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const boardId = useAppSelector(boardIdSelector);
+  const { t } = useTranslation();
+  const { id } = useParams();
+
+  const {
+    boardData: { title, columns },
+    isLoading,
+  } = useAppSelector(boardStateSelector);
 
   useEffect(() => {
-    const id: string | null = boardId || localStorage.getItem(LOCAL_STORAGE_KEYS.boardId);
-
     if (id) {
       dispatch(requestBoard({ id }));
-    } else {
-      navigate(RoutersMap.main);
     }
   }, []);
 
+  useEffect(() => {
+    if (isLoading === LoadingState.Initial || isLoading === LoadingState.Success) {
+      dispatch(closeModal());
+    }
+    if (isLoading === LoadingState.Loading) {
+      dispatch(setModalChildren({ modalId: ModalIds.loading, modalType: ModalTypes.Overlay }));
+    }
+    if (isLoading === LoadingState.Error) {
+      dispatch(setModalChildren({ modalId: ModalIds.error, modalType: ModalTypes.Window }));
+    }
+  }, [isLoading]);
+
+  const onLinkClick = () => {
+    dispatch(clearBoardData());
+  };
+
   return (
     <BoardContainer>
-      <BoardTitle>Board title</BoardTitle>
+      <StyledLink to={RoutersMap.main} onClick={onLinkClick}>
+        &laquo; {t('boardPage.buttonBack')}
+      </StyledLink>
+      <BoardTitle>{title}</BoardTitle>
       <ColumnsContainer>
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <NewColumnButton>Add Column</NewColumnButton>
+        {columns.map((column) => {
+          return <Column key={column.id} column={column} boardId={id} />;
+        })}
+
+        <NewColumnButton>{t('boardPage.addColumnBtn')}</NewColumnButton>
       </ColumnsContainer>
     </BoardContainer>
   );

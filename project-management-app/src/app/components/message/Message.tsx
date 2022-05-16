@@ -1,11 +1,19 @@
+import { useAppSelector } from '../../../redux/hooks/reduxHooks';
+import { errorMessageSelector as boardsError } from '../../../redux/selectors/BoardsSelector';
+import { errorMessageSelector as authError } from '../../../redux/selectors/AuthorizSelector';
+import { errorMessageSelector as boardError } from '../../../redux/selectors/BoardSelectors';
 import { MessageContainer } from './styles';
 
-type MessageType = {
-  message: string;
-};
+const Message = () => {
+  const boardsErrorMessage = useAppSelector(boardsError);
+  const authErrorMessage = useAppSelector(authError);
+  const boardErrorMessage = useAppSelector(boardError);
 
-const Message = ({ message }: MessageType) => {
-  return <MessageContainer>{message}</MessageContainer>;
+  return (
+    <MessageContainer>
+      {boardsErrorMessage || authErrorMessage || boardErrorMessage}
+    </MessageContainer>
+  );
 };
 
 export default Message;
