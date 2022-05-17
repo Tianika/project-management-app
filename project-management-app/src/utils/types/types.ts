@@ -42,3 +42,10 @@ export type RegisterFormValuesType = {
   loginValue: string;
   passwordValue: string;
 };
+
+export type UserType = {
+  id: string;
+  name: string;
+  login: string | undefined;
+  password: string;
+};

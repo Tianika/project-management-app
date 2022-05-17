@@ -21,3 +21,10 @@ export type TaskFilesType = {
   filename: string;
   fileSize: number;
 };
+
+export type UserType = {
+  id: string;
+  name: string;
+  login: string;
+  password: string;
+};

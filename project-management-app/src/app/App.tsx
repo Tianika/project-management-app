@@ -9,7 +9,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import WelcomePage from './pages/WelcomPage/WelcomePage';
 import { RoutersMap } from '../utils/constants';
 import EditProfilPage from './pages/EditProfilePage/EditProfilePage';
-import PrivetRoute from '../hok/PrivetRoute';
+import PrivateRoute from '../hoc/PrivateRoute';
 import AnonymousRoute from '../hoc/AnonymousRoute';
 import { useSaveTokenToLocalStorage } from '../services/useSaveTokenToLocalStorage';
 
@@ -42,9 +42,9 @@ const App = () => {
         <Route
           path={RoutersMap.edit}
           element={
-            <PrivetRoute>
+            <PrivateRoute>
               <EditProfilPage />
-            </PrivetRoute>
+            </PrivateRoute>
           }
         />
         <Route path={RoutersMap.notFound} element={<NotFoundPage />} />
