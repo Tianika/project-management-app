@@ -88,9 +88,12 @@ export const SubmitButton = styled(BaseButton)`
   }
 `;
 
-export const ApiMessage = styled.p`
-  display: inline-block;
+export const ApiMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0.5em 1em;
+  gap: 0.5em;
 
   color: ${colors.baseBg};
   word-wrap: anywhere;

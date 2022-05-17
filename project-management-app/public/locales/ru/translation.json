@@ -86,5 +86,26 @@
     "loginPlaceholder": "Введите логин",
     "passwordPlaceholder": "Введите пароль",
     "title": "Вы действительно хотите изменить данные?"
+  },
+  "authentication": {
+    "loginPageTitle": "Вход",
+    "registerPageTitle": "Регистрация",
+    "placeholders": {
+      "nicknamePlaceholder": "Введите ник",
+      "loginPlaceholder": "Введите имя",
+      "passwordPlaceholder": "Введите пароль"
+    },
+    "errors": {
+      "nicknameError": "*ник обязателен",
+      "loginError": "*имя пользователя обязательно",
+      "passwordError": "*пароль обязателен"
+    },
+    "hideButton": "Спрятать пароль",
+    "showButton": "Показать пароль",
+    "submitLoginButton": "Войти",
+    "submitRegisterButton": "Зарегистрироваться",
+    "apiErrorText": "Извините, но ",
+    "successRegisterMessageFirstPart": "Пользователь ",
+    "successRegisterMessageSecondPart": " успешно зарегистрирован. Сейчас вы будете перенаправлены на страницу входа"
   }
 }

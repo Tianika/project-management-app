@@ -29,62 +29,83 @@
     {
       "text": "change workflows depending on the project"
     }
-],
-"persons": [
-  {
-  "name": "Tatyana Tsybina (teamlead)",
-  "alternative": "Tatyana Tsybina (teamlead)",
-  "description": "Repository creation, project assembly, layout, design",
-  "link": "https://github.com/tianika",
-  "photo": "../../../assets/jpg/Tatyana.jpg"
-},
-{
-  "name": "Evgeny Voropaev (lead developer)",
-  "alternative": "Evgeny Voropaev (lead developer)",
-  "description": "Application architecture, breakdown into components",
-  "link": "https://github.com/amidawolf",
-  "photo": "../../../assets/jpg/Yauhen.jpg"
-},
-{
-  "name": "Mariya Pastushonok (developer)",
-  "alternative": "Mariya Pastushonok (developer)",
-  "description":  "Routing, layout, design",
-  "link": "https://github.com/mrsmariya",
-  "photo": "../../../assets/jpg/Mariya.jpg"
-}
-],
-"footerNames": [
-  {
-    "name": "Tatyana",
-    "href": "https://github.com/tianika",
-    "gitLogo": "../../../locales/footerTranslation"
+  ],
+  "persons": [
+    {
+    "name": "Tatyana Tsybina (teamlead)",
+    "alternative": "Tatyana Tsybina (teamlead)",
+    "description": "Repository creation, project assembly, layout, design",
+    "link": "https://github.com/tianika",
+    "photo": "../../../assets/jpg/Tatyana.jpg"
+    },
+    {
+      "name": "Evgeny Voropaev (lead developer)",
+      "alternative": "Evgeny Voropaev (lead developer)",
+      "description": "Application architecture, breakdown into components",
+      "link": "https://github.com/amidawolf",
+      "photo": "../../../assets/jpg/Yauhen.jpg"
+    },
+    {
+      "name": "Mariya Pastushonok (developer)",
+      "alternative": "Mariya Pastushonok (developer)",
+      "description":  "Routing, layout, design",
+      "link": "https://github.com/mrsmariya",
+      "photo": "../../../assets/jpg/Mariya.jpg"
+    }
+  ],
+  "footerNames": [
+    {
+      "name": "Tatyana",
+      "href": "https://github.com/tianika",
+      "gitLogo": "../../../locales/footerTranslation"
+    },
+    {
+      "name": "Evgeny",
+      "href": "https://github.com/amidawolf",
+      "gitLogo": "../../../locales/footerTranslation"
+    },
+    {
+      "name": "Mariya",
+      "href": "https://github.com/mrsmariya",
+      "gitLogo": "../../../locales/footerTranslation"
+    }
+  ],
+  "notFoundPageTranslation": {
+    "title": "Page not found",
+    "linkTitle": "Go to the main page"
   },
-  {
-    "name": "Evgeny",
-    "href": "https://github.com/amidawolf",
-    "gitLogo": "../../../locales/footerTranslation"
+  "confirmWindow": {
+    "title": "Are you sure you want to delete the board?",
+    "buttonY": "yes",
+    "buttonN": "no"
   },
-  {
-    "name": "Mariya",
-    "href": "https://github.com/mrsmariya",
-    "gitLogo": "../../../locales/footerTranslation"
+  "editProfile": {
+    "button": "Save",
+    "buttonDelete": "Delete profile",
+    "namePlaceholder": "Enter username",
+    "loginPlaceholder": "Enter login",
+    "passwordPlaceholder": "Enter password",
+    "title": "Are you sure you want to change the data?"
+  },
+  "authentication": {
+    "loginPageTitle": "Login",
+    "registerPageTitle": "Registration",
+    "placeholders": {
+      "nicknamePlaceholder": "Enter nickname",
+      "loginPlaceholder": "Enter username",
+      "passwordPlaceholder": "Enter password"
+    },
+    "errors": {
+      "nicknameError": "*nickname is mandatory",
+      "loginError": "*username is mandatory",
+      "passwordError": "*password is mandatory"
+    },
+    "hideButton": "Hide password",
+    "showButton": "Show password",
+    "submitLoginButton": "LogIn",
+    "submitRegisterButton": "Register",
+    "apiErrorText": "Sorry, but ",
+    "successRegisterMessageFirstPart": "User ",
+    "successRegisterMessageSecondPart": " successfully register. Now you will be redirected to Login page"
   }
-],
-"notFoundPageTranslation": {
-  "title": "Page not found",
-  "linkTitle": "Go to the main page"
-},
-"confirmWindow": {
-  "title": "Are you sure you want to delete the board?",
-  "buttonY": "yes",
-  "buttonN": "no"
-},
-"editProfile": {
-  "button": "Save",
-  "buttonDelete": "Delete profile",
-  "namePlaceholder": "Enter username",
-  "loginPlaceholder": "Enter login",
-  "passwordPlaceholder": "Enter password",
-  "title": "Are you sure you want to change the data?"
-}
 }
