@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { colors } from '../../../styles/colors';
-import { AuthForm, SubmitButton } from '../../components/LoginForm/styles';
+import { AuthForm, SubmitButton } from '../LoginForm/styles';
 
-export const EditForm = styled(AuthForm)`
+export const EditFormUser = styled(AuthForm)`
   margin-top: 2rem;
 `;
 

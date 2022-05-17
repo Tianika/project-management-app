@@ -9,6 +9,7 @@ import { loginReducer } from '../reducers/LoginFormSlice';
 import { commonApi } from '../services/common.api';
 import confirmReducer from '../reducers/ConfirmWindowSlice';
 import { boardReducer } from '../reducers/BoardSlice';
+import { usersReducer } from '../reducers/AuthorizSlice';
 
 const rootReducer = combineReducers({
   authReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   boards: boardsReducer,
   board: boardReducer,
   loginReducer,
+  usersReducer,
   [commonApi.reducerPath]: commonApi.reducer,
 });
 
