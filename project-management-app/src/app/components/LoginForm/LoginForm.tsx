@@ -15,7 +15,6 @@ import {
   SubmitButton,
 } from './styles';
 import { Loading } from '../../../styles/global';
-import { authSlice } from '../../../redux/reducers/AuthSlice';
 import { loginPageTranslation } from '../../../locales/LoginPageTranslation';
 import { loginSelector } from '../../../redux/selectors/AuthSelectors';
 import { RoutersMap } from '../../../utils/constants';
@@ -23,7 +22,6 @@ import { RoutersMap } from '../../../utils/constants';
 export default function LoginForm() {
   const { login } = useAppSelector(loginSelector);
   const { addFormData, setCredentials } = loginFormSlice.actions;
-  const { toggleUserLogged } = authSlice.actions;
   const [signIn, { error, isLoading }] = authApi.useSignInMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -58,7 +56,6 @@ export default function LoginForm() {
       .unwrap()
       .then((response) => {
         dispatch(setCredentials({ user: loginValue, token: response.token }));
-        dispatch(toggleUserLogged(true));
 
         navigate(RoutersMap.main);
       })
