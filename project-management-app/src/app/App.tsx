@@ -11,8 +11,11 @@ import { RoutersMap } from '../utils/constants';
 import EditProfilPage from './pages/EditProfilePage/EditProfilePage';
 import PrivetRoute from '../hok/PrivetRoute';
 import AnonymousRoute from '../hoc/AnonymousRoute';
+import { useSaveTokenToLocalStorage } from '../services/useSaveTokenToLocalStorage';
 
 const App = () => {
+  useSaveTokenToLocalStorage();
+
   return (
     <>
       <GlobalStyle />
