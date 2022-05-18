@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import jwtDecode, { JwtPayload } from 'jwt-decode';
 import { BASE_URL, LoadingState } from '../../utils/constants';
 import { UserType } from '../../utils/types/types';
 
@@ -8,7 +7,7 @@ import { UserType } from '../../utils/types/types';
 const tokenLocal =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhY2UzMzljNy1hNGNkLTQ4OTMtOTAwZC1lMTk5NWQ5NzQzNjUiLCJsb2dpbiI6InVzZXIwMDQiLCJpYXQiOjE2NTI3OTE2NzB9.Vb8kntlWoHnqnZl9CZznc9JwrXVdao137AcI2OW7yyU';
 
-export const decoded = jwtDecode<JwtPayload>(tokenLocal);
+// export const decoded = jwtDecode<JwtPayload>(tokenLocal);
 
 const config = {
   headers: {

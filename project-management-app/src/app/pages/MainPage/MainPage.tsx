@@ -1,11 +1,11 @@
 import Boards from '../../components/boards/Boards';
-import Header from '../../components/header/Header';
+import MainPageHeader from '../../components/mainPageHeader/MainPageHeader';
 import { MainPageContainer } from './styles';
 
 const MainPage = () => {
   return (
     <MainPageContainer>
-      <Header />
+      <MainPageHeader />
       <Boards />
     </MainPageContainer>
   );

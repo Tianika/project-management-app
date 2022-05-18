@@ -37,8 +37,22 @@ const App = () => {
             </AnonymousRoute>
           }
         />
-        <Route path={RoutersMap.main} element={<MainPage />} />
-        <Route path={RoutersMap.board} element={<BoardPage />} />
+        <Route
+          path={RoutersMap.main}
+          element={
+            <PrivateRoute>
+              <MainPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={RoutersMap.board}
+          element={
+            <PrivateRoute>
+              <BoardPage />
+            </PrivateRoute>
+          }
+        />
         <Route
           path={RoutersMap.edit}
           element={

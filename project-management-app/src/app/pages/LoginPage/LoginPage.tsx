@@ -1,7 +1,7 @@
 import React from 'react';
 import { ColumnCenteredWrapper, H1 } from '../../../styles/global';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import Header from '../../components/welcomePageHeader/Header';
+import WelcomePageHeader from '../../components/welcomePageHeader/WelcomePageHeader';
 import Footer from '../../components/footer/Footer';
 import { loginPageTranslation } from '../../../locales/LoginPageTranslation';
 
@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <Header />
+      <WelcomePageHeader />
       <ColumnCenteredWrapper>
         <H1>{loginPageTitle}</H1>
         <LoginForm />
