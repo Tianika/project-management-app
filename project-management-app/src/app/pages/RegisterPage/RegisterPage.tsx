@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Header from '../../components/welcomePageHeader/Header';
+import WelcomePageHeader from '../../components/welcomePageHeader/WelcomePageHeader';
 import { ColumnCenteredWrapper, H1 } from '../../../styles/global';
 import Footer from '../../components/footer/Footer';
 import RegisterForm from '../../components/registerForm/RegisterForm';
@@ -10,7 +10,7 @@ const RegisterPage = () => {
 
   return (
     <>
-      <Header />
+      <WelcomePageHeader />
       <ColumnCenteredWrapper>
         <H1>{t('authentication.registerPageTitle')}</H1>
         <RegisterForm />

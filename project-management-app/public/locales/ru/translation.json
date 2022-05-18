@@ -107,5 +107,10 @@
     "apiErrorText": "Извините, но ",
     "successRegisterMessageFirstPart": "Пользователь ",
     "successRegisterMessageSecondPart": " успешно зарегистрирован. Сейчас вы будете перенаправлены на страницу входа"
+  },
+  "mainPageHeader": {
+    "editButton": "Редактировать профиль",
+    "createButton": "Создать доску",
+    "logoutButton": "Выйти"
   }
 }

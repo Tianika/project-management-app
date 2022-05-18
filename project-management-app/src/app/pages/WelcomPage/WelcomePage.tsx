@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import Header from '../../components/welcomePageHeader/Header';
-import { Container, NewWrapper, Section, Subtitle, Title } from './Styles';
+import WelcomePageHeader from '../../components/welcomePageHeader/WelcomePageHeader';
+import { Container, NewWrapper, Section, Subtitle, Title } from './styles';
 import PersonsCards from '../../components/personsCards/PersonsCards';
 import Footer from '../../components/footer/Footer';
 
@@ -20,7 +20,7 @@ const WelcomePage = () => {
 
   return (
     <>
-      <Header />
+      <WelcomePageHeader />
       <Section>
         <Title>{t('title')}</Title>
         <Subtitle>Project management app</Subtitle>

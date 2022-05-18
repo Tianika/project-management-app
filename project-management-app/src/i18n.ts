@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'ru',
-    debug: true,
+    debug: false,
     detection: {
       order: ['localStorage', 'cookie'],
       cache: ['localStorage', 'cookie'],
