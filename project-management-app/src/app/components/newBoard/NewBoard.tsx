@@ -1,7 +1,7 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { mainPageTranslation } from '../../../locales/mainPageTranslation';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
-import { createNewBoard } from '../../../redux/reducers/BoardsSlice';
+import { createNewBoard } from '../../../redux/services/Boards.api';
 import { NewBoardButton, NewBoardInput, NewBoardForm, NewBoardTitle } from './styles';
 
 const language = 'ru';

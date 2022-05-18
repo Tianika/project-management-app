@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
-import { clearBoardData, requestBoard } from '../../../redux/reducers/BoardSlice';
+import { clearBoardData, saveBoardId } from '../../../redux/reducers/BoardSlice';
 import { closeModal, setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { boardStateSelector } from '../../../redux/selectors/BoardSelectors';
+import { requestBoard } from '../../../redux/services/Board.api';
 import { LoadingState, ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
 import Column from '../column/Column';
 import {
@@ -47,6 +48,13 @@ const Board = () => {
     dispatch(clearBoardData());
   };
 
+  const onClick = () => {
+    if (id) {
+      dispatch(saveBoardId(id));
+      dispatch(setModalChildren({ modalId: ModalIds.newColumn, modalType: ModalTypes.Window }));
+    }
+  };
+
   return (
     <BoardContainer>
       <StyledLink to={RoutersMap.main} onClick={onLinkClick}>
@@ -58,7 +66,7 @@ const Board = () => {
           return <Column key={column.id} column={column} boardId={id} />;
         })}
 
-        <NewColumnButton>{t('boardPage.addColumnBtn')}</NewColumnButton>
+        <NewColumnButton onClick={onClick}>{t('boardPage.addColumnBtn')}</NewColumnButton>
       </ColumnsContainer>
     </BoardContainer>
   );

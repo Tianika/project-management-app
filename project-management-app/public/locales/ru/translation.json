@@ -119,7 +119,9 @@
     "createTaskTitle": "Добавить новую задачу",
     "taskTitlePlaceholder": "Введите название",
     "taskDescriptionPlaceholder": "Введите описание",
-    "createButton": "Добавить"
+    "createButton": "Добавить",
+    "createColumnTitle": "Добавить колонку",
+    "hintDeleteColumn": "Удалить колонку"
   },
   "mainPage": {
     "boardsTitle": "Доски"

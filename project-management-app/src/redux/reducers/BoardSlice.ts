@@ -1,82 +1,21 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { BASE_URL, LoadingState } from '../../utils/constants';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LoadingState } from '../../utils/constants';
 import {
   BoardDataType,
   BoardState,
+  ColumnResponseType,
   CreateTaskActionProps,
-  RequestTaskType,
   TaskResponseType,
   UpdateTaskActionProps,
 } from '../../utils/types';
-
-// TODO добавить получение token и userid
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZmVhYmI5Yy01Mjg4LTQxMTAtYmZjMS00ZjA2YjJhYmZiMjUiLCJsb2dpbiI6InVzZXIwMDciLCJpYXQiOjE2NTE5MzkwNTV9.ZBZgPVIpa0-5uw8EEhrukKr0xdVZGO92wFJsXSsWDwg';
-
-const userId = '8feabb9c-5288-4110-bfc1-4f06b2abfb25';
-
-const config = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
-
-export const requestBoard = createAsyncThunk(
-  'board/requestBoard',
-  async ({ id }: { id: string }, thunkAPI) => {
-    try {
-      const response = await axios.get(`${BASE_URL}/boards/${id}`, config);
-
-      return response.data;
-    } catch ({ message }) {
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const createNewTask = createAsyncThunk(
-  'board/createNewTask',
-  async ({ title, description, boardId, columnId, newTaskOrder }: RequestTaskType, thunkAPI) => {
-    const body = {
-      title,
-      order: newTaskOrder,
-      description,
-      userId,
-    };
-
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/boards/${boardId}/columns/${columnId}/tasks`,
-        body,
-        config
-      );
-
-      return response.data;
-    } catch ({ message }) {
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
-export const deleteTask = createAsyncThunk(
-  'board/deleteTask',
-  async (
-    { boardId, columnId, taskId }: { boardId: string; columnId: string; taskId: string },
-    thunkAPI
-  ) => {
-    try {
-      await axios.delete(
-        `${BASE_URL}/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
-        config
-      );
-
-      return { boardId, columnId, taskId };
-    } catch ({ message }) {
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+import {
+  createNewColumn,
+  createNewTask,
+  deleteColumn,
+  deleteTask,
+  requestBoard,
+  updateColumn,
+} from '../services/Board.api';
 
 const initialState: BoardState = {
   boardId: '',
@@ -173,6 +112,55 @@ const boardSlice = createSlice({
       state.isLoading = LoadingState.Success;
     },
     [deleteTask.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = LoadingState.Error;
+      state.errorMessage = action.payload;
+    },
+
+    [createNewColumn.pending.type]: (state) => {
+      state.isLoading = LoadingState.Loading;
+    },
+    [createNewColumn.fulfilled.type]: (state, action: PayloadAction<ColumnResponseType>) => {
+      const newColumn = { ...action.payload, tasks: [] };
+
+      state.boardData.columns.push(newColumn);
+      state.isLoading = LoadingState.Success;
+    },
+    [createNewColumn.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = LoadingState.Error;
+      state.errorMessage = action.payload;
+    },
+
+    [deleteColumn.pending.type]: (state) => {
+      state.isLoading = LoadingState.Loading;
+    },
+    [deleteColumn.fulfilled.type]: (state, action: PayloadAction<UpdateTaskActionProps>) => {
+      const { columnId } = action.payload;
+
+      const taskIndex = state.boardData.columns.findIndex((column) => column.id === columnId);
+
+      if (taskIndex > -1) {
+        state.boardData.columns.splice(taskIndex, 1);
+      }
+
+      state.isLoading = LoadingState.Success;
+    },
+    [deleteColumn.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = LoadingState.Error;
+      state.errorMessage = action.payload;
+    },
+
+    [updateColumn.pending.type]: (state) => {
+      state.isLoading = LoadingState.Loading;
+    },
+    [updateColumn.fulfilled.type]: (state, action: PayloadAction<ColumnResponseType>) => {
+      const { id, title } = action.payload;
+
+      const columnIndex = state.boardData.columns.findIndex((column) => column.id === id);
+
+      state.boardData.columns[columnIndex].title = title;
+      state.isLoading = LoadingState.Success;
+    },
+    [updateColumn.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = LoadingState.Error;
       state.errorMessage = action.payload;
     },

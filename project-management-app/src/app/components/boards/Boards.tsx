@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
-import { requestBoards } from '../../../redux/reducers/BoardsSlice';
 import { closeModal, setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { boardsStateSelector } from '../../../redux/selectors/BoardsSelector';
+import { requestBoards } from '../../../redux/services/Boards.api';
 import { LoadingState, ModalIds, ModalTypes } from '../../../utils/constants';
 import BoardPreview from '../boardPreview/BoardPreview';
 import { BoardsContainer, BoardsTitle } from './styles';

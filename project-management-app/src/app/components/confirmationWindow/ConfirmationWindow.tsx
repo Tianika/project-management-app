@@ -1,14 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
-import { deleteTask } from '../../../redux/reducers/BoardSlice';
-import { deleteBoard } from '../../../redux/reducers/BoardsSlice';
 import { closeModal } from '../../../redux/reducers/ModalSlice';
 import { boardStateSelector } from '../../../redux/selectors/BoardSelectors';
 import { confirmWindowSelector } from '../../../redux/selectors/ConfirmWindowSelector';
 import { modalFunctionIdSelector } from '../../../redux/selectors/ModalSelectors';
+import { deleteColumn, deleteTask } from '../../../redux/services/Board.api';
+import { deleteBoard } from '../../../redux/services/Boards.api';
 import { FunctionIds } from '../../../utils/constants';
 import { NewBoardTitle } from '../newBoard/styles';
-import { ConfirmWindowButton, ConfirmWindowButtonWrapper, ConfirmWindowStyles } from './styles';
+import {
+  CancelWindowButton,
+  ConfirmWindowButton,
+  ConfirmWindowButtonWrapper,
+  ConfirmWindowStyles,
+} from './styles';
 
 const ConfirmationWindow = () => {
   const { t } = useTranslation();
@@ -23,7 +28,7 @@ const ConfirmationWindow = () => {
   };
 
   const removeColumn = () => {
-    // dispatch(deleteColumn({ boardId, columnId }));
+    dispatch(deleteColumn({ boardId, columnId }));
   };
 
   const removeTask = () => {
@@ -47,9 +52,7 @@ const ConfirmationWindow = () => {
         <ConfirmWindowButton onClick={FUNCTION_FOR_COMPLETE[modalFunctionId]}>
           {t('confirmWindow.buttonY')}
         </ConfirmWindowButton>
-        <ConfirmWindowButton onClick={onCloseModal}>
-          {t('confirmWindow.buttonN')}
-        </ConfirmWindowButton>
+        <CancelWindowButton onClick={onCloseModal}>{t('confirmWindow.buttonN')}</CancelWindowButton>
       </ConfirmWindowButtonWrapper>
     </ConfirmWindowStyles>
   );
