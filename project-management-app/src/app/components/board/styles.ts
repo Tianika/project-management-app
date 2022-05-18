@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../../../styles/colors';
 
@@ -50,4 +51,22 @@ export const NewColumnButton = styled.button`
   border-radius: 5px;
   background-color: ${colors.baseBg};
   box-shadow: 0px 4px 4px ${colors.shadow};
+`;
+
+export const StyledLink = styled(Link)`
+  width: fit-content;
+  color: ${colors.lightFont};
+  font-size: 18px;
+  padding: 10px 20px;
+
+  &:hover {
+    transform: scale(1, 1.3);
+    transition: 0.2s all;
+  }
+
+  &:active {
+    transform: translateY(3px);
+    transition: 0.2s all;
+    color: ${colors.darkFont};
+  }
 `;

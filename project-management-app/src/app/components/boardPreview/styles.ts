@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { adaptive } from '../../../styles/adaptive';
 import { colors } from '../../../styles/colors';
+import deleteIcon from '../../../assets/svg/delete.svg';
 
 export const BoardPreviewStyled = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ export const BoardPreviewStyled = styled.div`
 `;
 
 export const BoardPreviewInfo = styled.div`
-  width: 90%;
+  width: 80%;
   min-height: 120px;
   background-color: ${colors.baseBg};
   cursor: pointer;
@@ -39,7 +40,6 @@ export const BoardPreviewInfo = styled.div`
   }
 
   ${adaptive.maxWidth.mobile} {
-    width: 85%;
     min-height: 80px;
   }
 `;
@@ -47,21 +47,20 @@ export const BoardPreviewInfo = styled.div`
 export const RemoveBoardButton = styled.button`
   display: inline-block;
   width: 70px;
-  min-height: 120px;
+  min-height: inherit;
   background-color: ${colors.baseBg};
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px 40px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0px 4px 4px ${colors.shadow};
+  background-image: url(${deleteIcon});
+  transition: background-size 0.2s;
 
-  ${adaptive.maxWidth.tablet} {
-    width: 50px;
-    min-height: 100px;
-  }
-
-  ${adaptive.maxWidth.mobile} {
-    width: 30px;
-    min-height: 80px;
+  &:hover {
+    background-size: 40px 50px;
   }
 `;

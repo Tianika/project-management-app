@@ -6,7 +6,7 @@ export const NewBoardForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 60vw;
+  min-width: 30vw;
   min-height: 30vh;
   background-color: ${colors.baseBg};
   border-radius: 5px;
@@ -14,14 +14,12 @@ export const NewBoardForm = styled.form`
   font-size: 22px;
 
   ${adaptive.maxWidth.tablet} {
-    min-width: 70vw;
     font-size: 20px;
   }
 
   ${adaptive.maxWidth.mobile} {
     flex-direction: column;
     width: 90%;
-    min-width: 80vw;
     font-size: 18px;
   }
 `;

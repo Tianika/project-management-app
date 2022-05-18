@@ -16,14 +16,12 @@ type BoardsState = {
   boards: Array<BoardsType>;
   isLoading: LoadingState;
   errorMessage: string;
-  isFetching: boolean;
 };
 
 const initialState: BoardsState = {
   boards: [],
   isLoading: LoadingState.Initial,
   errorMessage: '',
-  isFetching: false,
 };
 
 export const requestBoards = createAsyncThunk('boards/requestBoards', async (_, thunkAPI) => {
@@ -52,8 +50,8 @@ export const deleteBoard = createAsyncThunk(
   'boards/deleteBoard',
   async ({ id }: { id: string }, thunkAPI) => {
     try {
-      const response = await axios.delete(`${BASE_URL}/boards/${id}`, config);
-      return response.data;
+      await axios.delete(`${BASE_URL}/boards/${id}`, config);
+      return id;
     } catch ({ message }) {
       return thunkAPI.rejectWithValue(message);
     }
@@ -67,7 +65,6 @@ const boardsSlice = createSlice({
   extraReducers: {
     [requestBoards.pending.type]: (state) => {
       state.isLoading = LoadingState.Loading;
-      state.isFetching = false;
     },
     [requestBoards.fulfilled.type]: (state, action: PayloadAction<Array<BoardsType>>) => {
       state.isLoading = LoadingState.Success;
@@ -80,11 +77,10 @@ const boardsSlice = createSlice({
 
     [createNewBoard.pending.type]: (state) => {
       state.isLoading = LoadingState.Loading;
-      state.isFetching = false;
     },
-    [createNewBoard.fulfilled.type]: (state) => {
+    [createNewBoard.fulfilled.type]: (state, action: PayloadAction<BoardsType>) => {
+      state.boards.push(action.payload);
       state.isLoading = LoadingState.Success;
-      state.isFetching = true;
     },
     [createNewBoard.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = LoadingState.Error;
@@ -93,11 +89,10 @@ const boardsSlice = createSlice({
 
     [deleteBoard.pending.type]: (state) => {
       state.isLoading = LoadingState.Loading;
-      state.isFetching = false;
     },
-    [deleteBoard.fulfilled.type]: (state) => {
+    [deleteBoard.fulfilled.type]: (state, action: PayloadAction<string>) => {
+      state.boards = state.boards.filter((board) => board.id !== action.payload);
       state.isLoading = LoadingState.Success;
-      state.isFetching = true;
     },
     [deleteBoard.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = LoadingState.Error;

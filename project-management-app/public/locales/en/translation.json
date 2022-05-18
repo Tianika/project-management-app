@@ -1,7 +1,6 @@
 {
   "title": "Project management app - must have for freelancers and small companies!",
-  "description":
-    "is a visual workflow management tool that allows teams to think, plan, and collaborate, and celebrate each team member\"s progress. With this tool, the work of the team will be cohesive, productive and organized.",
+  "description": "is a visual workflow management tool that allows teams to think, plan, and collaborate, and celebrate each team member\"s progress. With this tool, the work of the team will be cohesive, productive and organized.",
   "captions": {
     "caption1": "With Project management app you can",
     "caption2": "Our team"
@@ -32,11 +31,11 @@
   ],
   "persons": [
     {
-    "name": "Tatyana Tsybina (teamlead)",
-    "alternative": "Tatyana Tsybina (teamlead)",
-    "description": "Repository creation, project assembly, layout, design",
-    "link": "https://github.com/tianika",
-    "photo": "../../../assets/jpg/Tatyana.jpg"
+      "name": "Tatyana Tsybina (teamlead)",
+      "alternative": "Tatyana Tsybina (teamlead)",
+      "description": "Repository creation, project assembly, layout, design",
+      "link": "https://github.com/tianika",
+      "photo": "../../../assets/jpg/Tatyana.jpg"
     },
     {
       "name": "Evgeny Voropaev (lead developer)",
@@ -48,7 +47,7 @@
     {
       "name": "Mariya Pastushonok (developer)",
       "alternative": "Mariya Pastushonok (developer)",
-      "description":  "Routing, layout, design",
+      "description": "Routing, layout, design",
       "link": "https://github.com/mrsmariya",
       "photo": "../../../assets/jpg/Mariya.jpg"
     }
@@ -75,7 +74,7 @@
     "linkTitle": "Go to Main Page"
   },
   "confirmWindow": {
-    "title": "Are you sure you want to delete the board?",
+    "title": "Are you sure?",
     "buttonY": "yes",
     "buttonN": "no"
   },
@@ -112,5 +111,17 @@
     "editButton": "Edit profile",
     "createButton": "Create board",
     "logoutButton": "Sign Out"
+  },
+  "boardPage": {
+    "buttonBack": "Go back",
+    "addColumnBtn": "Add column",
+    "addTaskBtn": "Add task",
+    "createTaskTitle": "Add new task",
+    "taskTitlePlaceholder": "Enter title",
+    "taskDescriptionPlaceholder": "Enter description",
+    "createButton": "Add"
+  },
+  "mainPage": {
+    "boardsTitle": "Boards"
   }
 }

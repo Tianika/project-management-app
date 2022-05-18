@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { mainPageTranslation } from '../../../locales/mainPageTranslation';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { requestBoards } from '../../../redux/reducers/BoardsSlice';
 import { closeModal, setModalChildren } from '../../../redux/reducers/ModalSlice';
@@ -8,25 +8,16 @@ import { LoadingState, ModalIds, ModalTypes } from '../../../utils/constants';
 import BoardPreview from '../boardPreview/BoardPreview';
 import { BoardsContainer, BoardsTitle } from './styles';
 
-const language = 'ru';
-
-const { boardsTitle } = mainPageTranslation[language];
-
 const Boards = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, isFetching, boards } = useAppSelector(boardsStateSelector);
+  const { t } = useTranslation();
+  const { isLoading, boards } = useAppSelector(boardsStateSelector);
 
   useEffect(() => {
     if (!boards.length) {
       dispatch(requestBoards());
     }
   }, []);
-
-  useEffect(() => {
-    if (isFetching) {
-      dispatch(requestBoards());
-    }
-  }, [isFetching]);
 
   useEffect(() => {
     if (isLoading === LoadingState.Initial || isLoading === LoadingState.Success) {
@@ -42,7 +33,7 @@ const Boards = () => {
 
   return (
     <BoardsContainer>
-      <BoardsTitle>{boardsTitle}</BoardsTitle>
+      <BoardsTitle>{t('mainPage.boardsTitle')}</BoardsTitle>
       <BoardPreview />
     </BoardsContainer>
   );

@@ -46,7 +46,7 @@ const App = () => {
           }
         />
         <Route
-          path={RoutersMap.board}
+          path={`${RoutersMap.board}/:id`}
           element={
             <PrivateRoute>
               <BoardPage />
