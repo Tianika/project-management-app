@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AuthErrorType, LoginFormValuesType } from '../../../utils/types/types';
 import { loginFormSlice } from '../../../redux/reducers/LoginFormSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
@@ -15,7 +16,6 @@ import {
   SubmitButton,
 } from './styles';
 import { Loading } from '../../../styles/global';
-import { loginPageTranslation } from '../../../locales/LoginPageTranslation';
 import { loginSelector } from '../../../redux/selectors/AuthSelectors';
 import { RoutersMap } from '../../../utils/constants';
 
@@ -25,6 +25,7 @@ export default function LoginForm() {
   const [signIn, { error, isLoading }] = authApi.useSignInMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   let authError = error as AuthErrorType;
 
@@ -41,10 +42,6 @@ export default function LoginForm() {
       passwordValue: '',
     },
   });
-
-  const { loginPlaceholder, passwordPlaceholder } = loginPageTranslation.ru.loginForm.placeholders;
-  const { loginError, passwordError } = loginPageTranslation.ru.loginForm.errors;
-  const { hideButton, showButton, submitButton, apiErrorText } = loginPageTranslation.ru.loginForm;
 
   const onSubmit: SubmitHandler<LoginFormValuesType> = ({ loginValue, passwordValue }) => {
     dispatch(addFormData(loginValue));
@@ -70,33 +67,37 @@ export default function LoginForm() {
         <FormTextField
           type="text"
           {...register('loginValue', { required: true })}
-          placeholder={loginPlaceholder}
+          placeholder={t('authentication.placeholders.loginPlaceholder')}
           inputMode="username"
         />
 
-        {errors.loginValue && <FormTextFieldError>{loginError}</FormTextFieldError>}
+        {errors.loginValue && (
+          <FormTextFieldError>{t('authentication.errors.loginError')}</FormTextFieldError>
+        )}
       </FormTextFieldWrapper>
 
       <FormTextFieldWrapper>
         <FormTextField
           type={show ? 'text' : 'password'}
           {...register('passwordValue', { required: true })}
-          placeholder={passwordPlaceholder}
+          placeholder={t('authentication.placeholders.passwordPlaceholder')}
         />
 
-        {errors.passwordValue && <FormTextFieldError>{passwordError}</FormTextFieldError>}
+        {errors.passwordValue && (
+          <FormTextFieldError>{t('authentication.errors.passwordError')}</FormTextFieldError>
+        )}
       </FormTextFieldWrapper>
 
       <BaseButton type="button" onClick={handleShow}>
-        {show ? hideButton : showButton}
+        {show ? t('authentication.hideButton') : t('authentication.showButton')}
       </BaseButton>
 
-      <SubmitButton type="submit">{submitButton}</SubmitButton>
+      <SubmitButton type="submit">{t('authentication.submitLoginButton')}</SubmitButton>
 
       {isLoading && <Loading />}
 
       {authError && (
-        <ErrorApiMessage>{`${apiErrorText} ${
+        <ErrorApiMessage>{`${t('authentication.apiErrorText')} ${
           authError?.data?.message || JSON.stringify(authError)
         }`}</ErrorApiMessage>
       )}

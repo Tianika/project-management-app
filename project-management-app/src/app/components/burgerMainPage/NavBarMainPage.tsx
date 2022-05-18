@@ -1,34 +1,20 @@
-import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import HeaderButton from '../headerButton/HeaderButton';
-import { HeaderContainer, headerTheme } from './styles';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
+import { loginFormSlice } from '../../../redux/reducers/LoginFormSlice';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { RoutersMap, ModalIds, ModalTypes } from '../../../utils/constants';
+import { BurgerType, BurgerWrapper } from '../burgerWelcomePage/styles';
+import HeaderButton from '../headerButton/HeaderButton';
 import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
-import { loginFormSlice } from '../../../redux/reducers/LoginFormSlice';
-import { activeHeaderTheme, LinksWrapper } from '../welcomePageHeader/styles';
-import MainPageBurgerBtn from '../burgerMainPage/MainPageBurgerBtn';
 
-const MainPageHeader = () => {
+const NavBarMainPage = ({ open }: BurgerType) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { setToken } = loginFormSlice.actions;
   const { t } = useTranslation();
-  const [theme, setTheme] = useState(false);
   const loc = document.location;
   const { id } = useParams();
-
-  const changeBackground = () => {
-    if (window.scrollY >= 20) {
-      setTheme(true);
-    } else {
-      setTheme(false);
-    }
-  };
-
-  window.addEventListener('scroll', changeBackground);
 
   const BUTTONS = [
     {
@@ -71,20 +57,17 @@ const MainPageHeader = () => {
   ];
 
   return (
-    <HeaderContainer theme={theme ? activeHeaderTheme : headerTheme}>
-      <MainPageBurgerBtn />
-      <LinksWrapper>
-        <LocalesCheckBox id="mainCheckBox" />
-        {loc.pathname === `${RoutersMap.board}/${id}` || loc.pathname === `${RoutersMap.edit}`
-          ? BUTTONSBBOARDPAGE.map(({ text, onClick }) => {
-              return <HeaderButton key={text} text={text} onClick={onClick} />;
-            })
-          : BUTTONS.map(({ text, onClick }) => {
-              return <HeaderButton key={text} text={text} onClick={onClick} />;
-            })}
-      </LinksWrapper>
-    </HeaderContainer>
+    <BurgerWrapper open={open}>
+      <LocalesCheckBox id="mainBurgerCheckBox" />
+      {loc.pathname === `${RoutersMap.board}/${id}` || loc.pathname === `${RoutersMap.edit}`
+        ? BUTTONSBBOARDPAGE.map(({ text, onClick }) => {
+            return <HeaderButton key={text} text={text} onClick={onClick} />;
+          })
+        : BUTTONS.map(({ text, onClick }) => {
+            return <HeaderButton key={text} text={text} onClick={onClick} />;
+          })}
+    </BurgerWrapper>
   );
 };
 
-export default MainPageHeader;
+export default NavBarMainPage;

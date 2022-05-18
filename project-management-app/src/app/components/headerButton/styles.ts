@@ -5,7 +5,9 @@ export const HeaderButtonStyled = styled.button`
   font-size: 20px;
   font-weight: 500;
   height: 40px;
-  min-width: 150px;
+  width: 11rem;
+  max-width: 12rem;
+  line-height: 1rem;
   background-color: ${colors.buttonBg};
   color: ${colors.lightFont};
   border-radius: 5px;

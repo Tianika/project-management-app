@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { colors } from '../../../styles/colors';
 
 export const FormTextFieldWrapper = styled.label`
-  position: relative;
-
   width: 100%;
 `;
 

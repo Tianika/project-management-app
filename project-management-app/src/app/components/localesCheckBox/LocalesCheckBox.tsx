@@ -4,7 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks'
 import { changeToggle } from '../../../redux/reducers/LanguageSlice';
 import { toggleLangSelector } from '../../../redux/selectors/LanguageSelectors';
 
-const LocalesCheckBox = () => {
+export type CheckBoxType = {
+  id: string;
+};
+
+const LocalesCheckBox = ({ id }: CheckBoxType) => {
   const toggleLang = useAppSelector(toggleLangSelector);
   const dispatch = useAppDispatch();
 
@@ -16,13 +20,8 @@ const LocalesCheckBox = () => {
   return (
     <CheckBoxWrapper>
       <CheckBoxTitle>ru</CheckBoxTitle>
-      <CheckBox
-        onClick={changeLanguage}
-        defaultChecked={toggleLang}
-        id="checkbox"
-        type="checkbox"
-      />
-      <CheckBoxLabel htmlFor="checkbox" />
+      <CheckBox onClick={changeLanguage} defaultChecked={toggleLang} id={id} type="checkbox" />
+      <CheckBoxLabel htmlFor={id} />
       <CheckBoxTitle>en</CheckBoxTitle>
     </CheckBoxWrapper>
   );
