@@ -9,6 +9,7 @@ import ConfirmationWindow from '../confirmationWindow/ConfirmationWindow';
 import ConfirmWindowEditProf from '../confirmWindowEditProf/ConfirmWindowEditProf';
 import Message from '../message/Message';
 import NewBoard from '../newBoard/NewBoard';
+import NewColumn from '../newColumn/NewColumn';
 import NewTask from '../newTask/NewTask';
 import { ModalContainer } from './styles';
 
@@ -24,6 +25,7 @@ const Modal = () => {
     [ModalIds.error]: <Message />,
     [ModalIds.loading]: <LoadingWrapper />,
     [ModalIds.newTask]: <NewTask />,
+    [ModalIds.newColumn]: <NewColumn />,
   };
 
   const modal = useMemo(() => document.createElement('div'), []);

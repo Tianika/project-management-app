@@ -4,63 +4,44 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { closeModal } from '../../../redux/reducers/ModalSlice';
 import { boardStateSelector } from '../../../redux/selectors/BoardSelectors';
-import { createNewTask } from '../../../redux/services/Board.api';
-import {
-  NewTaskButton,
-  NewTaskDescription,
-  NewTaskForm,
-  NewTaskInput,
-  NewTaskTitle,
-} from './styles';
+import { createNewColumn } from '../../../redux/services/Board.api';
+import { NewTaskButton, NewTaskForm, NewTaskInput, NewTaskTitle } from '../newTask/styles';
 
-const NewTask = () => {
+const NewColumn = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const { register, handleSubmit } = useForm();
 
-  const newTaskOrder = useRef(1);
+  const newColumnOrder = useRef(1);
 
   const {
     boardId,
-    columnId,
     boardData: { columns },
   } = useAppSelector(boardStateSelector);
 
   useEffect(() => {
-    if (columns) {
-      const tasksList = columns.find((column) => column.id === columnId);
-
-      if (tasksList && tasksList.tasks.length) {
-        const { tasks } = tasksList;
-        newTaskOrder.current = tasks[tasks.length - 1].order + 1;
-      }
+    if (columns.length) {
+      newColumnOrder.current = columns[columns.length - 1].order + 1;
     }
   }, [columns]);
 
-  const onSubmit: SubmitHandler<FieldValues> = ({ title, description }) => {
-    dispatch(
-      createNewTask({ title, description, boardId, columnId, newTaskOrder: newTaskOrder.current })
-    );
+  const onSubmit: SubmitHandler<FieldValues> = ({ title }) => {
+    dispatch(createNewColumn({ title, boardId, newColumnOrder: newColumnOrder.current }));
     dispatch(closeModal());
   };
 
   return (
     <NewTaskForm onSubmit={handleSubmit(onSubmit)}>
-      <NewTaskTitle>{t('boardPage.addTaskBtn')}</NewTaskTitle>
+      <NewTaskTitle>{t('boardPage.createColumnTitle')}</NewTaskTitle>
       <NewTaskInput
         type="text"
         {...register('title', { required: true })}
         placeholder={t('boardPage.taskTitlePlaceholder')}
         autoFocus
       />
-      <NewTaskDescription
-        type="text"
-        {...register('description', { required: true })}
-        placeholder={t('boardPage.taskDescriptionPlaceholder')}
-      />
       <NewTaskButton type="submit">{t('boardPage.createButton')}</NewTaskButton>
     </NewTaskForm>
   );
 };
 
-export default NewTask;
+export default NewColumn;

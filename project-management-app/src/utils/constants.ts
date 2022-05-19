@@ -30,6 +30,7 @@ export enum ModalIds {
   confirmationWindow = 'confirmationWindow',
   confirmWindowEditProf = 'confirmWindowEditProf',
   newTask = 'newTask',
+  newColumn = 'newColumn',
 }
 
 export enum FunctionIds {

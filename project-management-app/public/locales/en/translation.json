@@ -119,7 +119,9 @@
     "createTaskTitle": "Add new task",
     "taskTitlePlaceholder": "Enter title",
     "taskDescriptionPlaceholder": "Enter description",
-    "createButton": "Add"
+    "createButton": "Add",
+    "createColumnTitle": "Add new column",
+    "hintDeleteColumn": "Delete column"
   },
   "mainPage": {
     "boardsTitle": "Boards"

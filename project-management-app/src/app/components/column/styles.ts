@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { colors } from '../../../styles/colors';
+import { DeleteButton } from '../../../styles/global';
+import acceptIcon from '../../../assets/svg/accept.svg';
+import cancelIcon from '../../../assets/svg/cancel.svg';
 
 export const ColumnContainer = styled.div`
   min-width: 300px;
@@ -39,7 +42,9 @@ export const TasksContainer = styled.div`
 export const ColumnTitle = styled.h2`
   font-size: 22px;
   text-align: center;
-  margin-bottom: 10px;
+  word-wrap: break-word;
+  overflow: hidden;
+  overflow-wrap: break-word;
 `;
 
 export const NewTaskButton = styled.button`
@@ -51,4 +56,67 @@ export const NewTaskButton = styled.button`
   margin-right: 5px;
   margin-bottom: 5px;
   box-shadow: 0px 4px 4px ${colors.shadow};
+`;
+
+export const HeaderColumn = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+const ColumnButton = `
+  background-color: ${colors.columnBg};
+  height: 25px;
+  width: 35px;
+  background-size: 16px 27px;
+`;
+
+export const ColumnDeleteButton = styled(DeleteButton)`
+  ${ColumnButton}
+`;
+
+const TitleButton = styled.button`
+  border: none;
+  width: 33px;
+  height: 33px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  transition: background-size 0.2s;
+
+  &:hover {
+    background-size: 25px;
+  }
+`;
+
+export const AcceptEditButton = styled(TitleButton)`
+  background-image: url(${acceptIcon});
+  background-size: 25px;
+  transition: background-size 0.2s;
+
+  &:hover {
+    background-size: 30px;
+  }
+`;
+
+export const CancelEditButton = styled(TitleButton)`
+  background-image: url(${cancelIcon});
+`;
+
+export const ColumnTitleForm = styled.form`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 16px;
+`;
+
+export const ColumnTitleInput = styled.input`
+  width: 75%;
+  border: 2px solid ${colors.inputBorder};
+  border-radius: 5px;
+
+  :focus {
+    outline: none;
+    border: 2px solid ${colors.secondaryBg};
+  }
 `;

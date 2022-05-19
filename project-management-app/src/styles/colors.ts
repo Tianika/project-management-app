@@ -25,4 +25,5 @@ export const colors = {
   errorBg: '#eb5a46',
   deleteButtonHoverBg: '#FF0000',
   deleteButtonActiveBg: '#8B0000',
+  confirmButtonHoverBg: '#2AC800',
 };

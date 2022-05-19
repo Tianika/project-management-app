@@ -1,4 +1,3 @@
-import { batch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { setID } from '../../../redux/reducers/ConfirmWindowSlice';
@@ -13,16 +12,14 @@ const BoardPreview = () => {
   const navigate = useNavigate();
 
   const openConfirmWindow = (id: string) => {
-    batch(() => {
-      dispatch(setID(id));
-      dispatch(
-        setModalChildren({
-          modalId: ModalIds.confirmationWindow,
-          modalType: ModalTypes.Window,
-          functionId: FunctionIds.forBoard,
-        })
-      );
-    });
+    dispatch(setID(id));
+    dispatch(
+      setModalChildren({
+        modalId: ModalIds.confirmationWindow,
+        modalType: ModalTypes.Window,
+        functionId: FunctionIds.forBoard,
+      })
+    );
   };
 
   const transitionToBoard = (id: string) => {

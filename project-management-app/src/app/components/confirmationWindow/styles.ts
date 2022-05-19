@@ -36,4 +36,16 @@ export const ConfirmWindowButtonWrapper = styled.div`
 export const ConfirmWindowButton = styled(NewBoardButton)`
   margin: 0.5rem;
   width: 100px;
+
+  &:hover {
+    background-color: ${colors.confirmButtonHoverBg};
+  }
+`;
+
+export const CancelWindowButton = styled(ConfirmWindowButton)`
+  background-color: ${colors.errorBg};
+
+  &:hover {
+    background-color: ${colors.deleteButtonHoverBg};
+  }
 `;

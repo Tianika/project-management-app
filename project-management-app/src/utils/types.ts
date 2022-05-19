@@ -68,3 +68,22 @@ export type CreateTaskActionProps = { boardId: string | undefined; columnId: str
 export type UpdateTaskActionProps = CreateTaskActionProps & {
   taskId: string;
 };
+
+export type RequestColumnType = {
+  title: string;
+  boardId: string;
+  newColumnOrder: number;
+};
+
+export type ColumnResponseType = {
+  id: string;
+  title: string;
+  order: number;
+};
+
+export type UpdateColumnType = {
+  title: string;
+  boardId: string;
+  columnId: string;
+  order: number;
+};
