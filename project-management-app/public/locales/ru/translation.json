@@ -123,5 +123,8 @@
   },
   "mainPage": {
     "boardsTitle": "Доски"
+  },
+  "errorBoudaries": {
+    "title": "Извините, произошла ошибка"
   }
 }
