@@ -123,5 +123,8 @@
   },
   "mainPage": {
     "boardsTitle": "Boards"
+  },
+  "errorBoudaries": {
+    "title": "Sorry.. there was an error"
   }
 }

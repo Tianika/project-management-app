@@ -6,6 +6,7 @@ import App from './app/App';
 import './i18n';
 import { LoadingWrapper } from './styles/global';
 import { store } from './redux/store/store';
+import ErrorBoundary from './app/components/errorBoundaries/ErrorBoundaries';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -13,7 +14,9 @@ root.render(
     <Provider store={store}>
       <Suspense fallback={<LoadingWrapper />}>
         <BrowserRouter>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </BrowserRouter>
       </Suspense>
     </Provider>
