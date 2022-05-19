@@ -40,6 +40,7 @@ export const CheckBox = styled.input`
     &::after {
       content: '';
       display: block;
+      position: absolute;
       border-radius: 50%;
       width: 1rem;
       height: 1rem;
