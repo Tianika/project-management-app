@@ -23,7 +23,7 @@ import { WAITING_TIME_IN_MS } from './constant';
 
 export default function RegisterForm() {
   const { login } = useAppSelector(loginSelector);
-  const { addFormData } = loginFormSlice.actions;
+  const { addFormData, setUserId } = loginFormSlice.actions;
   const [signUp, { error, isLoading }] = registerApi.useSignUpMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -61,6 +61,7 @@ export default function RegisterForm() {
       .unwrap()
       .then((response) => {
         dispatch(addFormData(response.login));
+        dispatch(setUserId(response.id));
 
         setIsSuccessfullyRegister(true);
 

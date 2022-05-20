@@ -4,6 +4,7 @@ import { LoginFormType } from '../../utils/types/types';
 const initialState: LoginFormType = {
   login: '',
   token: localStorage.getItem('token') || '',
+  userId: '',
 };
 
 export const loginFormSlice = createSlice({
@@ -22,6 +23,9 @@ export const loginFormSlice = createSlice({
     },
     setToken(state, action: PayloadAction<string>) {
       state.token = action.payload;
+    },
+    setUserId(state, action: PayloadAction<string>) {
+      state.userId = action.payload;
     },
   },
 });
