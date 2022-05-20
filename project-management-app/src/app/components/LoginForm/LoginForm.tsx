@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { AuthErrorType, LoginFormValuesType } from '../../../utils/types/types';
+import jwtDecode, { JwtPayload } from 'jwt-decode';
+import { AuthErrorType, LoginFormValuesType, DecodedToken } from '../../../utils/types/types';
 import { loginFormSlice } from '../../../redux/reducers/LoginFormSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { authApi } from '../../../redux/services/AuthService';
@@ -21,7 +22,7 @@ import { RoutersMap } from '../../../utils/constants';
 
 export default function LoginForm() {
   const { login } = useAppSelector(loginSelector);
-  const { addFormData, setCredentials } = loginFormSlice.actions;
+  const { addFormData, setCredentials, setUserId } = loginFormSlice.actions;
   const [signIn, { error, isLoading }] = authApi.useSignInMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -52,7 +53,10 @@ export default function LoginForm() {
     })
       .unwrap()
       .then((response) => {
+        const decoded = jwtDecode<JwtPayload>(response.token) as DecodedToken;
+
         dispatch(setCredentials({ user: loginValue, token: response.token }));
+        dispatch(setUserId(decoded.userId));
 
         navigate(RoutersMap.main);
       })

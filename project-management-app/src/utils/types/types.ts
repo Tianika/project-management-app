@@ -1,6 +1,7 @@
 export type LoginFormType = {
   login: string;
   token: string | null;
+  userId: string;
 };
 
 export type LoginFormValuesType = {
@@ -48,4 +49,10 @@ export type UserType = {
   name: string;
   login: string | undefined;
   password: string;
+};
+
+export type DecodedToken = {
+  iat: number;
+  login: string;
+  userId: string;
 };
