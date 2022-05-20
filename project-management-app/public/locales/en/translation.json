@@ -121,7 +121,8 @@
     "taskDescriptionPlaceholder": "Enter description",
     "createButton": "Add",
     "createColumnTitle": "Add new column",
-    "hintDeleteColumn": "Delete column"
+    "hintDeleteColumn": "Delete column",
+    "hintEditTitle": "Edit title"
   },
   "mainPage": {
     "boardsTitle": "Boards"

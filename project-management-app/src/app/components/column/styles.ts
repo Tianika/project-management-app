@@ -5,7 +5,8 @@ import acceptIcon from '../../../assets/svg/accept.svg';
 import cancelIcon from '../../../assets/svg/cancel.svg';
 
 export const ColumnContainer = styled.div`
-  min-width: 300px;
+  width: 300px;
+  flex-shrink: 1;
   margin-bottom: 5px;
   background-color: ${colors.columnBg};
   border-radius: 5px;
@@ -16,7 +17,7 @@ export const ColumnContainer = styled.div`
 export const TasksContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: calc(100% - 40px);
+  max-height: calc(100% - 50px);
   overflow: auto;
   scrollbar-color: ${colors.secondaryBg} ${colors.buttonActiveBg};
   margin-bottom: 5px;
@@ -41,10 +42,12 @@ export const TasksContainer = styled.div`
 
 export const ColumnTitle = styled.h2`
   font-size: 22px;
-  text-align: center;
+  text-align: left;
   word-wrap: break-word;
   overflow: hidden;
   overflow-wrap: break-word;
+  width: 85%;
+  cursor: pointer;
 `;
 
 export const NewTaskButton = styled.button`
@@ -73,6 +76,10 @@ const ColumnButton = `
 
 export const ColumnDeleteButton = styled(DeleteButton)`
   ${ColumnButton}
+
+  &:hover {
+    transform: scale(1.3);
+  }
 `;
 
 const TitleButton = styled.button`
@@ -114,6 +121,7 @@ export const ColumnTitleInput = styled.input`
   width: 75%;
   border: 2px solid ${colors.inputBorder};
   border-radius: 5px;
+  padding-left: 5px;
 
   :focus {
     outline: none;
