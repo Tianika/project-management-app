@@ -121,7 +121,8 @@
     "taskDescriptionPlaceholder": "Введите описание",
     "createButton": "Добавить",
     "createColumnTitle": "Добавить колонку",
-    "hintDeleteColumn": "Удалить колонку"
+    "hintDeleteColumn": "Удалить колонку",
+    "hintEditTitle": "Редактировать заголовок"
   },
   "mainPage": {
     "boardsTitle": "Доски"

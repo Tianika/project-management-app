@@ -87,3 +87,13 @@ export type UpdateColumnType = {
   columnId: string;
   order: number;
 };
+
+export type UpdateTaskType = {
+  title: string;
+  order: number;
+  description: string;
+  boardId: string;
+  columnId: string;
+  taskId: string;
+  userId: string;
+};

@@ -65,7 +65,9 @@ const Column = ({
     <ColumnContainer>
       {!isEdit && (
         <HeaderColumn>
-          <ColumnTitle onClick={toggleIsEdit}>{title}</ColumnTitle>
+          <ColumnTitle onClick={toggleIsEdit} title={t('boardPage.hintEditTitle')}>
+            {title}
+          </ColumnTitle>
           <ColumnDeleteButton onClick={deleteColumn} title={t('boardPage.hintDeleteColumn')} />
         </HeaderColumn>
       )}
