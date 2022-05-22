@@ -11,12 +11,10 @@ import { BoardsContainer, BoardsTitle } from './styles';
 const Boards = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { isLoading, boards } = useAppSelector(boardsStateSelector);
+  const { isLoading } = useAppSelector(boardsStateSelector);
 
   useEffect(() => {
-    if (!boards.length) {
-      dispatch(requestBoards());
-    }
+    dispatch(requestBoards());
   }, []);
 
   useEffect(() => {

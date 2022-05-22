@@ -20,6 +20,7 @@ export enum LoadingState {
   Loading = 'loading',
   Success = 'success',
   Error = 'Error',
+  Modal = 'Modal',
 }
 
 export enum ModalIds {

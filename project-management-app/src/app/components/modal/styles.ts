@@ -12,3 +12,7 @@ export const ModalContainer = styled.section`
   height: 100vh;
   background-color: ${colors.headerBg};
 `;
+
+export const BlurModalContainer = styled(ModalContainer)`
+  backdrop-filter: blur(3px);
+`;

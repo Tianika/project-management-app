@@ -135,5 +135,11 @@
     "titlePlaceholder": "Введите заголовок",
     "descriptionPlaceholder": "Введите описание",
     "newBoardButton": "Создать"
+  },
+  "viewTask": {
+    "title": "Заголовок",
+    "description": "Описание",
+    "user": "Пользователь",
+    "error": "Заполните все поля"
   }
 }
