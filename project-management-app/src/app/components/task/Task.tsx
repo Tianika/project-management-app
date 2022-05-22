@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
-import { saveIdsForUpdateTask } from '../../../redux/reducers/BoardSlice';
+import { saveIdsForNewTask, saveIdsForUpdateTask } from '../../../redux/reducers/BoardSlice';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { updateTask } from '../../../redux/services/Board.api';
 import { FunctionIds, ModalIds, ModalTypes } from '../../../utils/constants';
@@ -59,6 +59,16 @@ const Task = ({
     }
   };
 
+  const editTask = () => {
+    dispatch(saveIdsForUpdateTask({ boardId, columnId, taskId: id }));
+    dispatch(
+      setModalChildren({
+        modalId: ModalIds.taskView,
+        modalType: ModalTypes.Window,
+      })
+    );
+  };
+
   return (
     <TaskContainer>
       {!isEdit && (
@@ -81,7 +91,7 @@ const Task = ({
 
       <TaskDescription>{description}</TaskDescription>
       <TaskButtons>
-        <TaskEditButton />
+        <TaskEditButton onClick={editTask} />
         <TaskDeleteButton onClick={deleteTask} />
       </TaskButtons>
     </TaskContainer>

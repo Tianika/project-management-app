@@ -9,7 +9,7 @@ import { setAxiosConfig } from './axiosService';
 
 // TODO добавить получение token и userid
 
-const userID = '8feabb9c-5288-4110-bfc1-4f06b2abfb25';
+const userID = '35c538a5-23a5-4af3-a07f-3659b1c580bb';
 
 const axiosFetch = setAxiosConfig();
 
@@ -28,10 +28,9 @@ export const requestBoard = createAsyncThunk(
 
 export const createNewTask = createAsyncThunk(
   'board/createNewTask',
-  async ({ title, description, boardId, columnId, newTaskOrder }: RequestTaskType, thunkAPI) => {
+  async ({ title, description, boardId, columnId }: RequestTaskType, thunkAPI) => {
     const body = {
       title,
-      order: newTaskOrder,
       description,
       userId: userID,
     };
@@ -64,10 +63,9 @@ export const deleteTask = createAsyncThunk(
 
 export const createNewColumn = createAsyncThunk(
   'board/createNewColumn',
-  async ({ title, boardId, newColumnOrder }: RequestColumnType, thunkAPI) => {
+  async ({ title, boardId }: RequestColumnType, thunkAPI) => {
     const body = {
       title,
-      order: newColumnOrder,
     };
 
     try {

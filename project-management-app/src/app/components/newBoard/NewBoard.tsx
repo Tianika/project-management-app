@@ -1,4 +1,5 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { mainPageTranslation } from '../../../locales/mainPageTranslation';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
 import { createNewBoard } from '../../../redux/services/Boards.api';
@@ -10,23 +11,28 @@ const { newBoardTitle, newBoardBtn, placeholder } = mainPageTranslation[language
 
 const NewBoard = () => {
   const dispatch = useAppDispatch();
-
+  const { t } = useTranslation();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit: SubmitHandler<FieldValues> = ({ title }) => {
-    dispatch(createNewBoard({ title }));
+  const onSubmit: SubmitHandler<FieldValues> = ({ title, description }) => {
+    dispatch(createNewBoard({ title, description }));
   };
 
   return (
     <NewBoardForm onSubmit={handleSubmit(onSubmit)}>
-      <NewBoardTitle>{newBoardTitle}</NewBoardTitle>
+      <NewBoardTitle>{t('newBoard.title')}</NewBoardTitle>
       <NewBoardInput
         type="text"
         {...register('title', { required: true })}
-        placeholder={placeholder}
+        placeholder={t('newBoard.titlePlaceholder')}
         autoFocus
       />
-      <NewBoardButton type="submit">{newBoardBtn}</NewBoardButton>
+      <NewBoardInput
+        type="text"
+        {...register('description', { required: true })}
+        placeholder={t('newBoard.descriptionPlaceholder')}
+      />
+      <NewBoardButton type="submit">{t('newBoard.newBoardButton')}</NewBoardButton>
     </NewBoardForm>
   );
 };

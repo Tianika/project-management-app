@@ -28,9 +28,12 @@ const BoardPreview = () => {
 
   return (
     <>
-      {boards.map(({ id, title }) => (
+      {boards.map(({ id, title, description }) => (
         <BoardPreviewStyled key={`board${id}`}>
-          <BoardPreviewInfo onClick={() => transitionToBoard(id)}>{title}</BoardPreviewInfo>
+          <BoardPreviewInfo onClick={() => transitionToBoard(id)}>
+            <div>{title}</div>
+            <div>{description}</div>
+          </BoardPreviewInfo>
 
           <RemoveBoardButton onClick={() => openConfirmWindow(id)} />
         </BoardPreviewStyled>

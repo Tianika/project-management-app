@@ -129,5 +129,11 @@
   },
   "errorBoudaries": {
     "title": "Sorry.. there was an error"
+  },
+  "newBoard": {
+    "title": "Create new board",
+    "titlePlaceholder": "Enter title",
+    "descriptionPlaceholder": "Enter description",
+    "newBoardButton": "Create"
   }
 }

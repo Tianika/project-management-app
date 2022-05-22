@@ -6,7 +6,7 @@ import cancelIcon from '../../../assets/svg/cancel.svg';
 
 export const ColumnContainer = styled.div`
   width: 300px;
-  flex-shrink: 1;
+  flex-shrink: 0;
   margin-bottom: 5px;
   background-color: ${colors.columnBg};
   border-radius: 5px;

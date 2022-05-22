@@ -15,9 +15,9 @@ export const requestBoards = createAsyncThunk('boards/requestBoards', async (_, 
 
 export const createNewBoard = createAsyncThunk(
   'boards/createNewBoard',
-  async ({ title }: { title: string }, thunkAPI) => {
+  async ({ title, description }: { title: string; description: string }, thunkAPI) => {
     try {
-      const response = await axiosFetch.post(`/boards`, { title });
+      const response = await axiosFetch.post(`/boards`, { title, description });
       return response.data;
     } catch ({ message }) {
       return thunkAPI.rejectWithValue(message);

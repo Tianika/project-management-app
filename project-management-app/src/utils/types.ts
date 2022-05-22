@@ -3,6 +3,7 @@ import { LoadingState } from './constants';
 export type BoardsType = {
   id: string;
   title: string;
+  description: string;
 };
 
 export type ColumnType = {
@@ -60,7 +61,6 @@ export type RequestTaskType = {
   description: string;
   boardId: string;
   columnId: string;
-  newTaskOrder: number;
 };
 
 export type CreateTaskActionProps = { boardId: string | undefined; columnId: string };
@@ -72,7 +72,6 @@ export type UpdateTaskActionProps = CreateTaskActionProps & {
 export type RequestColumnType = {
   title: string;
   boardId: string;
-  newColumnOrder: number;
 };
 
 export type ColumnResponseType = {
