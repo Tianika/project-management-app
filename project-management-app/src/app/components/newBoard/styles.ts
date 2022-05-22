@@ -4,8 +4,10 @@ import { colors } from '../../../styles/colors';
 
 export const NewBoardForm = styled.form`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   min-width: 30vw;
   min-height: 30vh;
   background-color: ${colors.baseBg};
@@ -18,8 +20,6 @@ export const NewBoardForm = styled.form`
   }
 
   ${adaptive.maxWidth.mobile} {
-    flex-direction: column;
-    width: 90%;
     font-size: 18px;
   }
 `;
@@ -27,7 +27,7 @@ export const NewBoardForm = styled.form`
 export const NewBoardTitle = styled.h2`
   font-size: 1em;
   font-weight: 500;
-  margin-right: 20px;
+  margin-bottom: 20px;
 `;
 
 export const NewBoardInput = styled.input`
@@ -54,6 +54,7 @@ export const NewBoardButton = styled.button`
   color: ${colors.lightFont};
   background: ${colors.submitButtonBg};
   border-radius: 3px;
+  margin-top: 20px;
 
   &:hover {
     background: ${colors.submitButtonHoverBg};

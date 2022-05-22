@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { BASE_URL } from '../../utils/constants';
 import type { RootState } from '../store/store';
 
 export const commonApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://pma-team38.herokuapp.com',
+    baseUrl: BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       headers.set('Content-Type', 'application/json;charset=UTF-8');
 

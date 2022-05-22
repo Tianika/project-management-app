@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
@@ -12,21 +11,10 @@ const NewColumn = () => {
   const { t } = useTranslation();
   const { register, handleSubmit } = useForm();
 
-  const newColumnOrder = useRef(1);
-
-  const {
-    boardId,
-    boardData: { columns },
-  } = useAppSelector(boardStateSelector);
-
-  useEffect(() => {
-    if (columns.length) {
-      newColumnOrder.current = columns[columns.length - 1].order + 1;
-    }
-  }, [columns]);
+  const { boardId } = useAppSelector(boardStateSelector);
 
   const onSubmit: SubmitHandler<FieldValues> = ({ title }) => {
-    dispatch(createNewColumn({ title, boardId, newColumnOrder: newColumnOrder.current }));
+    dispatch(createNewColumn({ title, boardId }));
     dispatch(closeModal());
   };
 

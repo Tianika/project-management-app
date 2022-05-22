@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
@@ -18,29 +17,10 @@ const NewTask = () => {
   const { t } = useTranslation();
   const { register, handleSubmit } = useForm();
 
-  const newTaskOrder = useRef(1);
-
-  const {
-    boardId,
-    columnId,
-    boardData: { columns },
-  } = useAppSelector(boardStateSelector);
-
-  useEffect(() => {
-    if (columns) {
-      const tasksList = columns.find((column) => column.id === columnId);
-
-      if (tasksList && tasksList.tasks.length) {
-        const { tasks } = tasksList;
-        newTaskOrder.current = tasks[tasks.length - 1].order + 1;
-      }
-    }
-  }, [columns]);
+  const { boardId, columnId } = useAppSelector(boardStateSelector);
 
   const onSubmit: SubmitHandler<FieldValues> = ({ title, description }) => {
-    dispatch(
-      createNewTask({ title, description, boardId, columnId, newTaskOrder: newTaskOrder.current })
-    );
+    dispatch(createNewTask({ title, description, boardId, columnId }));
     dispatch(closeModal());
   };
 

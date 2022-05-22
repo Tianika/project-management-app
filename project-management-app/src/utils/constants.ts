@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://pma-team38.herokuapp.com';
+export const BASE_URL = 'https://p-m-a-team38.herokuapp.com';
 
 export const RoutersMap = {
   welcome: '',
@@ -31,6 +31,7 @@ export enum ModalIds {
   confirmWindowEditProf = 'confirmWindowEditProf',
   newTask = 'newTask',
   newColumn = 'newColumn',
+  taskView = 'taskView',
 }
 
 export enum FunctionIds {
