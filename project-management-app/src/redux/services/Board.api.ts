@@ -1,7 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 import {
   RequestColumnType,
   RequestTaskType,
+  UpdateColumnsArrayType,
   UpdateColumnType,
   UpdateTaskType,
 } from '../../utils/types';
@@ -131,6 +133,25 @@ export const updateTask = createAsyncThunk(
       );
 
       return response.data;
+    } catch ({ message }) {
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const updateColumnsArray = createAsyncThunk(
+  'board/updateColumnsArray',
+  async ({ boardId, newColumns }: UpdateColumnsArrayType, thunkAPI) => {
+    const promiseArray = newColumns.map((column, index) => {
+      return axiosFetch.put(`/boards/${boardId}/columns/${column.id}`, {
+        title: column.title,
+        order: index + 1,
+      });
+    });
+
+    try {
+      await axios.all(promiseArray);
+      return newColumns;
     } catch ({ message }) {
       return thunkAPI.rejectWithValue(message);
     }

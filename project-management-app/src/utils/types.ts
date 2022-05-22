@@ -96,3 +96,8 @@ export type UpdateTaskType = {
   taskId: string;
   userId: string;
 };
+
+export type UpdateColumnsArrayType = {
+  boardId: string;
+  newColumns: Array<ColumnType>;
+};

@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
+import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { clearBoardData, saveBoardId } from '../../../redux/reducers/BoardSlice';
 import { closeModal, setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { boardStateSelector } from '../../../redux/selectors/BoardSelectors';
-import { requestBoard } from '../../../redux/services/Board.api';
+import { requestBoard, updateColumnsArray } from '../../../redux/services/Board.api';
 import { LoadingState, ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
 import Column from '../column/Column';
 import {
@@ -55,21 +56,41 @@ const Board = () => {
     }
   };
 
-  return (
-    <BoardContainer>
-      <StyledLink to={RoutersMap.main} onClick={onLinkClick}>
-        &laquo; {t('boardPage.buttonBack')}
-      </StyledLink>
-      <BoardTitle>{title}</BoardTitle>
-      <ColumnsContainer>
-        {columns.map((column) => {
-          return <Column key={column.id} column={column} boardId={id} />;
-        })}
+  const onDragEnd = (result: DropResult) => {
+    const newColumns = Array.from(columns);
+    const { destination, source } = result;
+    if (!destination) {
+      return;
+    }
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+      return;
+    }
+    const [removed] = newColumns.splice(source.index, 1);
+    newColumns.splice(destination.index, 0, removed);
+    dispatch(updateColumnsArray({ boardId: id || '', newColumns }));
+  };
 
-        <NewColumnButton onClick={onClick}>{t('boardPage.addColumnBtn')}</NewColumnButton>
-      </ColumnsContainer>
-    </BoardContainer>
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      <BoardContainer>
+        <StyledLink to={RoutersMap.main} onClick={onLinkClick}>
+          &laquo; {t('boardPage.buttonBack')}
+        </StyledLink>
+        <BoardTitle>{title}</BoardTitle>
+        <Droppable droppableId={String(id)} direction="horizontal" type="column">
+          {(provided) => (
+            <ColumnsContainer {...provided.droppableProps} ref={provided.innerRef}>
+              {columns.map((column, index) => {
+                return <Column key={column.id} column={column} boardId={id} index={index} />;
+              })}
+
+              <NewColumnButton onClick={onClick}>{t('boardPage.addColumnBtn')}</NewColumnButton>
+              {provided.placeholder}
+            </ColumnsContainer>
+          )}
+        </Droppable>
+      </BoardContainer>
+    </DragDropContext>
   );
 };
-
 export default Board;
