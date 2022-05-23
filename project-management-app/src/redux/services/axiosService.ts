@@ -3,13 +3,16 @@ import { BASE_URL } from '../../utils/constants';
 
 export const setAxiosConfig = () => {
   const token = localStorage.getItem('token');
+  if (token) {
+    return axios.create({
+      baseURL: BASE_URL,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 
-  const authFetch = axios.create({
+  return axios.create({
     baseURL: BASE_URL,
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
   });
-
-  return authFetch;
 };

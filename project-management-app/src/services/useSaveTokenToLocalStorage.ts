@@ -1,13 +1,19 @@
 import { useEffect } from 'react';
 import { useAppSelector } from '../redux/hooks/reduxHooks';
-import { loginSelector } from '../redux/selectors/AuthSelectors';
+import { authSelector } from '../redux/selectors/AuthSelectors';
 
 export const useSaveTokenToLocalStorage = () => {
-  const { token } = useAppSelector(loginSelector);
+  const { name, login, token, userId } = useAppSelector(authSelector);
 
   useEffect(() => {
-    if (token) {
+    if (token && userId && login) {
+      localStorage.setItem('login', login);
       localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
     }
-  }, [token]);
+
+    if (name) {
+      localStorage.setItem('name', name);
+    }
+  }, [login, name, token, userId]);
 };

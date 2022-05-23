@@ -1,20 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
-import { loginFormSlice } from '../../../redux/reducers/LoginFormSlice';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { RoutersMap, ModalIds, ModalTypes } from '../../../utils/constants';
 import { BurgerType, BurgerWrapper } from '../burgerWelcomePage/styles';
 import HeaderButton from '../headerButton/HeaderButton';
 import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
+import { useLogout } from '../../../services/useLogout';
 
 const NavBarMainPage = ({ open }: BurgerType) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { setToken } = loginFormSlice.actions;
   const { t } = useTranslation();
   const loc = document.location;
   const { id } = useParams();
+  const [logoutUser] = useLogout();
 
   const BUTTONS = [
     {
@@ -32,14 +32,12 @@ const NavBarMainPage = ({ open }: BurgerType) => {
     {
       text: t('mainPageHeader.logoutButton'),
       onClick: () => {
-        dispatch(setToken(''));
-        localStorage.setItem('token', '');
-        navigate(RoutersMap.login);
+        logoutUser();
       },
     },
   ];
 
-  const BUTTONSBBOARDPAGE = [
+  const BUTTONS_BOARD_PAGE = [
     {
       text: t('mainPageHeader.editButton'),
       onClick: () => {
@@ -49,9 +47,7 @@ const NavBarMainPage = ({ open }: BurgerType) => {
     {
       text: t('mainPageHeader.logoutButton'),
       onClick: () => {
-        dispatch(setToken(''));
-        localStorage.setItem('token', '');
-        navigate(RoutersMap.login);
+        logoutUser();
       },
     },
   ];
@@ -60,7 +56,7 @@ const NavBarMainPage = ({ open }: BurgerType) => {
     <BurgerWrapper open={open}>
       <LocalesCheckBox id="mainBurgerCheckBox" />
       {loc.pathname === `${RoutersMap.board}/${id}` || loc.pathname === `${RoutersMap.edit}`
-        ? BUTTONSBBOARDPAGE.map(({ text, onClick }) => {
+        ? BUTTONS_BOARD_PAGE.map(({ text, onClick }) => {
             return <HeaderButton key={text} text={text} onClick={onClick} />;
           })
         : BUTTONS.map(({ text, onClick }) => {

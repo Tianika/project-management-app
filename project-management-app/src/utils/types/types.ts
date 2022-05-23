@@ -1,10 +1,22 @@
-export type LoginFormType = {
+import { LoadingState } from '../constants';
+
+export type AuthType = {
+  name: string;
   login: string;
   token: string | null;
   userId: string;
+  isLoading: LoadingState;
+  errorMessage: string;
+  isFetching: boolean;
 };
 
 export type LoginFormValuesType = {
+  loginValue: string;
+  passwordValue: string;
+};
+
+export type EditFormValuesType = {
+  nameValue: string;
   loginValue: string;
   passwordValue: string;
 };
@@ -45,10 +57,8 @@ export type RegisterFormValuesType = {
 };
 
 export type UserType = {
-  id: string;
   name: string;
-  login: string | undefined;
-  password: string;
+  login: string;
 };
 
 export type DecodedToken = {

@@ -1,17 +1,17 @@
 import { Route, Routes } from 'react-router-dom';
 import GlobalStyle from './style';
 import MainPage from './pages/MainPage/MainPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
 import BoardPage from './pages/BoardPage/BoardPage';
 import Modal from './components/modal/Modal';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import WelcomePage from './pages/WelcomPage/WelcomePage';
 import { RoutersMap } from '../utils/constants';
-import EditProfilPage from './pages/EditProfilePage/EditProfilePage';
 import PrivateRoute from '../hoc/PrivateRoute';
 import AnonymousRoute from '../hoc/AnonymousRoute';
 import { useSaveTokenToLocalStorage } from '../services/useSaveTokenToLocalStorage';
+import SignInPage from './pages/SignInPage/SignInPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
+import EditProfilePage from './pages/EditProfilePage/EditProfilePage';
 
 const App = () => {
   useSaveTokenToLocalStorage();
@@ -22,18 +22,18 @@ const App = () => {
       <Routes>
         <Route path={RoutersMap.welcome} element={<WelcomePage />} />
         <Route
-          path={RoutersMap.login}
+          path={RoutersMap.signIn}
           element={
             <AnonymousRoute redirectPath={RoutersMap.main}>
-              <LoginPage />
+              <SignInPage />
             </AnonymousRoute>
           }
         />
         <Route
-          path={RoutersMap.register}
+          path={RoutersMap.signUp}
           element={
             <AnonymousRoute redirectPath={RoutersMap.main}>
-              <RegisterPage />
+              <SignUpPage />
             </AnonymousRoute>
           }
         />
@@ -57,7 +57,7 @@ const App = () => {
           path={RoutersMap.edit}
           element={
             <PrivateRoute>
-              <EditProfilPage />
+              <EditProfilePage />
             </PrivateRoute>
           }
         />

@@ -50,7 +50,7 @@ export const NewColumnButton = styled.button`
   border: none;
   border-radius: 5px;
   background-color: ${colors.baseBg};
-  box-shadow: 0px 4px 4px ${colors.shadow};
+  box-shadow: 0 4px 4px ${colors.shadow};
 `;
 
 export const StyledLink = styled(Link)`
@@ -69,4 +69,9 @@ export const StyledLink = styled(Link)`
     transition: 0.2s all;
     color: ${colors.darkFont};
   }
+`;
+
+export const EditProfileLink = styled(StyledLink)`
+  margin-top: 1em;
+  align-self: start;
 `;

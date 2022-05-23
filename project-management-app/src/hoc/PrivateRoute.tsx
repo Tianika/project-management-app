@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { ReactElement } from 'react';
 import { useAppSelector } from '../redux/hooks/reduxHooks';
-import { loginSelector } from '../redux/selectors/AuthSelectors';
+import { authSelector } from '../redux/selectors/AuthSelectors';
 import { RoutersMap } from '../utils/constants';
 
 type PrivateRouteType = {
@@ -9,9 +9,9 @@ type PrivateRouteType = {
 };
 
 const PrivateRoute = ({ children }: PrivateRouteType) => {
-  const { token } = useAppSelector(loginSelector);
+  const { token } = useAppSelector(authSelector);
 
-  return !token ? <Navigate to={RoutersMap.login} replace /> : children;
+  return !token ? <Navigate to={RoutersMap.signIn} replace /> : children;
 };
 
 export default PrivateRoute;

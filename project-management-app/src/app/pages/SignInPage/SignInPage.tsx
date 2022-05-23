@@ -1,23 +1,23 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import WelcomePageHeader from '../../components/welcomePageHeader/WelcomePageHeader';
 import { ColumnCenteredWrapper, H1 } from '../../../styles/global';
+import SignInForm from '../../components/signInForm/SignInForm';
+import WelcomePageHeader from '../../components/welcomePageHeader/WelcomePageHeader';
 import Footer from '../../components/footer/Footer';
-import RegisterForm from '../../components/registerForm/RegisterForm';
 
-const RegisterPage = () => {
+const SignInPage = () => {
   const { t } = useTranslation();
 
   return (
     <>
       <WelcomePageHeader />
       <ColumnCenteredWrapper>
-        <H1>{t('authentication.registerPageTitle')}</H1>
-        <RegisterForm />
+        <H1>{t('authentication.loginPageTitle')}</H1>
+        <SignInForm />
       </ColumnCenteredWrapper>
       <Footer />
     </>
   );
 };
 
-export default RegisterPage;
+export default SignInPage;
