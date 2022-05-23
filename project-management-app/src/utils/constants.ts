@@ -4,8 +4,8 @@ export const RoutersMap = {
   welcome: '',
   main: '/main',
   board: '/board',
-  login: '/login',
-  register: '/register',
+  signIn: '/signin',
+  signUp: '/signup',
   edit: '/edit',
   notFound: '*',
 };
@@ -28,7 +28,6 @@ export enum ModalIds {
   error = 'error',
   loading = 'loading',
   confirmationWindow = 'confirmationWindow',
-  confirmWindowEditProf = 'confirmWindowEditProf',
   newTask = 'newTask',
   newColumn = 'newColumn',
   taskView = 'taskView',
@@ -39,6 +38,7 @@ export enum FunctionIds {
   forBoard = 'forBoard',
   forColumn = 'forColumn',
   forTask = 'forTask',
+  forDeleteProfile = 'forDeleteProfile',
 }
 
 export const LOCAL_STORAGE_KEYS = {

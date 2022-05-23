@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 import { AuthErrorType, LoginFormValuesType, DecodedToken } from '../../../utils/types/types';
-import { loginFormSlice } from '../../../redux/reducers/LoginFormSlice';
+import { authSlice } from '../../../redux/reducers/AuthSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { authApi } from '../../../redux/services/AuthService';
 import {
@@ -16,14 +16,16 @@ import {
   FormTextFieldWrapper,
   SubmitButton,
 } from './styles';
-import { Loading } from '../../../styles/global';
-import { loginSelector } from '../../../redux/selectors/AuthSelectors';
-import { RoutersMap } from '../../../utils/constants';
+import { LoadingDark } from '../../../styles/global';
+import { authSelector, isLoadingAuthSelector } from '../../../redux/selectors/AuthSelectors';
+import { LoadingState, RoutersMap } from '../../../utils/constants';
+import { getUserInfo } from '../../../redux/services/EditUser.api';
 
-export default function LoginForm() {
-  const { login } = useAppSelector(loginSelector);
-  const { addFormData, setCredentials, setUserId } = loginFormSlice.actions;
+export default function SignInForm() {
+  const { login } = useAppSelector(authSelector);
+  const { setSignInData } = authSlice.actions;
   const [signIn, { error, isLoading }] = authApi.useSignInMutation();
+  const isLoadingInfo = useAppSelector(isLoadingAuthSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -45,18 +47,20 @@ export default function LoginForm() {
   });
 
   const onSubmit: SubmitHandler<LoginFormValuesType> = ({ loginValue, passwordValue }) => {
-    dispatch(addFormData(loginValue));
-
     signIn({
       login: loginValue,
       password: passwordValue,
     })
       .unwrap()
       .then((response) => {
-        const decoded = jwtDecode<JwtPayload>(response.token) as DecodedToken;
+        const decodedToken = jwtDecode<JwtPayload>(response.token) as DecodedToken;
 
-        dispatch(setCredentials({ user: loginValue, token: response.token }));
-        dispatch(setUserId(decoded.userId));
+        dispatch(
+          setSignInData({ user: loginValue, token: response.token, userId: decodedToken.userId })
+        );
+
+        // TODO add error boundary for getUserInfo
+        dispatch(getUserInfo({ userId: decodedToken.userId }));
 
         navigate(RoutersMap.main);
       })
@@ -72,7 +76,7 @@ export default function LoginForm() {
           type="text"
           {...register('loginValue', { required: true })}
           placeholder={t('authentication.placeholders.loginPlaceholder')}
-          inputMode="username"
+          inputMode="login"
         />
 
         {errors.loginValue && (
@@ -98,7 +102,8 @@ export default function LoginForm() {
 
       <SubmitButton type="submit">{t('authentication.submitLoginButton')}</SubmitButton>
 
-      {isLoading && <Loading />}
+      {isLoading && <LoadingDark />}
+      {isLoadingInfo === LoadingState.Loading && <LoadingDark />}
 
       {authError && (
         <ErrorApiMessage>{`${t('authentication.apiErrorText')} ${

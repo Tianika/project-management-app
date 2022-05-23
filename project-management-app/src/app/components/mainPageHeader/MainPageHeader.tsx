@@ -7,18 +7,18 @@ import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { RoutersMap, ModalIds, ModalTypes } from '../../../utils/constants';
 import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
-import { loginFormSlice } from '../../../redux/reducers/LoginFormSlice';
 import { activeHeaderTheme, LinksWrapper } from '../welcomePageHeader/styles';
 import MainPageBurgerBtn from '../burgerMainPage/MainPageBurgerBtn';
+import { useLogout } from '../../../services/useLogout';
 
 const MainPageHeader = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { setToken } = loginFormSlice.actions;
   const { t } = useTranslation();
   const [theme, setTheme] = useState(false);
   const loc = document.location;
   const { id } = useParams();
+  const [logoutUser] = useLogout();
 
   const changeBackground = () => {
     if (window.scrollY >= 20) {
@@ -46,14 +46,12 @@ const MainPageHeader = () => {
     {
       text: t('mainPageHeader.logoutButton'),
       onClick: () => {
-        dispatch(setToken(''));
-        localStorage.setItem('token', '');
-        navigate(RoutersMap.login);
+        logoutUser();
       },
     },
   ];
 
-  const BUTTONSBBOARDPAGE = [
+  const BUTTONS_BOARD_PAGE = [
     {
       text: t('mainPageHeader.editButton'),
       onClick: () => {
@@ -63,9 +61,7 @@ const MainPageHeader = () => {
     {
       text: t('mainPageHeader.logoutButton'),
       onClick: () => {
-        dispatch(setToken(''));
-        localStorage.setItem('token', '');
-        navigate(RoutersMap.login);
+        logoutUser();
       },
     },
   ];
@@ -76,7 +72,7 @@ const MainPageHeader = () => {
       <LinksWrapper>
         <LocalesCheckBox id="mainCheckBox" />
         {loc.pathname === `${RoutersMap.board}/${id}` || loc.pathname === `${RoutersMap.edit}`
-          ? BUTTONSBBOARDPAGE.map(({ text, onClick }) => {
+          ? BUTTONS_BOARD_PAGE.map(({ text, onClick }) => {
               return <HeaderButton key={text} text={text} onClick={onClick} />;
             })
           : BUTTONS.map(({ text, onClick }) => {

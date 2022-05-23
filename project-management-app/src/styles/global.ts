@@ -72,6 +72,10 @@ export const Loading = styled.div`
   animation: ${LoadingAnimation} 1s ease-in-out infinite;
 `;
 
+export const LoadingDark = styled(Loading)`
+  border-top-color: ${colors.inputHoverBorder};
+`;
+
 export const BoardButton = styled.button`
   background-color: ${colors.baseBg};
   background-repeat: no-repeat;

@@ -1,26 +1,22 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from '../reducers/AuthSlice';
 import changeToggleReducer from '../reducers/LanguageSlice';
 import { authApi } from '../services/AuthService';
 import { modalReducer } from '../reducers/ModalSlice';
 import { boardsReducer } from '../reducers/BoardsSlice';
-import { loginReducer } from '../reducers/LoginFormSlice';
+import { authReducer } from '../reducers/AuthSlice';
 import { commonApi } from '../services/common.api';
 import confirmReducer from '../reducers/ConfirmWindowSlice';
 import { boardReducer } from '../reducers/BoardSlice';
-import { usersReducer } from '../reducers/AuthorizSlice';
 
 const rootReducer = combineReducers({
-  authReducer,
   [authApi.reducerPath]: authApi.reducer,
   changeToggleReducer,
   confirmReducer,
   modal: modalReducer,
   boards: boardsReducer,
   board: boardReducer,
-  loginReducer,
-  usersReducer,
+  auth: authReducer,
   [commonApi.reducerPath]: commonApi.reducer,
 });
 

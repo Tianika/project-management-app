@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AuthErrorType, RegisterFormValuesType } from '../../../utils/types/types';
-import { loginFormSlice } from '../../../redux/reducers/LoginFormSlice';
+import { authSlice } from '../../../redux/reducers/AuthSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import {
   AuthForm,
@@ -14,16 +14,16 @@ import {
   FormTextFieldError,
   FormTextFieldWrapper,
   SubmitButton,
-} from '../LoginForm/styles';
-import { Loading } from '../../../styles/global';
-import { loginSelector } from '../../../redux/selectors/AuthSelectors';
+} from '../signInForm/styles';
+import { Loading, LoadingDark } from '../../../styles/global';
+import { authSelector } from '../../../redux/selectors/AuthSelectors';
 import { RoutersMap } from '../../../utils/constants';
 import { registerApi } from '../../../redux/services/RegisterService';
 import { WAITING_TIME_IN_MS } from './constant';
 
-export default function RegisterForm() {
-  const { login } = useAppSelector(loginSelector);
-  const { addFormData, setUserId } = loginFormSlice.actions;
+export default function SignUpForm() {
+  const { login } = useAppSelector(authSelector);
+  const { setSignUpData } = authSlice.actions;
   const [signUp, { error, isLoading }] = registerApi.useSignUpMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -60,13 +60,14 @@ export default function RegisterForm() {
     })
       .unwrap()
       .then((response) => {
-        dispatch(addFormData(response.login));
-        dispatch(setUserId(response.id));
+        dispatch(
+          setSignUpData({ name: response.name, login: response.login, userId: response.id })
+        );
 
         setIsSuccessfullyRegister(true);
 
         setTimeout(() => {
-          navigate(RoutersMap.login);
+          navigate(RoutersMap.signIn);
           setIsSuccessfullyRegister(false);
         }, WAITING_TIME_IN_MS);
       })
@@ -121,7 +122,7 @@ export default function RegisterForm() {
 
       <SubmitButton type="submit">{t('authentication.submitRegisterButton')}</SubmitButton>
 
-      {isLoading && <Loading />}
+      {isLoading && <LoadingDark />}
 
       {isSuccessfullyRegister && (
         <ApiMessage>

@@ -6,7 +6,6 @@ import { modalStateSelector } from '../../../redux/selectors/ModalSelectors';
 import { LoadingWrapper } from '../../../styles/global';
 import { ModalTypes, ModalIds } from '../../../utils/constants';
 import ConfirmationWindow from '../confirmationWindow/ConfirmationWindow';
-import ConfirmWindowEditProf from '../confirmWindowEditProf/ConfirmWindowEditProf';
 import Message from '../message/Message';
 import NewBoard from '../newBoard/NewBoard';
 import NewColumn from '../newColumn/NewColumn';
@@ -22,7 +21,6 @@ const Modal = () => {
     [ModalIds.empty]: null,
     [ModalIds.newBoard]: <NewBoard />,
     [ModalIds.confirmationWindow]: <ConfirmationWindow />,
-    [ModalIds.confirmWindowEditProf]: <ConfirmWindowEditProf />,
     [ModalIds.error]: <Message />,
     [ModalIds.loading]: <LoadingWrapper />,
     [ModalIds.newTask]: <NewTask />,

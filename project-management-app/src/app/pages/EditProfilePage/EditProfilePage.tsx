@@ -1,15 +1,17 @@
 import { ColumnCenteredWrapper } from '../../../styles/global';
-import EditForm from '../../components/EditForm/EditForm';
+import EditProfileForm from '../../components/editProfileForm/EditProfileForm';
 import MainPageHeader from '../../components/mainPageHeader/MainPageHeader';
 import { MainPageContainer } from '../MainPage/styles';
+import Footer from '../../components/footer/Footer';
 
 const EditProfilePage = () => {
   return (
     <MainPageContainer>
       <MainPageHeader />
       <ColumnCenteredWrapper>
-        <EditForm />
+        <EditProfileForm />
       </ColumnCenteredWrapper>
+      <Footer />
     </MainPageContainer>
   );
 };

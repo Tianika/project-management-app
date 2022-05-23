@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { ReactElement } from 'react';
 import { useAppSelector } from '../redux/hooks/reduxHooks';
-import { loginSelector } from '../redux/selectors/AuthSelectors';
+import { authSelector } from '../redux/selectors/AuthSelectors';
 import { RoutersMap } from '../utils/constants';
 
 type AnonymousRouteType = {
@@ -10,7 +10,7 @@ type AnonymousRouteType = {
 };
 
 const AnonymousRoute = ({ redirectPath = RoutersMap.main, children }: AnonymousRouteType) => {
-  const { token } = useAppSelector(loginSelector);
+  const { token } = useAppSelector(authSelector);
   return token ? <Navigate to={redirectPath} replace /> : children;
 };
 

@@ -87,8 +87,8 @@
     "title": "Are you sure you want to change the data?"
   },
   "authentication": {
-    "loginPageTitle": "Login",
-    "registerPageTitle": "Registration",
+    "loginPageTitle": "Sign In",
+    "registerPageTitle": "Sign Up",
     "placeholders": {
       "nicknamePlaceholder": "Enter nickname",
       "loginPlaceholder": "Enter username",

@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../redux/hooks/reduxHooks';
-import { loginSelector } from '../../../redux/selectors/AuthSelectors';
+import { authSelector } from '../../../redux/selectors/AuthSelectors';
 import { RoutersMap } from '../../../utils/constants';
 import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
 import { HeaderLink } from '../welcomePageHeader/styles';
 import { BurgerType, BurgerWrapper } from './styles';
 
 const NavBarBurger = ({ open }: BurgerType) => {
-  const { token } = useAppSelector(loginSelector);
+  const { token } = useAppSelector(authSelector);
   const { t } = useTranslation();
 
   return (
@@ -17,8 +17,8 @@ const NavBarBurger = ({ open }: BurgerType) => {
         <HeaderLink to={RoutersMap.main}>{t('notFoundPageTranslation.linkTitle')}</HeaderLink>
       ) : (
         <>
-          <HeaderLink to={RoutersMap.login}>{t('headerLinks.logIn')}</HeaderLink>
-          <HeaderLink to={RoutersMap.register}>{t('headerLinks.signUp')}</HeaderLink>
+          <HeaderLink to={RoutersMap.signIn}>{t('headerLinks.logIn')}</HeaderLink>
+          <HeaderLink to={RoutersMap.signUp}>{t('headerLinks.signUp')}</HeaderLink>
         </>
       )}
     </BurgerWrapper>

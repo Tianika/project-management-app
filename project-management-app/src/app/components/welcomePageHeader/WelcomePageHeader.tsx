@@ -11,11 +11,11 @@ import {
 } from './styles';
 import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
 import { useAppSelector } from '../../../redux/hooks/reduxHooks';
-import { loginSelector } from '../../../redux/selectors/AuthSelectors';
+import { authSelector } from '../../../redux/selectors/AuthSelectors';
 import BurgerBtn from '../burgerWelcomePage/BurgerBtn';
 
 const WelcomePageHeader = () => {
-  const { token } = useAppSelector(loginSelector);
+  const { token } = useAppSelector(authSelector);
   const { t } = useTranslation();
   const [theme, setTheme] = useState(false);
 
@@ -38,9 +38,9 @@ const WelcomePageHeader = () => {
           <HeaderLink to={RoutersMap.main}>{t('notFoundPageTranslation.linkTitle')}</HeaderLink>
         ) : (
           <>
-            <HeaderLink to={RoutersMap.login}>{t('headerLinks.logIn')}</HeaderLink>
+            <HeaderLink to={RoutersMap.signIn}>{t('headerLinks.logIn')}</HeaderLink>
             <HeaderSeparator>|</HeaderSeparator>
-            <HeaderLink to={RoutersMap.register}>{t('headerLinks.signUp')}</HeaderLink>
+            <HeaderLink to={RoutersMap.signUp}>{t('headerLinks.signUp')}</HeaderLink>
           </>
         )}
       </LinksWrapper>
