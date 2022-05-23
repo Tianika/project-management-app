@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
-import { saveIdsForNewTask, saveIdsForUpdateTask } from '../../../redux/reducers/BoardSlice';
+import { saveIdsForUpdateTask } from '../../../redux/reducers/BoardSlice';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { updateTask } from '../../../redux/services/Board.api';
 import { FunctionIds, ModalIds, ModalTypes } from '../../../utils/constants';
@@ -21,13 +21,14 @@ import {
 } from './styles';
 
 const Task = ({
-  task: { id, title, order, description, userId, files },
+  task: { id, title, order, description, userId },
   boardId,
   columnId,
 }: {
   task: TaskType;
   boardId: string | undefined;
   columnId: string;
+  index: number;
 }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();

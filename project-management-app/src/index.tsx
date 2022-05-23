@@ -10,15 +10,13 @@ import ErrorBoundary from './app/components/errorBoundaries/ErrorBoundaries';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Suspense fallback={<LoadingWrapper />}>
-        <BrowserRouter>
-          <ErrorBoundary>
-            <App />
-          </ErrorBoundary>
-        </BrowserRouter>
-      </Suspense>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <Suspense fallback={<LoadingWrapper />}>
+      <BrowserRouter>
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
+      </BrowserRouter>
+    </Suspense>
+  </Provider>
 );

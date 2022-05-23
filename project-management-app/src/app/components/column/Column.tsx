@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
@@ -24,9 +25,11 @@ import {
 const Column = ({
   column: { id, title, order, tasks },
   boardId,
+  index,
 }: {
   column: ColumnType;
   boardId: string | undefined;
+  index: number;
 }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -62,36 +65,42 @@ const Column = ({
   };
 
   return (
-    <ColumnContainer>
-      {!isEdit && (
-        <HeaderColumn>
-          <ColumnTitle onClick={toggleIsEdit} title={t('boardPage.hintEditTitle')}>
-            {title}
-          </ColumnTitle>
-          <ColumnDeleteButton onClick={deleteColumn} title={t('boardPage.hintDeleteColumn')} />
-        </HeaderColumn>
+    <Draggable draggableId={String(id)} key={id} index={index}>
+      {(provided) => (
+        <ColumnContainer
+          {...provided.draggableProps}
+          ref={provided.innerRef}
+          {...provided.dragHandleProps}
+        >
+          {!isEdit && (
+            <HeaderColumn>
+              <ColumnTitle onClick={toggleIsEdit}>{title}</ColumnTitle>
+              <ColumnDeleteButton onClick={deleteColumn} title={t('boardPage.hintDeleteColumn')} />
+            </HeaderColumn>
+          )}
+          {isEdit && (
+            <ColumnTitleForm onSubmit={handleSubmit(onSubmit)}>
+              <AcceptEditButton type="submit" />
+              <ColumnTitleInput
+                type="text"
+                {...register('columnTitle', { required: true })}
+                defaultValue={title}
+                autoFocus
+              />
+              <CancelEditButton onClick={toggleIsEdit} />
+            </ColumnTitleForm>
+          )}
+          <TasksContainer>
+            {tasks.map((task) => {
+              return (
+                <Task key={task.id} task={task} boardId={boardId} columnId={id} index={index} />
+              );
+            })}
+            <NewTaskButton onClick={onClick}>{t('boardPage.addTaskBtn')}</NewTaskButton>
+          </TasksContainer>
+        </ColumnContainer>
       )}
-      {isEdit && (
-        <ColumnTitleForm onSubmit={handleSubmit(onSubmit)}>
-          <AcceptEditButton type="submit" />
-          <ColumnTitleInput
-            type="text"
-            {...register('columnTitle', { required: true })}
-            defaultValue={title}
-            autoFocus
-          />
-          <CancelEditButton onClick={toggleIsEdit} />
-        </ColumnTitleForm>
-      )}
-
-      <TasksContainer>
-        {tasks.map((task) => {
-          return <Task key={task.id} task={task} boardId={boardId} columnId={id} />;
-        })}
-
-        <NewTaskButton onClick={onClick}>{t('boardPage.addTaskBtn')}</NewTaskButton>
-      </TasksContainer>
-    </ColumnContainer>
+    </Draggable>
   );
 };
 

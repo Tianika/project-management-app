@@ -15,6 +15,7 @@ import {
   deleteTask,
   requestBoard,
   updateColumn,
+  updateColumnsArray,
   updateTask,
 } from '../services/Board.api';
 
@@ -187,6 +188,18 @@ const boardSlice = createSlice({
       state.isLoading = LoadingState.Success;
     },
     [updateTask.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = LoadingState.Error;
+      state.errorMessage = action.payload;
+    },
+    [updateColumnsArray.pending.type]: (state, action) => {
+      state.boardData.columns = action.meta.arg.newColumns;
+      state.isLoading = LoadingState.Loading;
+    },
+    [updateColumnsArray.fulfilled.type]: (state, action) => {
+      state.boardData.columns = action.payload;
+      state.isLoading = LoadingState.Success;
+    },
+    [updateColumnsArray.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = LoadingState.Error;
       state.errorMessage = action.payload;
     },
