@@ -11,16 +11,18 @@ import {
   NewTaskInput,
   NewTaskTitle,
 } from './styles';
+import { authSelector } from '../../../redux/selectors/AuthSelectors';
 
 const NewTask = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const { register, handleSubmit } = useForm();
+  const { userId } = useAppSelector(authSelector);
 
   const { boardId, columnId } = useAppSelector(boardStateSelector);
 
   const onSubmit: SubmitHandler<FieldValues> = ({ title, description }) => {
-    dispatch(createNewTask({ title, description, boardId, columnId }));
+    dispatch(createNewTask({ title, description, boardId, columnId, userId }));
     dispatch(closeModal());
   };
 

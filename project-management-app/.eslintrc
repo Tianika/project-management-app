@@ -37,7 +37,7 @@
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state", "config"] }],
     "import/prefer-default-export": "off"
   },
   "settings": {

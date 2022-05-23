@@ -61,6 +61,7 @@ export type RequestTaskType = {
   description: string;
   boardId: string;
   columnId: string;
+  userId: string;
 };
 
 export type CreateTaskActionProps = { boardId: string | undefined; columnId: string };

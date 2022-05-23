@@ -20,6 +20,7 @@ import { LoadingDark } from '../../../styles/global';
 import { authSelector, isLoadingAuthSelector } from '../../../redux/selectors/AuthSelectors';
 import { LoadingState, RoutersMap } from '../../../utils/constants';
 import { getUserInfo } from '../../../redux/services/EditUser.api';
+import { setupInterceptorsToken } from '../../../redux/services/axios.common.api';
 
 export default function SignInForm() {
   const { login } = useAppSelector(authSelector);
@@ -54,6 +55,8 @@ export default function SignInForm() {
       .unwrap()
       .then((response) => {
         const decodedToken = jwtDecode<JwtPayload>(response.token) as DecodedToken;
+
+        setupInterceptorsToken(response.token);
 
         dispatch(
           setSignInData({ user: loginValue, token: response.token, userId: decodedToken.userId })

@@ -3,7 +3,7 @@ import { LoadingState } from '../constants';
 export type AuthType = {
   name: string;
   login: string;
-  token: string | null;
+  token: string;
   userId: string;
   isLoading: LoadingState;
   errorMessage: string;

@@ -12,6 +12,7 @@ import { useSaveTokenToLocalStorage } from '../services/useSaveTokenToLocalStora
 import SignInPage from './pages/SignInPage/SignInPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage';
+import InjectAxiosInterceptors from './components/injectAxiosInterceptors/InjectAxiosInterceptors';
 
 const App = () => {
   useSaveTokenToLocalStorage();
@@ -19,6 +20,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <InjectAxiosInterceptors />
       <Routes>
         <Route path={RoutersMap.welcome} element={<WelcomePage />} />
         <Route
