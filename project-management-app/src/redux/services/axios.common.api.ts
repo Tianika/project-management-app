@@ -6,7 +6,10 @@ export const axiosFetchCommon = axios.create({
   baseURL: BASE_URL,
 });
 
-export const setupInterceptors401 = (navigate: NavigateFunction) => {
+export const setupInterceptors401 = (
+  navigate: NavigateFunction,
+  useLogout: { (): (() => void)[]; (): void }
+) => {
   axiosFetchCommon.interceptors.response.use(
     (response) => {
       return response;
@@ -15,6 +18,7 @@ export const setupInterceptors401 = (navigate: NavigateFunction) => {
       const { status } = error.response;
 
       if (status === 401) {
+        useLogout();
         navigate(RoutersMap.signIn);
       }
 

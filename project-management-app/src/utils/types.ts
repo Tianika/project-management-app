@@ -104,11 +104,20 @@ export type UpdateTaskType = {
   columnId: string;
   taskId: string;
   userId: string;
+  newColumnId?: string;
 };
 
 export type UpdateColumnsArrayType = {
   boardId: string;
   newColumns: Array<ColumnType>;
+  columns: Array<ColumnType>;
+};
+
+export type UpdateTasksArray = {
+  boardId: string;
+  columnId: string;
+  newTasks: Array<TaskType>;
+  tasks: Array<TaskType>;
 };
 
 export type IdsForRequest = {

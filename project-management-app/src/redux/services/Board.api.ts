@@ -7,6 +7,7 @@ import {
   SearchSelectorsType,
   UpdateColumnsArrayType,
   UpdateColumnType,
+  UpdateTasksArray,
   UpdateTaskType,
 } from '../../utils/types';
 import { axiosFetchCommon } from './axios.common.api';
@@ -119,7 +120,7 @@ export const updateColumn = createAsyncThunk(
 export const updateTask = createAsyncThunk(
   'board/updateTask',
   async (
-    { title, order, description, boardId, columnId, taskId, userId }: UpdateTaskType,
+    { title, order, description, boardId, columnId, taskId, userId, newColumnId }: UpdateTaskType,
     thunkAPI
   ) => {
     const body = {
@@ -128,7 +129,7 @@ export const updateTask = createAsyncThunk(
       description,
       userId,
       boardId,
-      columnId,
+      columnId: newColumnId || columnId,
     };
 
     try {
@@ -146,7 +147,7 @@ export const updateTask = createAsyncThunk(
 
 export const updateColumnsArray = createAsyncThunk(
   'board/updateColumnsArray',
-  async ({ boardId, newColumns }: UpdateColumnsArrayType, thunkAPI) => {
+  async ({ boardId, newColumns, columns }: UpdateColumnsArrayType, thunkAPI) => {
     const promiseArray = newColumns.map((column, index) => {
       return axiosFetchCommon.put(`/boards/${boardId}/columns/${column.id}`, {
         title: column.title,
@@ -158,7 +159,25 @@ export const updateColumnsArray = createAsyncThunk(
       await axios.all(promiseArray);
       return newColumns;
     } catch ({ message }) {
-      return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue({ message, fallBackColumns: columns });
+    }
+  }
+);
+
+export const updateTasksArray = createAsyncThunk(
+  'board/updateTasksArray',
+  async ({ boardId, columnId, newTasks, tasks }: UpdateTasksArray, thunkAPI) => {
+    const promiseArray = newTasks.map((task, index) => {
+      return axiosFetchCommon.put(`/boards/${boardId}/columns/${columnId}/tasks/${task.id}`, {
+        title: task.title,
+        order: index + 1,
+      });
+    });
+    try {
+      await axios.all(promiseArray);
+      return newTasks;
+    } catch ({ message }) {
+      return thunkAPI.rejectWithValue({ message, fallBackColumns: tasks });
     }
   }
 );

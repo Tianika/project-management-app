@@ -6,13 +6,14 @@ import {
 } from '../../../redux/services/axios.common.api';
 import { useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { authSelector } from '../../../redux/selectors/AuthSelectors';
+import { useLogout } from '../../../services/useLogout';
 
 const InjectAxiosInterceptors = () => {
   const navigate = useNavigate();
   const { token } = useAppSelector(authSelector);
 
   useEffect(() => {
-    setupInterceptors401(navigate);
+    setupInterceptors401(navigate, useLogout);
     setupInterceptorsToken(token);
   }, [navigate, token]);
 
