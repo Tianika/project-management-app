@@ -8,10 +8,10 @@ import {
   usersSelector,
 } from '../../../redux/selectors/BoardSelectors';
 import { updateTask } from '../../../redux/services/Board.api';
+import { ErrorMessage } from '../../../styles/global';
 import {
   AcceptTaskEditButton,
   CancelTaskEditButton,
-  ErrorMessage,
   TaskViewButtons,
   TaskViewDescription,
   TaskViewForm,
