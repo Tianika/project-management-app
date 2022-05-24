@@ -127,17 +127,3 @@ export const CancelTaskEditButton = styled(CancelEditButton)`
     background-size: 30px;
   }
 `;
-
-export const ErrorMessage = styled.div`
-  height: 28px;
-  color: red;
-  font-size: 0.8em;
-
-  ${adaptive.maxWidth.tablet} {
-    height: 24px;
-  }
-
-  ${adaptive.maxWidth.mobile} {
-    height: 20px;
-  }
-`;

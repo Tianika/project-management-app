@@ -98,3 +98,17 @@ export const EditButton = styled(BoardButton)`
 export const DeleteButton = styled(BoardButton)`
   background-image: url(${deleteIcon});
 `;
+
+export const ErrorMessage = styled.div`
+  height: 28px;
+  color: red;
+  font-size: 0.8em;
+
+  ${adaptive.maxWidth.tablet} {
+    height: 24px;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    height: 20px;
+  }
+`;

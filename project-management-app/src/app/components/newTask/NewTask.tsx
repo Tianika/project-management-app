@@ -12,11 +12,16 @@ import {
   NewTaskTitle,
 } from './styles';
 import { authSelector } from '../../../redux/selectors/AuthSelectors';
+import { ErrorMessage } from '../../../styles/global';
 
 const NewTask = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: 'onChange' });
   const { userId } = useAppSelector(authSelector);
 
   const { boardId, columnId } = useAppSelector(boardStateSelector);
@@ -40,6 +45,9 @@ const NewTask = () => {
         {...register('description', { required: true })}
         placeholder={t('boardPage.taskDescriptionPlaceholder')}
       />
+      <ErrorMessage>
+        {(errors.title || errors.description) && <p>{t('viewTask.error')}</p>}
+      </ErrorMessage>
       <NewTaskButton type="submit">{t('boardPage.createButton')}</NewTaskButton>
     </NewTaskForm>
   );
