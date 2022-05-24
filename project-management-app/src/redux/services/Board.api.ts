@@ -7,19 +7,13 @@ import {
   UpdateColumnType,
   UpdateTaskType,
 } from '../../utils/types';
-import { setAxiosConfig } from './axiosService';
-
-// TODO добавить получение token и userid
-
-const userID = '35c538a5-23a5-4af3-a07f-3659b1c580bb';
-
-const axiosFetch = setAxiosConfig();
+import { axiosFetchCommon } from './axios.common.api';
 
 export const requestBoard = createAsyncThunk(
   'board/requestBoard',
   async ({ id }: { id: string }, thunkAPI) => {
     try {
-      const response = await axiosFetch.get(`/boards/${id}`);
+      const response = await axiosFetchCommon.get(`/boards/${id}`);
 
       return response.data;
     } catch ({ message }) {
@@ -30,15 +24,18 @@ export const requestBoard = createAsyncThunk(
 
 export const createNewTask = createAsyncThunk(
   'board/createNewTask',
-  async ({ title, description, boardId, columnId }: RequestTaskType, thunkAPI) => {
+  async ({ title, description, boardId, columnId, userId }: RequestTaskType, thunkAPI) => {
     const body = {
       title,
       description,
-      userId: userID,
+      userId,
     };
 
     try {
-      const response = await axiosFetch.post(`/boards/${boardId}/columns/${columnId}/tasks`, body);
+      const response = await axiosFetchCommon.post(
+        `/boards/${boardId}/columns/${columnId}/tasks`,
+        body
+      );
 
       return response.data;
     } catch ({ message }) {
@@ -54,7 +51,7 @@ export const deleteTask = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      await axiosFetch.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
+      await axiosFetchCommon.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
 
       return { boardId, columnId, taskId };
     } catch ({ message }) {
@@ -71,7 +68,7 @@ export const createNewColumn = createAsyncThunk(
     };
 
     try {
-      const response = await axiosFetch.post(`/boards/${boardId}/columns`, body);
+      const response = await axiosFetchCommon.post(`/boards/${boardId}/columns`, body);
 
       return response.data;
     } catch ({ message }) {
@@ -84,7 +81,7 @@ export const deleteColumn = createAsyncThunk(
   'board/deleteColumn',
   async ({ boardId, columnId }: { boardId: string; columnId: string }, thunkAPI) => {
     try {
-      await axiosFetch.delete(`/boards/${boardId}/columns/${columnId}`);
+      await axiosFetchCommon.delete(`/boards/${boardId}/columns/${columnId}`);
 
       return { boardId, columnId };
     } catch ({ message }) {
@@ -102,7 +99,7 @@ export const updateColumn = createAsyncThunk(
     };
 
     try {
-      const response = await axiosFetch.put(`/boards/${boardId}/columns/${columnId}`, body);
+      const response = await axiosFetchCommon.put(`/boards/${boardId}/columns/${columnId}`, body);
 
       return response.data;
     } catch ({ message }) {
@@ -127,7 +124,7 @@ export const updateTask = createAsyncThunk(
     };
 
     try {
-      const response = await axiosFetch.put(
+      const response = await axiosFetchCommon.put(
         `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`,
         body
       );
@@ -143,7 +140,7 @@ export const updateColumnsArray = createAsyncThunk(
   'board/updateColumnsArray',
   async ({ boardId, newColumns }: UpdateColumnsArrayType, thunkAPI) => {
     const promiseArray = newColumns.map((column, index) => {
-      return axiosFetch.put(`/boards/${boardId}/columns/${column.id}`, {
+      return axiosFetchCommon.put(`/boards/${boardId}/columns/${column.id}`, {
         title: column.title,
         order: index + 1,
       });
