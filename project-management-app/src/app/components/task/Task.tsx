@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
 import { saveIdsForUpdateTask } from '../../../redux/reducers/BoardSlice';
 import { setModalChildren } from '../../../redux/reducers/ModalSlice';
-import { updateTask } from '../../../redux/services/Board.api';
+import { updateTask, viewTask } from '../../../redux/services/Board.api';
 import { FunctionIds, ModalIds, ModalTypes } from '../../../utils/constants';
 import { TaskType } from '../../../utils/types';
+import TaskView from '../taskView/TaskView';
 import {
   AcceptTaskEditButton,
   CancelTaskEditButton,
@@ -62,12 +63,10 @@ const Task = ({
 
   const editTask = () => {
     dispatch(saveIdsForUpdateTask({ boardId, columnId, taskId: id }));
-    dispatch(
-      setModalChildren({
-        modalId: ModalIds.taskView,
-        modalType: ModalTypes.Window,
-      })
-    );
+
+    if (boardId) {
+      dispatch(viewTask({ boardId, columnId, taskId: id }));
+    }
   };
 
   return (

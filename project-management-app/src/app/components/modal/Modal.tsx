@@ -11,7 +11,7 @@ import NewBoard from '../newBoard/NewBoard';
 import NewColumn from '../newColumn/NewColumn';
 import NewTask from '../newTask/NewTask';
 import TaskView from '../taskView/TaskView';
-import { ModalContainer } from './styles';
+import { BlurModalContainer, ModalContainer } from './styles';
 
 const Modal = () => {
   const dispatch = useAppDispatch();
@@ -55,7 +55,7 @@ const Modal = () => {
       {isModalOverlay && createPortal(<ModalContainer>{modalChildren}</ModalContainer>, modal)}
       {isModalWindow &&
         createPortal(
-          <ModalContainer onClick={onCloseModal}>{modalChildren}</ModalContainer>,
+          <BlurModalContainer onClick={onCloseModal}>{modalChildren}</BlurModalContainer>,
           modal
         )}
     </>

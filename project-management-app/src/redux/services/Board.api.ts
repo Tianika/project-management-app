@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import {
+  IdsForRequest,
   RequestColumnType,
   RequestTaskType,
   UpdateColumnsArrayType,
@@ -149,6 +150,25 @@ export const updateColumnsArray = createAsyncThunk(
     try {
       await axios.all(promiseArray);
       return newColumns;
+    } catch ({ message }) {
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const viewTask = createAsyncThunk(
+  'board/viewTask',
+  async ({ boardId, columnId, taskId }: IdsForRequest, thunkAPI) => {
+    try {
+      const urls = [`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, `/users`];
+
+      const promiseArray = urls.map((url) => {
+        return axiosFetchCommon.get(url);
+      });
+
+      const response = await axios.all(promiseArray);
+
+      return { task: response[0].data, users: response[1].data };
     } catch ({ message }) {
       return thunkAPI.rejectWithValue(message);
     }

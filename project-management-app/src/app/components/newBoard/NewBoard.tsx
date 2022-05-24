@@ -1,13 +1,8 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { mainPageTranslation } from '../../../locales/mainPageTranslation';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
 import { createNewBoard } from '../../../redux/services/Boards.api';
 import { NewBoardButton, NewBoardInput, NewBoardForm, NewBoardTitle } from './styles';
-
-const language = 'ru';
-
-const { newBoardTitle, newBoardBtn, placeholder } = mainPageTranslation[language];
 
 const NewBoard = () => {
   const dispatch = useAppDispatch();

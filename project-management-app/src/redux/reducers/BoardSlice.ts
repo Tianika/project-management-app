@@ -6,6 +6,7 @@ import {
   ColumnResponseType,
   CreateTaskActionProps,
   TaskResponseType,
+  TaskViewResponseType,
   UpdateTaskActionProps,
 } from '../../utils/types';
 import {
@@ -17,6 +18,7 @@ import {
   updateColumn,
   updateColumnsArray,
   updateTask,
+  viewTask,
 } from '../services/Board.api';
 
 const initialState: BoardState = {
@@ -24,9 +26,20 @@ const initialState: BoardState = {
   columnId: '',
   taskId: '',
   boardData: { id: '', title: '', columns: [] },
+  taskData: {
+    id: '',
+    title: '',
+    order: 1,
+    description: '',
+    userId: '',
+    boardId: '',
+    columnId: '',
+    files: [],
+  },
   isLoading: LoadingState.Initial,
   isError: false,
   errorMessage: '',
+  users: [],
 };
 
 const boardSlice = createSlice({
@@ -171,7 +184,7 @@ const boardSlice = createSlice({
       state.isLoading = LoadingState.Loading;
     },
     [updateTask.fulfilled.type]: (state, action: PayloadAction<TaskResponseType>) => {
-      const { id, title, columnId } = action.payload;
+      const { id, title, description, userId, columnId } = action.payload;
 
       const columnIndex = state.boardData.columns.findIndex((column) => column.id === columnId);
 
@@ -182,6 +195,8 @@ const boardSlice = createSlice({
 
         if (taskIndex > -1) {
           state.boardData.columns[columnIndex].tasks[taskIndex].title = title;
+          state.boardData.columns[columnIndex].tasks[taskIndex].description = description;
+          state.boardData.columns[columnIndex].tasks[taskIndex].userId = userId;
         }
       }
 
@@ -200,6 +215,21 @@ const boardSlice = createSlice({
       state.isLoading = LoadingState.Success;
     },
     [updateColumnsArray.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = LoadingState.Error;
+      state.errorMessage = action.payload;
+    },
+
+    [viewTask.pending.type]: (state) => {
+      state.isLoading = LoadingState.Loading;
+    },
+    [viewTask.fulfilled.type]: (state, action: PayloadAction<TaskViewResponseType>) => {
+      const { task, users } = action.payload;
+
+      state.taskData = task;
+      state.users = users;
+      state.isLoading = LoadingState.Modal;
+    },
+    [viewTask.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = LoadingState.Error;
       state.errorMessage = action.payload;
     },

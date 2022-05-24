@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 import { adaptive } from '../../../styles/adaptive';
 import { colors } from '../../../styles/colors';
-import { DeleteButton, EditButton } from '../../../styles/global';
-import {
-  AcceptEditButton,
-  CancelEditButton,
-  ColumnTitleForm,
-  ColumnTitleInput,
-} from '../column/styles';
+import { AcceptEditButton, CancelEditButton } from '../column/styles';
 
 export const TaskViewForm = styled.form`
   display: flex;
@@ -15,48 +9,89 @@ export const TaskViewForm = styled.form`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  min-width: 40vw;
+  min-width: 55vw;
   min-height: 40vh;
   background-color: ${colors.baseBg};
   border-radius: 5px;
-  padding: 20px;
+  padding: 30px;
   font-size: 22px;
 
   ${adaptive.maxWidth.tablet} {
-    min-width: 55vw;
+    min-width: 60vw;
     font-size: 20px;
+    padding: 30px 20px;
   }
 
   ${adaptive.maxWidth.mobile} {
-    width: 90%;
-    min-width: 70vw;
-    font-size: 18px;
+    min-width: 80vw;
+    font-size: 16px;
+    padding: 20px 10px;
   }
 `;
 
-export const TaskViewTitle = styled.h2`
-  font-size: 1em;
-  font-weight: 500;
-  margin-right: 20px;
+export const TaskViewTitle = styled.h3`
+  font-size: 0.95em;
+  font-weight: 400;
+`;
+
+export const TaskViewLabel = styled.label`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: fit-content;
+  gap: 20px;
+
+  ${adaptive.maxWidth.tablet} {
+    width: 90%;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    width: 100%;
+  }
 `;
 
 export const TaskViewInput = styled.input`
   font-size: 0.8em;
-  width: 80%;
+  width: 70%;
   background-color: ${colors.inputBg};
   border: 2px solid ${colors.inputBorder};
   border-radius: 3px;
   padding: 0 10px;
+
+  :focus {
+    outline: none;
+    border: 2px solid ${colors.secondaryBg};
+  }
 `;
 
 export const TaskViewDescription = styled.textarea`
   font-size: 0.8em;
-  width: 80%;
-  height: 20vh;
+  height: fit-content;
+  width: 70%;
   background-color: ${colors.inputBg};
   border: 2px solid ${colors.inputBorder};
   border-radius: 3px;
   padding: 0 10px;
+
+  :focus {
+    outline: none;
+    border: 2px solid ${colors.secondaryBg};
+  }
+`;
+
+export const TaskViewSelect = styled.select`
+  width: 70%;
+  font-size: 0.8em;
+  background-color: ${colors.inputBg};
+  border: 2px solid ${colors.inputBorder};
+  border-radius: 3px;
+  padding: 0 10px;
+
+  :focus {
+    outline: none;
+    border: 2px solid ${colors.secondaryBg};
+  }
 `;
 
 export const TaskViewButtons = styled.div`
@@ -93,7 +128,16 @@ export const CancelTaskEditButton = styled(CancelEditButton)`
   }
 `;
 
-export const TaskViewTitleInput = styled(ColumnTitleInput)`
-  font-size: 16px;
-  line-height: 21px;
+export const ErrorMessage = styled.div`
+  height: 28px;
+  color: red;
+  font-size: 0.8em;
+
+  ${adaptive.maxWidth.tablet} {
+    height: 24px;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    height: 20px;
+  }
 `;

@@ -135,5 +135,11 @@
     "titlePlaceholder": "Enter title",
     "descriptionPlaceholder": "Enter description",
     "newBoardButton": "Create"
+  },
+  "viewTask": {
+    "title": "Title",
+    "description": "Description",
+    "user": "User",
+    "error": "All fields are required"
   }
 }

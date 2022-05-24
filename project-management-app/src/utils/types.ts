@@ -27,10 +27,13 @@ export type TaskFilesType = {
   fileSize: number;
 };
 
-export type UserType = {
+export type UserResponseType = {
   id: string;
   name: string;
   login: string;
+};
+
+export type UserType = UserResponseType & {
   password: string;
 };
 
@@ -42,6 +45,7 @@ export type TaskResponseType = {
   userId: string;
   boardId: string;
   columnId: string;
+  files: Array<TaskFilesType>;
 };
 
 export type BoardDataType = { id: string; title: string; columns: Array<ColumnType> };
@@ -51,9 +55,11 @@ export type BoardState = {
   columnId: string;
   taskId: string;
   boardData: BoardDataType;
+  taskData: TaskResponseType;
   isLoading: LoadingState;
   isError: boolean;
   errorMessage: string;
+  users: Array<UserResponseType>;
 };
 
 export type RequestTaskType = {
@@ -101,4 +107,15 @@ export type UpdateTaskType = {
 export type UpdateColumnsArrayType = {
   boardId: string;
   newColumns: Array<ColumnType>;
+};
+
+export type IdsForRequest = {
+  boardId: string;
+  columnId: string;
+  taskId: string;
+};
+
+export type TaskViewResponseType = {
+  task: TaskResponseType;
+  users: Array<{ id: string; name: string; login: string }>;
 };

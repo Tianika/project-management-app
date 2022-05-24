@@ -43,6 +43,9 @@ const Board = () => {
     if (isLoading === LoadingState.Error) {
       dispatch(setModalChildren({ modalId: ModalIds.error, modalType: ModalTypes.Window }));
     }
+    if (isLoading === LoadingState.Modal) {
+      dispatch(setModalChildren({ modalId: ModalIds.taskView, modalType: ModalTypes.Window }));
+    }
   }, [isLoading]);
 
   const onLinkClick = () => {

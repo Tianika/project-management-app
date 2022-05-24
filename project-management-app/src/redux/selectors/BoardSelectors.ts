@@ -19,3 +19,11 @@ export const taskIdSelector = (state: RootState) => {
 export const errorMessageSelector = (state: RootState) => {
   return state.board.errorMessage;
 };
+
+export const taskDataSelector = (state: RootState) => {
+  return state.board.taskData;
+};
+
+export const usersSelector = (state: RootState) => {
+  return state.board.users;
+};
