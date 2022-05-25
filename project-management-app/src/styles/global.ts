@@ -21,6 +21,16 @@ export const styles = {
   },
 };
 
+export const WrapperApp = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+`;
+
+export const ContentWrapp = styled.div`
+  flex-grow: 1;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: flex-end;

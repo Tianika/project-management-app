@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background: ${colors.baseBg};
     font-family: ${styles.fonts.fontFamily}, sans-serif;
-    min-height: 100vh;
+    height: 100%;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
   }

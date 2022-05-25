@@ -6,7 +6,7 @@ import { colors } from '../../../styles/colors';
 export const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 11rem);
+  height: calc(100vh - 7.5rem);
   padding: 20px;
 `;
 

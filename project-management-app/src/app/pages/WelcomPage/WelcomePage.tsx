@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import WelcomePageHeader from '../../components/welcomePageHeader/WelcomePageHeader';
 import { Container, NewWrapper, Section, Subtitle, Title } from './styles';
 import PersonsCards from '../../components/personsCards/PersonsCards';
-import Footer from '../../components/footer/Footer';
 
 type ListType = { text: string };
 type PersonsType = {
@@ -51,7 +50,6 @@ const WelcomePage = () => {
           })}
         </NewWrapper>
       </Container>
-      <Footer />
     </>
   );
 };
