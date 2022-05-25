@@ -7,9 +7,9 @@ import { Wrapper } from '../../../styles/global';
 
 export const FooterWrapper = styled.footer`
   display: flex;
+  position: relative;
   justify-content: space-around;
   padding: 0.5rem 0;
-  margin: 2rem 0 0;
   background-color: ${colors.secondaryBg};
   color: ${colors.lightFont};
 `;

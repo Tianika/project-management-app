@@ -5,7 +5,6 @@ export const BoardsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 90vh;
   padding: 20px 50px;
 `;
 
