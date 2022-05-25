@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { adaptive } from '../../../styles/adaptive';
 import { colors } from '../../../styles/colors';
 
 export const BoardContainer = styled.div`
@@ -28,7 +29,7 @@ export const ColumnsContainer = styled.div`
   scrollbar-color: ${colors.buttonActiveBg} ${colors.headerBg};
 
   &::-webkit-scrollbar {
-    height: auto;
+    height: 1.5rem;
     width: auto;
     border-radius: 5px;
   }
@@ -41,6 +42,12 @@ export const ColumnsContainer = styled.div`
     background-color: ${colors.buttonActiveBg};
     border-radius: 5px;
     box-shadow: inset 0 0 6px ${colors.darkShadowScroll};
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    &::-webkit-scrollbar {
+      height: 1.2rem;
+    }
   }
 `;
 
