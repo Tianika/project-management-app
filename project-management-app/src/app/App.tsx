@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
 import GlobalStyle from './style';
-import MainPage from './pages/MainPage/MainPage';
+// import MainPage from './pages/MainPage/MainPage';
 import BoardPage from './pages/BoardPage/BoardPage';
 import Modal from './components/modal/Modal';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
@@ -13,6 +14,8 @@ import SignInPage from './pages/SignInPage/SignInPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import EditProfilePage from './pages/EditProfilePage/EditProfilePage';
 import InjectAxiosInterceptors from './components/injectAxiosInterceptors/InjectAxiosInterceptors';
+
+const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 
 const App = () => {
   useSaveTokenToLocalStorage();

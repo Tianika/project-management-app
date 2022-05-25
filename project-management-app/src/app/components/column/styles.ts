@@ -3,6 +3,7 @@ import { colors } from '../../../styles/colors';
 import { DeleteButton } from '../../../styles/global';
 import acceptIcon from '../../../assets/svg/accept.svg';
 import cancelIcon from '../../../assets/svg/cancel.svg';
+import { adaptive } from '../../../styles/adaptive';
 
 export const ColumnContainer = styled.div`
   width: 300px;
@@ -12,6 +13,10 @@ export const ColumnContainer = styled.div`
   border-radius: 5px;
   padding: 5px 5px 7px 7px;
   box-shadow: 0px 4px 4px ${colors.shadow};
+
+  ${adaptive.maxWidth.mobile} {
+    width: 280px;
+  }
 `;
 
 export const TasksContainer = styled.div`
@@ -37,6 +42,12 @@ export const TasksContainer = styled.div`
     background: ${colors.buttonActiveBg};
     border-radius: 5px;
     box-shadow: inset 0 0 6px ${colors.darkShadowScroll};
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    &::-webkit-scrollbar {
+      width: 1.2rem;
+    }
   }
 `;
 
