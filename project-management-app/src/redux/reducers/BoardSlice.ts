@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoadingState } from '../../utils/constants';
+import { ALL_USERS, LoadingState } from '../../utils/constants';
 import {
-  BoardDataType,
+  BoardDataResponse,
   BoardState,
   ColumnResponseType,
   CreateTaskActionProps,
+  SearchSelectorsType,
   TaskResponseType,
   TaskViewResponseType,
   UpdateTaskActionProps,
@@ -15,6 +16,7 @@ import {
   deleteColumn,
   deleteTask,
   requestBoard,
+  requestFilterBoard,
   updateColumn,
   updateColumnsArray,
   updateTask,
@@ -74,9 +76,17 @@ const boardSlice = createSlice({
     [requestBoard.pending.type]: (state) => {
       state.isLoading = LoadingState.Loading;
     },
-    [requestBoard.fulfilled.type]: (state, action: PayloadAction<BoardDataType>) => {
+    [requestBoard.fulfilled.type]: (state, action: PayloadAction<BoardDataResponse>) => {
+      const { boardData, users } = action.payload;
+
+      boardData.columns.sort((prev, next) => prev.order - next.order);
+      boardData.columns.forEach((column) => {
+        column.tasks.sort((prev, next) => prev.order - next.order);
+      });
+
+      state.boardData = boardData;
+      state.users = users;
       state.isLoading = LoadingState.Success;
-      state.boardData = action.payload;
     },
     [requestBoard.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = LoadingState.Error;
@@ -230,6 +240,53 @@ const boardSlice = createSlice({
       state.isLoading = LoadingState.Modal;
     },
     [viewTask.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = LoadingState.Error;
+      state.errorMessage = action.payload;
+    },
+
+    [requestFilterBoard.pending.type]: (state) => {
+      state.isLoading = LoadingState.Loading;
+    },
+    [requestFilterBoard.fulfilled.type]: (
+      state,
+      action: PayloadAction<BoardDataResponse & { searchSelectors: SearchSelectorsType }>
+    ) => {
+      const {
+        boardData,
+        users,
+        searchSelectors: { searchValue, user },
+      } = action.payload;
+
+      const filterColumns = boardData.columns.map((column) => {
+        if (user !== ALL_USERS) {
+          const filterTasks = column.tasks.filter((task) => task.userId === user);
+          column.tasks = filterTasks;
+        }
+
+        if (searchValue) {
+          const filterTasks = column.tasks.filter(
+            (task) =>
+              task.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+              task.description.toLowerCase().includes(searchValue.toLowerCase())
+          );
+          column.tasks = filterTasks;
+        }
+
+        return column;
+      });
+
+      boardData.columns = [...filterColumns].filter((column) => column.tasks.length);
+
+      boardData.columns.sort((prev, next) => prev.order - next.order);
+      boardData.columns.forEach((column) => {
+        column.tasks.sort((prev, next) => prev.order - next.order);
+      });
+
+      state.boardData = boardData;
+      state.users = users;
+      state.isLoading = LoadingState.Success;
+    },
+    [requestFilterBoard.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = LoadingState.Error;
       state.errorMessage = action.payload;
     },

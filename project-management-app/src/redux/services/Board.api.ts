@@ -4,6 +4,7 @@ import {
   IdsForRequest,
   RequestColumnType,
   RequestTaskType,
+  SearchSelectorsType,
   UpdateColumnsArrayType,
   UpdateColumnType,
   UpdateTaskType,
@@ -14,9 +15,15 @@ export const requestBoard = createAsyncThunk(
   'board/requestBoard',
   async ({ id }: { id: string }, thunkAPI) => {
     try {
-      const response = await axiosFetchCommon.get(`/boards/${id}`);
+      const urls = [`/boards/${id}`, `/users`];
 
-      return response.data;
+      const promiseArray = urls.map((url) => {
+        return axiosFetchCommon.get(url);
+      });
+
+      const response = await axios.all(promiseArray);
+
+      return { boardData: response[0].data, users: response[1].data };
     } catch ({ message }) {
       return thunkAPI.rejectWithValue(message);
     }
@@ -169,6 +176,28 @@ export const viewTask = createAsyncThunk(
       const response = await axios.all(promiseArray);
 
       return { task: response[0].data, users: response[1].data };
+    } catch ({ message }) {
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const requestFilterBoard = createAsyncThunk(
+  'board/requestFilterBoard',
+  async (
+    { boardId, searchSelectors }: { boardId: string; searchSelectors: SearchSelectorsType },
+    thunkAPI
+  ) => {
+    try {
+      const urls = [`/boards/${boardId}`, `/users`];
+
+      const promiseArray = urls.map((url) => {
+        return axiosFetchCommon.get(url);
+      });
+
+      const response = await axios.all(promiseArray);
+
+      return { boardData: response[0].data, users: response[1].data, searchSelectors };
     } catch ({ message }) {
       return thunkAPI.rejectWithValue(message);
     }

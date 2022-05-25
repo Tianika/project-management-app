@@ -128,7 +128,9 @@
     "backgroundAnimal": "Енот",
     "backgroundNature": "Природа",
     "backgroundBubbles": "Пузыри",
-    "backgroundGeometry": "Геометрия"
+    "backgroundGeometry": "Геометрия",
+    "user": "Исполнитель",
+    "deleteUser": "удален из системы"
   },
   "mainPage": {
     "boardsTitle": "Доски"
@@ -147,5 +149,12 @@
     "description": "Описание",
     "user": "Пользователь",
     "error": "Заполните все поля"
+  },
+  "search": {
+    "title": "Найти задачу",
+    "searchPlaceholder": "Введите значение для поиска",
+    "searchButton": "Поиск",
+    "clearButton": "Очистить",
+    "usersPlaceholder": "Все пользователи"
   }
 }

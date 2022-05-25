@@ -10,6 +10,7 @@ import { boardStateSelector } from '../../../redux/selectors/BoardSelectors';
 import { requestBoard, updateColumnsArray } from '../../../redux/services/Board.api';
 import { LoadingState, ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
 import Column from '../column/Column';
+import Search from '../search/Search';
 import {
   backgroundImgAnimal,
   backgroundImgBubbles,
@@ -33,8 +34,8 @@ const Board = () => {
   const [img, setImg] = useState('');
 
   const {
-    boardData: { title, columns },
     isLoading,
+    boardData: { title, columns },
   } = useAppSelector(boardStateSelector);
 
   useEffect(() => {
@@ -127,6 +128,7 @@ const Board = () => {
           </Select>
         </WrapperSelect>
         <BoardTitle>{title}</BoardTitle>
+        <Search boardId={id} />
         <Droppable droppableId={String(id)} direction="horizontal" type="column">
           {(provided) => (
             <ColumnsContainer {...provided.droppableProps} ref={provided.innerRef}>

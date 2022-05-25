@@ -27,3 +27,7 @@ export const taskDataSelector = (state: RootState) => {
 export const usersSelector = (state: RootState) => {
   return state.board.users;
 };
+
+export const boardDataSelector = (state: RootState) => {
+  return state.board.boardData;
+};

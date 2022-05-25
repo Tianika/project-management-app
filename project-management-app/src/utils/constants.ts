@@ -45,3 +45,5 @@ export enum FunctionIds {
 export const LOCAL_STORAGE_KEYS = {
   i18nextLng: 'i18nextLng',
 };
+
+export const ALL_USERS = 'All';
