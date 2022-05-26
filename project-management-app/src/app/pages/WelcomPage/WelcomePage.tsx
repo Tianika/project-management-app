@@ -23,7 +23,7 @@ const WelcomePage = () => {
       <WelcomePageHeader />
       <Section>
         <Title>{t('title')}</Title>
-        <Subtitle>Project management app</Subtitle>
+        <Subtitle>Project Management App</Subtitle>
         <p>-{t('description')}</p>
       </Section>
       <Section>
