@@ -1,3 +1,4 @@
+import { Draggable } from 'react-beautiful-dnd';
 import { useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -25,6 +26,7 @@ const Task = ({
   task: { id, title, order, description, userId },
   boardId,
   columnId,
+  index,
 }: {
   task: TaskType;
   boardId: string | undefined;
@@ -82,34 +84,43 @@ const Task = ({
   };
 
   return (
-    <TaskContainer>
-      {!isEdit && (
-        <TaskTitle onClick={toggleIsEdit} title={t('boardPage.hintEditTitle')}>
-          {title}
-        </TaskTitle>
-      )}
-      {isEdit && (
-        <TaskTitleForm onSubmit={handleSubmit(onSubmit)}>
-          <AcceptTaskEditButton type="submit" />
-          <TaskTitleInput
-            type="text"
-            {...register('taskTitle', { required: true })}
-            defaultValue={title}
-            autoFocus
-          />
-          <CancelTaskEditButton onClick={toggleIsEdit} />
-        </TaskTitleForm>
-      )}
+    <Draggable draggableId={id} index={index}>
+      {(provided, snapshot) => (
+        <TaskContainer
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+        >
+          {!isEdit && (
+            <TaskTitle onClick={toggleIsEdit} title={t('boardPage.hintEditTitle')}>
+              {title}
+            </TaskTitle>
+          )}
+          {isEdit && (
+            <TaskTitleForm onSubmit={handleSubmit(onSubmit)}>
+              <AcceptTaskEditButton type="submit" />
+              <TaskTitleInput
+                type="text"
+                {...register('taskTitle', { required: true })}
+                defaultValue={title}
+                autoFocus
+              />
+              <CancelTaskEditButton onClick={toggleIsEdit} />
+            </TaskTitleForm>
+          )}
 
-      <TaskDescription>{description}</TaskDescription>
-      <TaskDescription>
-        {t('boardPage.user')}: {currentUser || t('boardPage.deleteUser')}
-      </TaskDescription>
-      <TaskButtons>
-        <TaskEditButton onClick={editTask} />
-        <TaskDeleteButton onClick={deleteTask} />
-      </TaskButtons>
-    </TaskContainer>
+          <TaskDescription>{description}</TaskDescription>
+          <TaskDescription>
+            {t('boardPage.user')}: {currentUser || t('boardPage.deleteUser')}
+          </TaskDescription>
+          <TaskButtons>
+            <TaskEditButton onClick={editTask} />
+            <TaskDeleteButton onClick={deleteTask} />
+          </TaskButtons>
+        </TaskContainer>
+      )}
+    </Draggable>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
@@ -64,6 +64,20 @@ const Column = ({
     }
   };
 
+  /*   onDragEnd = (result: DropResult) => {
+      const newTasks = Array.from(tasks);
+      const { destination, source } = result;
+      if (!destination) {
+        return;
+      }
+      if (destination.droppableId === source.droppableId && destination.index === source.index) {
+        return;
+      }
+      const [removed] = newTasks.splice(source.index, 1);
+      newTasks.splice(destination.index, 0, removed);
+      dispatch(updateTasksArray({ boardId: id || '', columnId: id, newTasks, tasks }));
+    }; */
+
   return (
     <Draggable draggableId={String(id)} key={id} index={index}>
       {(provided) => (
@@ -90,14 +104,29 @@ const Column = ({
               <CancelEditButton onClick={toggleIsEdit} />
             </ColumnTitleForm>
           )}
-          <TasksContainer>
-            {tasks.map((task) => {
-              return (
-                <Task key={task.id} task={task} boardId={boardId} columnId={id} index={index} />
-              );
-            })}
-            <NewTaskButton onClick={onClick}>{t('boardPage.addTaskBtn')}</NewTaskButton>
-          </TasksContainer>
+          <Droppable droppableId={String(id)} type="task" direction="vertical">
+            {(dropProvided, snapshot) => (
+              <TasksContainer
+                ref={dropProvided.innerRef}
+                {...dropProvided.droppableProps}
+                isDraggingOver={snapshot.isDraggingOver}
+              >
+                {tasks.map((task, taskIndex) => {
+                  return (
+                    <Task
+                      key={task.id}
+                      task={task}
+                      boardId={boardId}
+                      columnId={id}
+                      index={taskIndex}
+                    />
+                  );
+                })}
+                <NewTaskButton onClick={onClick}>{t('boardPage.addTaskBtn')}</NewTaskButton>
+                {dropProvided.placeholder}
+              </TasksContainer>
+            )}
+          </Droppable>
         </ColumnContainer>
       )}
     </Draggable>

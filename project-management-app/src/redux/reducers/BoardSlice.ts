@@ -4,9 +4,11 @@ import {
   BoardDataResponse,
   BoardState,
   ColumnResponseType,
+  ColumnType,
   CreateTaskActionProps,
   SearchSelectorsType,
   TaskResponseType,
+  TaskType,
   TaskViewResponseType,
   UpdateTaskActionProps,
 } from '../../utils/types';
@@ -20,6 +22,7 @@ import {
   updateColumn,
   updateColumnsArray,
   updateTask,
+  updateTasksArray,
   viewTask,
 } from '../services/Board.api';
 
@@ -70,6 +73,19 @@ const boardSlice = createSlice({
         state.columnId = columnId;
         state.taskId = taskId;
       }
+    },
+    updateTasksInColumn: (
+      state,
+      action: PayloadAction<{ columnId: string; tasks: TaskType[] }>
+    ) => {
+      const { columnId, tasks } = action.payload;
+
+      const columnIndex = state.boardData.columns.findIndex((column) => column.id === columnId);
+
+      state.boardData.columns[columnIndex].tasks = tasks;
+    },
+    updateColumns: (state, action: PayloadAction<ColumnType[]>) => {
+      state.boardData.columns = action.payload;
     },
   },
   extraReducers: {
@@ -220,13 +236,43 @@ const boardSlice = createSlice({
       state.boardData.columns = action.meta.arg.newColumns;
       state.isLoading = LoadingState.Loading;
     },
-    [updateColumnsArray.fulfilled.type]: (state, action) => {
-      state.boardData.columns = action.payload;
+    [updateColumnsArray.fulfilled.type]: (state) => {
       state.isLoading = LoadingState.Success;
     },
-    [updateColumnsArray.rejected.type]: (state, action: PayloadAction<string>) => {
+    [updateColumnsArray.rejected.type]: (
+      state,
+      {
+        payload: { message, fallBackColumns },
+      }: PayloadAction<{ message: string; fallBackColumns: Array<ColumnType> }>
+    ) => {
       state.isLoading = LoadingState.Error;
-      state.errorMessage = action.payload;
+      state.boardData.columns = fallBackColumns;
+      state.errorMessage = message;
+    },
+    [updateTasksArray.pending.type]: (state, action) => {
+      const { columnId } = action.payload;
+      const columnIndex = state.boardData.columns.findIndex(
+        (columnItem) => columnItem.id === columnId
+      );
+
+      state.boardData.columns[columnIndex].tasks = action.meta.arg.newTasks;
+      state.isLoading = LoadingState.Loading;
+    },
+    [updateTasksArray.fulfilled.type]: (state) => {
+      state.isLoading = LoadingState.Success;
+    },
+    [updateTasksArray.rejected.type]: (
+      state,
+      {
+        payload: { message, fallBackTasks, columnId },
+      }: PayloadAction<{ message: string; fallBackTasks: Array<TaskType>; columnId: string }>
+    ) => {
+      const columnIndex = state.boardData.columns.findIndex(
+        (columnItem) => columnItem.id === columnId
+      );
+      state.isLoading = LoadingState.Error;
+      state.boardData.columns[columnIndex].tasks = fallBackTasks;
+      state.errorMessage = message;
     },
 
     [viewTask.pending.type]: (state) => {
@@ -294,5 +340,11 @@ const boardSlice = createSlice({
 });
 
 export const boardReducer = boardSlice.reducer;
-export const { saveBoardId, clearBoardData, saveIdsForNewTask, saveIdsForUpdateTask } =
-  boardSlice.actions;
+export const {
+  saveBoardId,
+  clearBoardData,
+  saveIdsForNewTask,
+  saveIdsForUpdateTask,
+  updateTasksInColumn,
+  updateColumns,
+} = boardSlice.actions;

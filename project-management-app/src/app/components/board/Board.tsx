@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
-import { clearBoardData, saveBoardId } from '../../../redux/reducers/BoardSlice';
+import {
+  clearBoardData,
+  updateTasksInColumn,
+  saveBoardId,
+} from '../../../redux/reducers/BoardSlice';
 import { closeModal, setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { authSelector } from '../../../redux/selectors/AuthSelectors';
 import { boardStateSelector } from '../../../redux/selectors/BoardSelectors';
-import { requestBoard, updateColumnsArray } from '../../../redux/services/Board.api';
+import { requestBoard, updateColumnsArray, updateTask } from '../../../redux/services/Board.api';
 import { LoadingState, ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
 import Column from '../column/Column';
 import Search from '../search/Search';
@@ -25,6 +29,7 @@ import {
   StyledLink,
   WrapperSelect,
 } from './styles';
+import { ColumnType, TaskType } from '../../../utils/types';
 
 const Board = () => {
   const dispatch = useAppDispatch();
@@ -34,8 +39,8 @@ const Board = () => {
   const [img, setImg] = useState('');
 
   const {
-    isLoading,
     boardData: { title, columns },
+    isLoading,
   } = useAppSelector(boardStateSelector);
 
   useEffect(() => {
@@ -72,21 +77,89 @@ const Board = () => {
     }
   };
 
-  const onDragEnd = (result: DropResult) => {
-    const newColumns = Array.from(columns);
-    const { destination, source } = result;
+  const onDragEnd = async (result: DropResult) => {
+    const newColumns = JSON.parse(JSON.stringify(columns)) as ColumnType[];
+    const { destination, source, type, draggableId } = result;
+    const startIndex = source.index;
+
     if (!destination) {
       return;
     }
+
     if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return;
     }
-    const [removed] = newColumns.splice(source.index, 1);
-    newColumns.splice(destination.index, 0, removed);
-    dispatch(updateColumnsArray({ boardId: id || '', newColumns }));
+
+    if (destination.droppableId === 'columns') {
+      const [removed] = newColumns.splice(startIndex, 1);
+      newColumns.splice(destination.index, 0, removed);
+
+      dispatch(updateColumnsArray({ boardId: id || '', newColumns, columns }));
+    } else if (type === 'task') {
+      const sourceColumnObj = newColumns.find((column) => {
+        return column.tasks.find((task) => task.id === draggableId);
+      });
+
+      if (sourceColumnObj) {
+        const sourceColumnId = sourceColumnObj.id;
+        const { description } = sourceColumnObj.tasks[source.index];
+        const taskTitle = sourceColumnObj.tasks[source.index].title;
+
+        if (sourceColumnId === destination.droppableId) {
+          const destinationColumnTasks = Object.assign([], sourceColumnObj.tasks);
+          const task = destinationColumnTasks[source.index];
+          destinationColumnTasks.splice(source.index, 1);
+          destinationColumnTasks.splice(destination.index, 0, task);
+
+          dispatch(
+            updateTasksInColumn({ columnId: sourceColumnObj.id, tasks: destinationColumnTasks })
+          );
+        } else {
+          const sourceColumnTasks = Object.assign([], sourceColumnObj.tasks);
+          const destinationColumnIndex = columns.findIndex(
+            (column) => column.id === destination.droppableId
+          );
+          const sourceColumnIndex = columns.findIndex((column) => column.id === sourceColumnObj.id);
+          const destinationColumnTasks = Object.assign([], columns[destinationColumnIndex].tasks);
+
+          const task = sourceColumnTasks[source.index] as TaskType;
+          const copiedTask = { ...task };
+
+          sourceColumnTasks.splice(source.index, 1);
+          destinationColumnTasks.splice(destination.index, 0, copiedTask);
+
+          newColumns[sourceColumnIndex].tasks = sourceColumnTasks;
+          newColumns[destinationColumnIndex].tasks = destinationColumnTasks;
+
+          await dispatch(
+            updateTasksInColumn({ columnId: sourceColumnObj.id, tasks: sourceColumnTasks })
+          );
+          await dispatch(
+            updateTasksInColumn({
+              columnId: destination.droppableId,
+              tasks: destinationColumnTasks,
+            })
+          );
+        }
+
+        await dispatch(
+          updateTask({
+            title: taskTitle,
+            order: destination.index + 1,
+            description,
+            boardId: String(id),
+            columnId: sourceColumnId,
+            taskId: draggableId,
+            userId,
+            newColumnId: destination.droppableId,
+          })
+        );
+        await dispatch(requestBoard({ id: String(id) }));
+      }
+    }
   };
 
-  const changeBackground = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const changeBackground = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     e.preventDefault();
     setImg(e.target.value);
     const prevSettings = JSON.parse(localStorage.getItem('backgroundImg') || '{}');
@@ -129,7 +202,7 @@ const Board = () => {
         </WrapperSelect>
         <BoardTitle>{title}</BoardTitle>
         <Search boardId={id} />
-        <Droppable droppableId={String(id)} direction="horizontal" type="column">
+        <Droppable droppableId="columns" direction="horizontal" type="column">
           {(provided) => (
             <ColumnsContainer {...provided.droppableProps} ref={provided.innerRef}>
               {columns.map((column, index) => {
