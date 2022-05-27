@@ -9,6 +9,8 @@ import {
 } from '../column/styles';
 
 export const TaskContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: ${colors.baseBg};
   padding: 10px;
   margin-right: 5px;
@@ -29,7 +31,7 @@ export const TaskTitle = styled.h4`
 
 export const TaskDescription = styled.p`
   font-size: 16px;
-  line-height: 20px;
+  line-height: 24px;
   word-wrap: break-word;
 `;
 

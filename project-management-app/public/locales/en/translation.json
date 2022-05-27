@@ -128,7 +128,9 @@
     "backgroundAnimal": "Raccoon",
     "backgroundNature": "Nature",
     "backgroundBubbles": "Bubbles",
-    "backgroundGeometry": "Geometry"
+    "backgroundGeometry": "Geometry",
+    "user": "Assignee",
+    "deleteUser": "removed from the system"
   },
   "mainPage": {
     "boardsTitle": "Boards"
@@ -147,5 +149,12 @@
     "description": "Description",
     "user": "User",
     "error": "All fields are required"
+  },
+  "search": {
+    "title": "Search task",
+    "searchPlaceholder": "Enter value for search",
+    "searchButton": "Search",
+    "clearButton": "Clear",
+    "usersPlaceholder": "All users"
   }
 }

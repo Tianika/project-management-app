@@ -50,6 +50,8 @@ export type TaskResponseType = {
 
 export type BoardDataType = { id: string; title: string; columns: Array<ColumnType> };
 
+export type BoardDataResponse = { boardData: BoardDataType; users: UsersResponseType };
+
 export type BoardState = {
   boardId: string;
   columnId: string;
@@ -117,5 +119,12 @@ export type IdsForRequest = {
 
 export type TaskViewResponseType = {
   task: TaskResponseType;
-  users: Array<{ id: string; name: string; login: string }>;
+  users: UsersResponseType;
+};
+
+export type UsersResponseType = Array<{ id: string; name: string; login: string }>;
+
+export type SearchSelectorsType = {
+  searchValue: string;
+  user: string;
 };
