@@ -2,12 +2,78 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { adaptive } from '../../../styles/adaptive';
 import { colors } from '../../../styles/colors';
+import fox from '../../../assets/assets/jpg/fox.jpg';
+import bubbles from '../../../assets/assets/jpg/bubbles.jpg';
+import animal from '../../../assets/assets/jpg/animal.jpg';
+import nature from '../../../assets/assets/jpg/nature.jpg';
+import geometry from '../../../assets/assets/jpg/geometry.jpg';
+
+export type BoardBackground = {
+  image?: string;
+};
 
 export const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: calc(100vh - 7.5rem);
+  background-image: url(${({ image }: BoardBackground) => image});
+  object-fit: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 20px;
+  transition: 0.3s all;
+`;
+
+export const backgroundColor = `
+  ${colors.secondaryBg};
+`;
+
+export const backgroundImgFox = `
+  ${fox}
+`;
+
+export const backgroundImgAnimal = `
+  ${animal}
+`;
+
+export const backgroundImgNature = `
+  ${nature}
+`;
+
+export const backgroundImgBubbles = `
+  ${bubbles}
+`;
+
+export const backgroundImgGeometry = `
+  ${geometry}
+`;
+
+export const Select = styled.select`
+  max-width: 300px;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  color: ${colors.lightFont};
+  background: url(${({ image }: BoardBackground) => image}) 85%/25% no-repeat;
+  font-size: 18px;
+  padding: 3px 15px;
+  transition: 0.3s all;
+
+  option {
+    color: ${colors.darkFont};
+    background: ${colors.lightFont};
+    background-image: url(${({ image }: BoardBackground) => image}) 95%/25% no-repeat;
+    display: flex;
+    max-height: 4em;
+    padding: 4px;
+    font-size: 16px;
+    max-width: 380px;
+    width: 100%;
+  }
 `;
 
 export const BoardTitle = styled.h1`
@@ -64,7 +130,7 @@ export const StyledLink = styled(Link)`
   width: fit-content;
   color: ${colors.lightFont};
   font-size: 18px;
-  padding: 10px 20px;
+  padding: 5px 15px;
 
   &:hover {
     transform: scale(1, 1.3);
@@ -81,4 +147,11 @@ export const StyledLink = styled(Link)`
 export const EditProfileLink = styled(StyledLink)`
   margin-top: 1em;
   align-self: start;
+`;
+
+export const WrapperSelect = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 `;
