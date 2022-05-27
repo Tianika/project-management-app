@@ -47,7 +47,7 @@ const Task = ({
         setCurrentUser(user.name);
       }
     });
-  }, []);
+  }, [userId]);
 
   const [isEdit, setIsEdit] = useState(false);
 

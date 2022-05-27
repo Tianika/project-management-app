@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect, useMemo } from 'react';
+import { SyntheticEvent, useEffect, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { closeModal } from '../../../redux/reducers/ModalSlice';
@@ -32,10 +32,12 @@ const Modal = () => {
 
   const modalChildren = MODALS[modalId];
 
+  const ref = useRef(null);
+
   const onCloseModal = (event: SyntheticEvent) => {
     const { target } = event;
 
-    if (target instanceof HTMLElement && target.tagName === 'SECTION') {
+    if (ref.current === target) {
       dispatch(closeModal());
     }
   };
@@ -55,7 +57,9 @@ const Modal = () => {
       {isModalOverlay && createPortal(<ModalContainer>{modalChildren}</ModalContainer>, modal)}
       {isModalWindow &&
         createPortal(
-          <BlurModalContainer onClick={onCloseModal}>{modalChildren}</BlurModalContainer>,
+          <BlurModalContainer onClick={onCloseModal} ref={ref}>
+            {modalChildren}
+          </BlurModalContainer>,
           modal
         )}
     </>
