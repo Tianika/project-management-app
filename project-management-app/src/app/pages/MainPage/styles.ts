@@ -6,9 +6,9 @@ export const MainPageContainer = styled.div`
   position: relative;
   background-color: ${colors.secondaryBg};
   font-size: 20px;
-  height: calc(100vh - 4.1rem);
+  min-height: calc(100vh - 4.1rem);
 
   ${adaptive.maxWidth.mobile} {
-    height: calc(100vh - 4.7rem);
+    min-height: calc(100vh - 4.7rem);
   }
 `;

@@ -122,7 +122,13 @@
     "createButton": "Добавить",
     "createColumnTitle": "Добавить колонку",
     "hintDeleteColumn": "Удалить колонку",
-    "hintEditTitle": "Редактировать заголовок"
+    "hintEditTitle": "Редактировать заголовок",
+    "chooseBackground": "Фон по умолчанию",
+    "backgroundFox": "Лиса",
+    "backgroundAnimal": "Енот",
+    "backgroundNature": "Природа",
+    "backgroundBubbles": "Пузыри",
+    "backgroundGeometry": "Геометрия"
   },
   "mainPage": {
     "boardsTitle": "Доски"

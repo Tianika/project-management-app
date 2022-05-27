@@ -11,7 +11,6 @@ export const useSaveTokenToLocalStorage = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('userId', userId);
     }
-
     if (name) {
       localStorage.setItem('name', name);
     }

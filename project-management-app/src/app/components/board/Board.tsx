@@ -1,26 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { clearBoardData, saveBoardId } from '../../../redux/reducers/BoardSlice';
 import { closeModal, setModalChildren } from '../../../redux/reducers/ModalSlice';
+import { authSelector } from '../../../redux/selectors/AuthSelectors';
 import { boardStateSelector } from '../../../redux/selectors/BoardSelectors';
 import { requestBoard, updateColumnsArray } from '../../../redux/services/Board.api';
 import { LoadingState, ModalIds, ModalTypes, RoutersMap } from '../../../utils/constants';
 import Column from '../column/Column';
 import {
+  backgroundImgAnimal,
+  backgroundImgBubbles,
+  backgroundImgFox,
+  backgroundImgGeometry,
+  backgroundImgNature,
   BoardContainer,
   BoardTitle,
   ColumnsContainer,
   NewColumnButton,
+  Select,
   StyledLink,
+  WrapperSelect,
 } from './styles';
 
 const Board = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const { id } = useParams();
+  const { userId } = useAppSelector(authSelector);
+  const [img, setImg] = useState('');
 
   const {
     boardData: { title, columns },
@@ -31,6 +41,8 @@ const Board = () => {
     if (id) {
       dispatch(requestBoard({ id }));
     }
+    const prevState = JSON.parse(localStorage.getItem('backgroundImg') || '{}');
+    setImg(prevState[userId]);
   }, []);
 
   useEffect(() => {
@@ -73,12 +85,47 @@ const Board = () => {
     dispatch(updateColumnsArray({ boardId: id || '', newColumns }));
   };
 
+  const changeBackground = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    e.preventDefault();
+    setImg(e.target.value);
+    const prevSettings = JSON.parse(localStorage.getItem('backgroundImg') || '{}');
+    prevSettings[userId] = e.target.value;
+    localStorage.setItem('backgroundImg', JSON.stringify(prevSettings));
+  };
+
+  const imgBackground = () => {
+    switch (img) {
+      case 'fox':
+        return backgroundImgFox;
+      case 'bubbles':
+        return backgroundImgBubbles;
+      case 'animal':
+        return backgroundImgAnimal;
+      case 'nature':
+        return backgroundImgNature;
+      case 'geometry':
+        return backgroundImgGeometry;
+      default:
+        return null;
+    }
+  };
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <BoardContainer>
-        <StyledLink to={RoutersMap.main} onClick={onLinkClick}>
-          &laquo; {t('boardPage.buttonBack')}
-        </StyledLink>
+      <BoardContainer image={imgBackground}>
+        <WrapperSelect>
+          <StyledLink to={RoutersMap.main} onClick={onLinkClick}>
+            &laquo; {t('boardPage.buttonBack')}
+          </StyledLink>
+          <Select onChange={changeBackground} image={imgBackground} defaultvalue={img}>
+            <option value="">{t('boardPage.chooseBackground')}</option>
+            <option value="geometry">{t('boardPage.backgroundGeometry')}</option>
+            <option value="bubbles">{t('boardPage.backgroundBubbles')}</option>
+            <option value="fox">{t('boardPage.backgroundFox')}</option>
+            <option value="animal">{t('boardPage.backgroundAnimal')}</option>
+            <option value="nature">{t('boardPage.backgroundNature')}</option>
+          </Select>
+        </WrapperSelect>
         <BoardTitle>{title}</BoardTitle>
         <Droppable droppableId={String(id)} direction="horizontal" type="column">
           {(provided) => (

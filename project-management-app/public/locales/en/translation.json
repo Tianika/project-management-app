@@ -122,7 +122,13 @@
     "createButton": "Add",
     "createColumnTitle": "Add new column",
     "hintDeleteColumn": "Delete column",
-    "hintEditTitle": "Edit title"
+    "hintEditTitle": "Edit title",
+    "chooseBackground": "Default background",
+    "backgroundFox": "Fox",
+    "backgroundAnimal": "Raccoon",
+    "backgroundNature": "Nature",
+    "backgroundBubbles": "Bubbles",
+    "backgroundGeometry": "Geometry"
   },
   "mainPage": {
     "boardsTitle": "Boards"
