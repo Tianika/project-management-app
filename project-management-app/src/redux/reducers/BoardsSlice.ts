@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LoadingState } from '../../utils/constants';
 import { BoardsType } from '../../utils/types';
-import { createNewBoard, deleteBoard, requestBoards } from '../services/Boards.api';
+import { createNewBoard, deleteBoard, requestBoards, updateBoard } from '../services/Boards.api';
 
 type BoardsState = {
   boards: Array<BoardsType>;
@@ -52,6 +52,26 @@ const boardsSlice = createSlice({
       state.isLoading = LoadingState.Success;
     },
     [deleteBoard.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.isLoading = LoadingState.Error;
+      state.errorMessage = action.payload;
+    },
+
+    [updateBoard.pending.type]: (state) => {
+      state.isLoading = LoadingState.Loading;
+    },
+    [updateBoard.fulfilled.type]: (state, action: PayloadAction<BoardsType>) => {
+      const { id, title, description } = action.payload;
+
+      const index = state.boards.findIndex((board) => board.id === id);
+
+      if (index > -1) {
+        state.boards[index].title = title;
+        state.boards[index].description = description;
+      }
+
+      state.isLoading = LoadingState.Success;
+    },
+    [updateBoard.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = LoadingState.Error;
       state.errorMessage = action.payload;
     },

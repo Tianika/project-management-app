@@ -147,5 +147,9 @@
     "searchButton": "Поиск",
     "clearButton": "Очистить",
     "usersPlaceholder": "Все пользователи"
+  },
+  "editBoard": {
+    "title": "Редактировать доску",
+    "button": "Редактировать"
   }
 }

@@ -147,5 +147,9 @@
     "searchButton": "Search",
     "clearButton": "Clear",
     "usersPlaceholder": "All users"
+  },
+  "editBoard": {
+    "title": "Edit board",
+    "button": "Edit"
   }
 }

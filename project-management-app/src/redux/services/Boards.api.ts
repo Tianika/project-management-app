@@ -34,3 +34,24 @@ export const deleteBoard = createAsyncThunk(
     }
   }
 );
+
+export const updateBoard = createAsyncThunk(
+  'board/updateBoard',
+  async (
+    { boardId, title, description }: { boardId: string; title: string; description: string },
+    thunkAPI
+  ) => {
+    const body = {
+      title,
+      description,
+    };
+
+    try {
+      const response = await axiosFetchCommon.put(`/boards/${boardId}`, body);
+
+      return response.data;
+    } catch ({ message }) {
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
