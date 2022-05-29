@@ -6,6 +6,7 @@ import { modalStateSelector } from '../../../redux/selectors/ModalSelectors';
 import { LoadingWrapper } from '../../../styles/global';
 import { ModalTypes, ModalIds } from '../../../utils/constants';
 import ConfirmationWindow from '../confirmationWindow/ConfirmationWindow';
+import EditBoard from '../editBoard/EditBoard';
 import Message from '../message/Message';
 import NewBoard from '../newBoard/NewBoard';
 import NewColumn from '../newColumn/NewColumn';
@@ -26,6 +27,7 @@ const Modal = () => {
     [ModalIds.newTask]: <NewTask />,
     [ModalIds.newColumn]: <NewColumn />,
     [ModalIds.taskView]: <TaskView />,
+    [ModalIds.editBoard]: <EditBoard />,
   };
 
   const modal = useMemo(() => document.createElement('div'), []);

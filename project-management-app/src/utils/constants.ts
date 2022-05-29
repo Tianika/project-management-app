@@ -33,6 +33,7 @@ export enum ModalIds {
   newTask = 'newTask',
   newColumn = 'newColumn',
   taskView = 'taskView',
+  editBoard = 'editBoard',
 }
 
 export enum FunctionIds {
