@@ -28,7 +28,6 @@ const ConfirmationWindow = () => {
   const { userId } = useAppSelector(authSelector);
   const { clearUserInfo } = authSlice.actions;
   const navigate = useNavigate();
-  // TODO проверка на тип?
   const modalFunctionId = useAppSelector(modalFunctionIdSelector) as string;
 
   const removeBoard = () => {

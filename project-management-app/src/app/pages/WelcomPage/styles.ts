@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const NewWrapper = styled(Wrapper)`
   justify-content: space-evenly;
+  gap: 1.5rem;
   ${adaptive.maxWidth.mobile} {
     flex-direction: column;
   }
@@ -37,9 +38,9 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  padding: 1rem;
-  max-width: 17rem;
-  height: 30rem;
+  padding: 0.5rem;
+  width: 16rem;
+  height: 33rem;
   object-fit: cover;
   border: 2px solid ${colors.secondaryBg};
   border-radius: 20px;
