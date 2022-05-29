@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { NavigateFunction } from 'react-router-dom';
-import { BASE_URL, RoutersMap } from '../../utils/constants';
+import { BASE_URL } from '../../utils/constants';
 
 export const axiosFetchCommon = axios.create({
   baseURL: BASE_URL,
@@ -8,7 +8,8 @@ export const axiosFetchCommon = axios.create({
 
 export const setupInterceptors401 = (
   navigate: NavigateFunction,
-  useLogout: { (): (() => void)[]; (): void }
+  logoutUser: { (): void; (): void },
+  closeError: { (): void; (): void }
 ) => {
   axiosFetchCommon.interceptors.response.use(
     (response) => {
@@ -18,8 +19,8 @@ export const setupInterceptors401 = (
       const { status } = error.response;
 
       if (status === 401) {
-        useLogout();
-        navigate(RoutersMap.signIn);
+        closeError();
+        logoutUser();
       }
 
       return Promise.reject(error);

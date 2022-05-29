@@ -96,7 +96,8 @@
     "submitRegisterButton": "Sign Up",
     "apiErrorText": "Sorry, but ",
     "successRegisterMessageFirstPart": "User ",
-    "successRegisterMessageSecondPart": " successfully register. Now you will be redirected to Login page"
+    "successRegisterMessageSecondPart": " successfully register. Now you will be redirected to Login page",
+    "successEditMessage": "Info successfully changed"
   },
   "mainPageHeader": {
     "editButton": "Edit profile",

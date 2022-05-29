@@ -8,7 +8,7 @@ import HeaderButton from '../headerButton/HeaderButton';
 import LocalesCheckBox from '../localesCheckBox/LocalesCheckBox';
 import { useLogout } from '../../../services/useLogout';
 
-const NavBarMainPage = ({ open }: BurgerType) => {
+const NavBarMainPage = ({ open, setOpened }: BurgerType) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -26,6 +26,9 @@ const NavBarMainPage = ({ open }: BurgerType) => {
     {
       text: t('mainPageHeader.createButton'),
       onClick: () => {
+        if (setOpened) {
+          setOpened();
+        }
         dispatch(setModalChildren({ modalId: ModalIds.newBoard, modalType: ModalTypes.Window }));
       },
     },
