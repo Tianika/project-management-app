@@ -17,15 +17,6 @@
       "text": "add and remove columns"
     },
     {
-      "text": "add checklists to cards"
-    },
-    {
-      "text": "upload files"
-    },
-    {
-      "text": "share comments with friends"
-    },
-    {
       "text": "change workflows depending on the project"
     }
   ],
@@ -33,21 +24,21 @@
     {
       "name": "Tatyana Tsybina (teamlead)",
       "alternative": "Tatyana Tsybina (teamlead)",
-      "description": "Repository creation, project assembly, layout, design",
+      "description": "Repository creation, project assembly, layout, design, work with boards and cards, search, the logic for sending requests",
       "link": "https://github.com/tianika",
       "photo": "../../../assets/jpg/Tatyana.jpg"
     },
     {
       "name": "Evgeny Voropaev (lead developer)",
       "alternative": "Evgeny Voropaev (lead developer)",
-      "description": "Application architecture, breakdown into components",
+      "description": "Application architecture, breakdown into components, layout, authorization, editing and deleting a profile, the logic for sending requests, drag-n-drop",
       "link": "https://github.com/amidawolf",
       "photo": "../../../assets/jpg/Yauhen.jpg"
     },
     {
       "name": "Mariya Pastushonok (developer)",
       "alternative": "Mariya Pastushonok (developer)",
-      "description": "Routing, layout, design",
+      "description": "Routing, layout, design, drag-n-drop, localization",
       "link": "https://github.com/mrsmariya",
       "photo": "../../../assets/jpg/Mariya.jpg"
     }
