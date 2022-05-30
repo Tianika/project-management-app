@@ -1,0 +1,65 @@
+import styled from 'styled-components';
+import { adaptive } from '../../../styles/adaptive';
+import { colors } from '../../../styles/colors';
+import { Wrapper } from '../../../styles/global';
+
+export const Container = styled.div`
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+  text-align: center;
+`;
+
+export const NewWrapper = styled(Wrapper)`
+  justify-content: space-evenly;
+  gap: 1.5rem;
+  ${adaptive.maxWidth.mobile} {
+    flex-direction: column;
+  }
+`;
+
+export const Subtitle = styled.h2`
+  color: ${colors.secondaryBg};
+`;
+
+export const Title = styled(Subtitle)`
+  font-style: italic;
+  text-decoration: underline;
+  padding: 2rem;
+`;
+
+export const Section = styled.div`
+  text-align: center;
+  margin: 2rem 0;
+`;
+
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 16rem;
+  height: 33rem;
+  object-fit: cover;
+  border: 2px solid ${colors.secondaryBg};
+  border-radius: 20px;
+  box-shadow: 10px 5px 5px ${colors.secondaryBg};
+  &:hover {
+    opacity: 0.8;
+    transition: 0.5s all;
+  }
+  &:active {
+    transform: translateY(5px);
+    transition: 0.5s all;
+  }
+`;
+
+export const CardTitle = styled(Subtitle)`
+  font-size: 1rem;
+  padding: 0;
+`;
+
+export const ImgStyles = styled.img`
+  border-radius: 20px;
+`;

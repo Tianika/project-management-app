@@ -1,0 +1,156 @@
+{
+  "title": "Project Management App - must have для фрилансеров и небольших компаний!",
+  "description": "это визуальный инструмент для управления рабочим процессом, который позволяет командам обдумывать, планировать и вести совместную работу, а также отмечать успехи каждого члена команды. С этим инструментом работа команды будет сплоченной, продуктивной и организованной.",
+  "captions": {
+    "caption1": "С Project Management App вы можете",
+    "caption2": "Наша команда"
+  },
+  "headerLinks": {
+    "signUp": "зарегистрироваться",
+    "logIn": "войти"
+  },
+  "list": [
+    {
+      "text": "cоздавать и удалять борды"
+    },
+    {
+      "text": "добавлять и удалять колонки"
+    },
+    {
+      "text": "изменять рабочие процессы в зависимости от проекта"
+    }
+  ],
+  "persons": [
+    {
+      "name": "Татьяна Цыбина (тимлид)",
+      "alternative": "Татьяна Цыбина (тимлид)",
+      "description": "Создание репозитория, сборка проекта, верстка, дизайн, работа с досками и карточками, поиск, логика отправки запросов",
+      "link": "https://github.com/tianika",
+      "photo": "../../../assets/jpg/Tatyana.jpg"
+    },
+    {
+      "name": "Евгений Воропаев (ведущий разработчик)",
+      "alternative": "Евгений Воропаев (ведущий разработчик)",
+      "description": "Архитектура приложения, разбивка на компоненты, верстка, авторизация, редактирование и удаление профиля, логика отправки запросов, drag-n-drop",
+      "link": "https://github.com/amidawolf",
+      "photo": "../../../assets/jpg/Yauhen.jpg"
+    },
+    {
+      "name": "Мария Пастушонок (разработчик)",
+      "alternative": "Мария Пастушонок (разработчик)",
+      "description": "Роутинг, верстка, дизайн, drag-n-drop, локализация",
+      "link": "https://github.com/mrsmariya",
+      "photo": "../../../assets/jpg/Mariya.jpg"
+    }
+  ],
+  "footerNames": [
+    {
+      "name": "Татьяна",
+      "href": "https://github.com/tianika",
+      "gitLogo": "../../../locales/footerTranslation"
+    },
+    {
+      "name": "Евгений",
+      "href": "https://github.com/amidawolf",
+      "gitLogo": "../../../locales/footerTranslation"
+    },
+    {
+      "name": "Мария",
+      "href": "https://github.com/mrsmariya",
+      "gitLogo": "../../../locales/footerTranslation"
+    }
+  ],
+  "notFoundPageTranslation": {
+    "title": "Страница не найдена",
+    "linkTitle": "Перейти на главную страницу"
+  },
+  "confirmWindow": {
+    "title": "Вы уверены?",
+    "buttonY": "да",
+    "buttonN": "нет"
+  },
+  "editProfile": {
+    "button": "Сохранить",
+    "buttonDelete": "Удалить профиль",
+    "namePlaceholder": "Введите имя",
+    "loginPlaceholder": "Введите логин",
+    "passwordPlaceholder": "Введите пароль",
+    "title": "Вы действительно хотите изменить данные?"
+  },
+  "authentication": {
+    "loginPageTitle": "Вход",
+    "registerPageTitle": "Регистрация",
+    "placeholders": {
+      "nicknamePlaceholder": "Введите ник",
+      "loginPlaceholder": "Введите имя",
+      "passwordPlaceholder": "Введите пароль"
+    },
+    "errors": {
+      "nicknameError": "*ник обязателен",
+      "loginError": "*имя пользователя обязательно",
+      "passwordError": "*пароль обязателен"
+    },
+    "hideButton": "Спрятать пароль",
+    "showButton": "Показать пароль",
+    "submitLoginButton": "Войти",
+    "submitRegisterButton": "Зарегистрироваться",
+    "apiErrorText": "Извините, но ",
+    "successRegisterMessageFirstPart": "Пользователь ",
+    "successRegisterMessageSecondPart": " успешно зарегистрирован. Сейчас вы будете перенаправлены на страницу входа",
+    "successEditMessage": "Информация успешно изменена"
+  },
+  "mainPageHeader": {
+    "editButton": "Редактировать профиль",
+    "createButton": "Создать новую доску",
+    "logoutButton": "Выйти"
+  },
+  "boardPage": {
+    "buttonBack": "Назад",
+    "addColumnBtn": "Добавить колонку",
+    "addTaskBtn": "Добавить задачу",
+    "createTaskTitle": "Добавить новую задачу",
+    "taskTitlePlaceholder": "Введите название",
+    "taskDescriptionPlaceholder": "Введите описание",
+    "createButton": "Добавить",
+    "createColumnTitle": "Добавить колонку",
+    "hintDeleteColumn": "Удалить колонку",
+    "hintEditTitle": "Редактировать заголовок",
+    "chooseBackground": "Фон по умолчанию",
+    "backgroundFox": "Лиса",
+    "backgroundAnimal": "Енот",
+    "backgroundNature": "Природа",
+    "backgroundBubbles": "Пузыри",
+    "backgroundGeometry": "Геометрия",
+    "user": "Исполнитель",
+    "deleteUser": "удален из системы"
+  },
+  "mainPage": {
+    "boardsTitle": "Доски"
+  },
+  "errorBoudaries": {
+    "title": "Извините, произошла ошибка"
+  },
+  "newBoard": {
+    "title": "Создать новую доску",
+    "titlePlaceholder": "Введите заголовок",
+    "descriptionPlaceholder": "Введите описание",
+    "newBoardButton": "Создать"
+  },
+  "viewTask": {
+    "title": "Заголовок",
+    "description": "Описание",
+    "user": "Пользователь",
+    "error": "Заполните все поля"
+  },
+  "search": {
+    "title": "Найти задачу",
+    "searchPlaceholder": "Введите значение для поиска",
+    "searchButton": "Поиск",
+    "clearButton": "Очистить",
+    "usersPlaceholder": "Все пользователи"
+  },
+  "editBoard": {
+    "title": "Редактировать доску",
+    "button": "Редактировать"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "title": "Project Management App - must have for freelancers and small companies!",
+  "description": "is a visual workflow management tool that allows teams to think, plan, and collaborate, and celebrate each team member\"s progress. With this tool, the work of the team will be cohesive, productive and organized.",
+  "captions": {
+    "caption1": "With Project Management App you can",
+    "caption2": "Our team"
+  },
+  "headerLinks": {
+    "signUp": "Sign Up",
+    "logIn": "Sign In"
+  },
+  "list": [
+    {
+      "text": "create and delete boards"
+    },
+    {
+      "text": "add and remove columns"
+    },
+    {
+      "text": "change workflows depending on the project"
+    }
+  ],
+  "persons": [
+    {
+      "name": "Tatyana Tsybina (teamlead)",
+      "alternative": "Tatyana Tsybina (teamlead)",
+      "description": "Repository creation, project assembly, layout, design, work with boards and cards, search, the logic for sending requests",
+      "link": "https://github.com/tianika",
+      "photo": "../../../assets/jpg/Tatyana.jpg"
+    },
+    {
+      "name": "Evgeny Voropaev (lead developer)",
+      "alternative": "Evgeny Voropaev (lead developer)",
+      "description": "Application architecture, breakdown into components, layout, authorization, editing and deleting a profile, the logic for sending requests, drag-n-drop",
+      "link": "https://github.com/amidawolf",
+      "photo": "../../../assets/jpg/Yauhen.jpg"
+    },
+    {
+      "name": "Mariya Pastushonok (developer)",
+      "alternative": "Mariya Pastushonok (developer)",
+      "description": "Routing, layout, design, drag-n-drop, localization",
+      "link": "https://github.com/mrsmariya",
+      "photo": "../../../assets/jpg/Mariya.jpg"
+    }
+  ],
+  "footerNames": [
+    {
+      "name": "Tatyana",
+      "href": "https://github.com/tianika",
+      "gitLogo": "../../../locales/footerTranslation"
+    },
+    {
+      "name": "Evgeny",
+      "href": "https://github.com/amidawolf",
+      "gitLogo": "../../../locales/footerTranslation"
+    },
+    {
+      "name": "Mariya",
+      "href": "https://github.com/mrsmariya",
+      "gitLogo": "../../../locales/footerTranslation"
+    }
+  ],
+  "notFoundPageTranslation": {
+    "title": "Page not found",
+    "linkTitle": "Go to Main Page"
+  },
+  "confirmWindow": {
+    "title": "Are you sure?",
+    "buttonY": "yes",
+    "buttonN": "no"
+  },
+  "editProfile": {
+    "button": "Save",
+    "buttonDelete": "Delete profile",
+    "namePlaceholder": "Enter username",
+    "loginPlaceholder": "Enter login",
+    "passwordPlaceholder": "Enter password",
+    "title": "Are you sure you want to change the data?"
+  },
+  "authentication": {
+    "loginPageTitle": "Sign In",
+    "registerPageTitle": "Sign Up",
+    "placeholders": {
+      "nicknamePlaceholder": "Enter nickname",
+      "loginPlaceholder": "Enter username",
+      "passwordPlaceholder": "Enter password"
+    },
+    "errors": {
+      "nicknameError": "*nickname is mandatory",
+      "loginError": "*username is mandatory",
+      "passwordError": "*password is mandatory"
+    },
+    "hideButton": "Hide password",
+    "showButton": "Show password",
+    "submitLoginButton": "Sign In",
+    "submitRegisterButton": "Sign Up",
+    "apiErrorText": "Sorry, but ",
+    "successRegisterMessageFirstPart": "User ",
+    "successRegisterMessageSecondPart": " successfully register. Now you will be redirected to Login page",
+    "successEditMessage": "Info successfully changed"
+  },
+  "mainPageHeader": {
+    "editButton": "Edit profile",
+    "createButton": "Create new board",
+    "logoutButton": "Sign Out"
+  },
+  "boardPage": {
+    "buttonBack": "Go back",
+    "addColumnBtn": "Add column",
+    "addTaskBtn": "Add task",
+    "createTaskTitle": "Add new task",
+    "taskTitlePlaceholder": "Enter title",
+    "taskDescriptionPlaceholder": "Enter description",
+    "createButton": "Add",
+    "createColumnTitle": "Add new column",
+    "hintDeleteColumn": "Delete column",
+    "hintEditTitle": "Edit title",
+    "chooseBackground": "Default background",
+    "backgroundFox": "Fox",
+    "backgroundAnimal": "Raccoon",
+    "backgroundNature": "Nature",
+    "backgroundBubbles": "Bubbles",
+    "backgroundGeometry": "Geometry",
+    "user": "Assignee",
+    "deleteUser": "removed from the system"
+  },
+  "mainPage": {
+    "boardsTitle": "Boards"
+  },
+  "errorBoudaries": {
+    "title": "Sorry.. there was an error"
+  },
+  "newBoard": {
+    "title": "Create new board",
+    "titlePlaceholder": "Enter title",
+    "descriptionPlaceholder": "Enter description",
+    "newBoardButton": "Create"
+  },
+  "viewTask": {
+    "title": "Title",
+    "description": "Description",
+    "user": "User",
+    "error": "All fields are required"
+  },
+  "search": {
+    "title": "Search task",
+    "searchPlaceholder": "Enter value for search",
+    "searchButton": "Search",
+    "clearButton": "Clear",
+    "usersPlaceholder": "All users"
+  },
+  "editBoard": {
+    "title": "Edit board",
+    "button": "Edit"
+  }
+}
