@@ -5,14 +5,18 @@ import NavBarMainPage from './NavBarMainPage';
 const BurgerBtn = () => {
   const [opened, setOpened] = useState(false);
 
+  const setOpenedCallback: () => void = () => {
+    setOpened(!opened);
+  };
+
   return (
     <>
-      <StyledBurger open={opened} onClick={() => setOpened(!opened)}>
+      <StyledBurger open={opened} onClick={setOpenedCallback}>
         <div />
         <div />
         <div />
       </StyledBurger>
-      <NavBarMainPage open={opened} />
+      <NavBarMainPage open={opened} setOpened={setOpenedCallback} />
     </>
   );
 };

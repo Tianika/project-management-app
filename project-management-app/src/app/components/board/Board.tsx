@@ -104,6 +104,7 @@ const Board = () => {
         const sourceColumnId = sourceColumnObj.id;
         const { description } = sourceColumnObj.tasks[source.index];
         const taskTitle = sourceColumnObj.tasks[source.index].title;
+        const taskUserId = sourceColumnObj.tasks[source.index].userId;
 
         if (sourceColumnId === destination.droppableId) {
           const destinationColumnTasks = Object.assign([], sourceColumnObj.tasks);
@@ -150,7 +151,7 @@ const Board = () => {
             boardId: String(id),
             columnId: sourceColumnId,
             taskId: draggableId,
-            userId,
+            userId: taskUserId,
             newColumnId: destination.droppableId,
           })
         );

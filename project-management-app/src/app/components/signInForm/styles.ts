@@ -44,6 +44,7 @@ export const AuthForm = styled.form`
   align-items: center;
   justify-content: center;
   padding: 1.5em 2.3em;
+  margin-bottom: 2em;
   gap: 1.5em;
   max-width: 25em;
   width: 100%;
@@ -65,12 +66,17 @@ export const BaseButton = styled.button`
   border: 0;
   border-radius: 0.3em;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: ${colors.baseButtonHoverBg};
   }
 
-  &:active {
+  &:active:not(:disabled) {
     background: ${colors.baseButtonActiveBg};
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    filter: saturate(60%);
   }
 `;
 
@@ -79,12 +85,34 @@ export const SubmitButton = styled(BaseButton)`
 
   background: ${colors.submitButtonBg};
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: ${colors.submitButtonHoverBg};
   }
 
-  &:active {
+  &:active:not(:disabled) {
     background: ${colors.submitButtonActiveBg};
+  }
+`;
+
+export const IconButton = styled.button`
+  position: absolute;
+  top: 0.4em;
+  right: 0.5em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  width: 2em;
+
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+  user-select: none;
+
+  svg {
+    fill: ${colors.inputHoverBorder};
   }
 `;
 

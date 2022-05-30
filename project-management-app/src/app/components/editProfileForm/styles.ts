@@ -8,10 +8,10 @@ export const EditFormUser = styled(AuthForm)`
 
 export const DeleteButton = styled(SubmitButton)`
   background-color: ${colors.errorBg};
-  &:hover {
+  &:hover:not(:disabled) {
     background: ${colors.deleteButtonHoverBg};
   }
-  &:active {
+  &:active:not(:disabled) {
     background: ${colors.deleteButtonActiveBg};
   }
 `;

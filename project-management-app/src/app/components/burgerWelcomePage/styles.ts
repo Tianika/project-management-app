@@ -5,6 +5,7 @@ import { colors } from '../../../styles/colors';
 export type BurgerType = {
   open?: boolean;
   opened?: boolean;
+  setOpened?: () => void;
 };
 
 export const StyledBurger = styled.div`

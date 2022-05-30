@@ -4,18 +4,24 @@ import {
   setupInterceptors401,
   setupInterceptorsToken,
 } from '../../../redux/services/axios.common.api';
-import { useAppSelector } from '../../../redux/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks/reduxHooks';
 import { authSelector } from '../../../redux/selectors/AuthSelectors';
-import { useLogout } from '../../../services/useLogout';
+import { useLogoutRedirectToWelcome } from '../../../services/useLogoutRedirectToWelcome';
+import { closeModal } from '../../../redux/reducers/ModalSlice';
 
 const InjectAxiosInterceptors = () => {
   const navigate = useNavigate();
   const { token } = useAppSelector(authSelector);
+  const [logoutUser] = useLogoutRedirectToWelcome();
+  const dispatch = useAppDispatch();
+  const closeError = () => {
+    dispatch(closeModal());
+  };
 
   useEffect(() => {
-    setupInterceptors401(navigate, useLogout);
+    setupInterceptors401(navigate, logoutUser, closeError);
     setupInterceptorsToken(token);
-  }, [navigate, token]);
+  }, [dispatch, logoutUser, navigate, token]);
 
   return null;
 };

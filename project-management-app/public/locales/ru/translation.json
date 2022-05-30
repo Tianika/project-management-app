@@ -96,7 +96,8 @@
     "submitRegisterButton": "Зарегистрироваться",
     "apiErrorText": "Извините, но ",
     "successRegisterMessageFirstPart": "Пользователь ",
-    "successRegisterMessageSecondPart": " успешно зарегистрирован. Сейчас вы будете перенаправлены на страницу входа"
+    "successRegisterMessageSecondPart": " успешно зарегистрирован. Сейчас вы будете перенаправлены на страницу входа",
+    "successEditMessage": "Информация успешно изменена"
   },
   "mainPageHeader": {
     "editButton": "Редактировать профиль",
