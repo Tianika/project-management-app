@@ -99,13 +99,13 @@ const Task = ({
           )}
           {isEdit && (
             <TaskTitleForm onSubmit={handleSubmit(onSubmit)}>
-              <AcceptTaskEditButton type="submit" />
               <TaskTitleInput
                 type="text"
                 {...register('taskTitle', { required: true })}
                 defaultValue={title}
                 autoFocus
               />
+              <AcceptTaskEditButton type="submit" />
               <CancelTaskEditButton onClick={toggleIsEdit} />
             </TaskTitleForm>
           )}

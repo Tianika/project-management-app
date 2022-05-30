@@ -9,6 +9,6 @@ export const MainPageContainer = styled.div`
   min-height: calc(100vh - 4.1rem);
 
   ${adaptive.maxWidth.mobile} {
-    min-height: calc(100vh - 4.7rem);
+    min-height: calc(100vh - 4.75rem);
   }
 `;

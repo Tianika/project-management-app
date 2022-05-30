@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/hooks/reduxHooks';
-import { setModalChildren } from '../../../redux/reducers/ModalSlice';
+import { closeModal, setModalChildren } from '../../../redux/reducers/ModalSlice';
 import { RoutersMap, ModalIds, ModalTypes } from '../../../utils/constants';
 import { BurgerType, BurgerWrapper } from '../burgerWelcomePage/styles';
 import HeaderButton from '../headerButton/HeaderButton';
@@ -44,6 +44,7 @@ const NavBarMainPage = ({ open, setOpened }: BurgerType) => {
     {
       text: t('mainPageHeader.editButton'),
       onClick: () => {
+        dispatch(closeModal());
         navigate(RoutersMap.edit);
       },
     },

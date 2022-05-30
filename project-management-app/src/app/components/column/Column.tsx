@@ -64,20 +64,6 @@ const Column = ({
     }
   };
 
-  /*   onDragEnd = (result: DropResult) => {
-      const newTasks = Array.from(tasks);
-      const { destination, source } = result;
-      if (!destination) {
-        return;
-      }
-      if (destination.droppableId === source.droppableId && destination.index === source.index) {
-        return;
-      }
-      const [removed] = newTasks.splice(source.index, 1);
-      newTasks.splice(destination.index, 0, removed);
-      dispatch(updateTasksArray({ boardId: id || '', columnId: id, newTasks, tasks }));
-    }; */
-
   return (
     <Draggable draggableId={String(id)} key={id} index={index}>
       {(provided) => (
@@ -88,19 +74,21 @@ const Column = ({
         >
           {!isEdit && (
             <HeaderColumn>
-              <ColumnTitle onClick={toggleIsEdit}>{title}</ColumnTitle>
+              <ColumnTitle onClick={toggleIsEdit} title={title}>
+                {title}
+              </ColumnTitle>
               <ColumnDeleteButton onClick={deleteColumn} title={t('boardPage.hintDeleteColumn')} />
             </HeaderColumn>
           )}
           {isEdit && (
             <ColumnTitleForm onSubmit={handleSubmit(onSubmit)}>
-              <AcceptEditButton type="submit" />
               <ColumnTitleInput
                 type="text"
                 {...register('columnTitle', { required: true })}
                 defaultValue={title}
                 autoFocus
               />
+              <AcceptEditButton type="submit" />
               <CancelEditButton onClick={toggleIsEdit} />
             </ColumnTitleForm>
           )}

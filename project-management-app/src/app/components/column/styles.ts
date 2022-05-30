@@ -52,13 +52,26 @@ export const TasksContainer = styled.div`
 `;
 
 export const ColumnTitle = styled.h2`
-  font-size: 22px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  hyphens: auto;
+  font-size: 20px;
   text-align: left;
   word-wrap: break-word;
   overflow: hidden;
   overflow-wrap: break-word;
   width: 85%;
   cursor: pointer;
+
+  ${adaptive.maxWidth.tablet} {
+    font-size: 18px;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    font-size: 16px;
+  }
 `;
 
 export const NewTaskButton = styled.button`
@@ -70,6 +83,14 @@ export const NewTaskButton = styled.button`
   margin-right: 5px;
   margin-bottom: 5px;
   box-shadow: 0px 4px 4px ${colors.shadow};
+
+  ${adaptive.maxWidth.tablet} {
+    font-size: 18px;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    font-size: 16px;
+  }
 `;
 
 export const HeaderColumn = styled.div`
@@ -90,6 +111,10 @@ export const ColumnDeleteButton = styled(DeleteButton)`
 
   &:hover {
     transform: scale(1.3);
+  }
+
+  ${adaptive.maxWidth.tablet} {
+    margin-top: 0;
   }
 `;
 

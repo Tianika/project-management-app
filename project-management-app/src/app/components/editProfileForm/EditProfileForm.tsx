@@ -127,6 +127,7 @@ const EditProfileForm = () => {
 
         <FormTextFieldWrapper>
           <FormTextField
+            autocomplete="on"
             type={show ? 'text' : 'password'}
             {...register('passwordValue', { required: true })}
             placeholder={t('editProfile.passwordPlaceholder')}

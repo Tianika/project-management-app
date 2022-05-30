@@ -15,7 +15,7 @@ export type BoardBackground = {
 export const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 7.5rem);
+  height: calc(100vh - 8rem);
   background-image: url(${({ image }: BoardBackground) => image});
   object-fit: contain;
   background-size: cover;
@@ -74,6 +74,16 @@ export const Select = styled.select`
     max-width: 380px;
     width: 100%;
   }
+
+  ${adaptive.maxWidth.tablet} {
+    padding: 3px 10px;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    max-width: 200px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
 `;
 
 export const BoardTitle = styled.h1`
@@ -83,6 +93,15 @@ export const BoardTitle = styled.h1`
   color: ${colors.lightFont};
   height: 50px;
   margin-bottom: 10px;
+
+  ${adaptive.maxWidth.tablet} {
+    font-size: 28px;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    font-size: 26px;
+    margin-bottom: 0;
+  }
 `;
 
 export const ColumnsContainer = styled.div`
@@ -124,10 +143,15 @@ export const NewColumnButton = styled.button`
   border-radius: 5px;
   background-color: ${colors.baseBg};
   box-shadow: 0 4px 4px ${colors.shadow};
+
+  ${adaptive.maxWidth.mobile} {
+    min-width: 280px;
+    height: 60px;
+  }
 `;
 
 export const StyledLink = styled(Link)`
-  width: fit-content;
+  min-width: fit-content;
   color: ${colors.lightFont};
   font-size: 18px;
   padding: 5px 15px;
@@ -141,6 +165,16 @@ export const StyledLink = styled(Link)`
     transform: translateY(3px);
     transition: 0.2s all;
     color: ${colors.darkFont};
+  }
+
+  ${adaptive.maxWidth.tablet} {
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    font-size: 14px;
+    padding: 5px;
   }
 `;
 

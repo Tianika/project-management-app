@@ -44,9 +44,17 @@ export const SearchTitle = styled.h2`
 `;
 
 export const SearchInput = styled(TaskViewInput)`
-  font-size: 0.7em;
-  width: 11.5em;
+  font-size: 0.8em;
+  width: 16em;
   padding: 0 5px;
+
+  ${adaptive.maxWidth.tablet} {
+    width: 12em;
+  }
+
+  ${adaptive.maxWidth.mobile} {
+    width: 10em;
+  }
 `;
 
 export const SearchButton = styled.button`
