@@ -9,6 +9,6 @@ export const BoardPageContainer = styled.div`
   height: calc(100vh - 4.1rem);
 
   ${adaptive.maxWidth.mobile} {
-    height: calc(100vh - 4.7rem);
+    height: calc(100vh - 4.75rem);
   }
 `;

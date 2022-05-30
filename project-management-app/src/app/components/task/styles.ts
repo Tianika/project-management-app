@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { adaptive } from '../../../styles/adaptive';
 import { colors } from '../../../styles/colors';
 import { DeleteButton, EditButton } from '../../../styles/global';
 import {
@@ -27,12 +28,25 @@ export const TaskTitle = styled.h4`
   padding: 5px;
   margin-bottom: 5px;
   cursor: pointer;
+  word-wrap: break-word;
+  hyphens: auto;
+
+  ${adaptive.maxWidth.tablet} {
+    font-size: 16px;
+  }
 `;
 
 export const TaskDescription = styled.p`
   font-size: 16px;
   line-height: 24px;
   word-wrap: break-word;
+  hyphens: auto;
+  margin-bottom: 5px;
+
+  ${adaptive.maxWidth.tablet} {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;
 
 export const TaskButtons = styled.div`
