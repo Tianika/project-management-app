@@ -101,7 +101,7 @@
   },
   "mainPageHeader": {
     "editButton": "Edit profile",
-    "createButton": "Create board",
+    "createButton": "Create new board",
     "logoutButton": "Sign Out"
   },
   "boardPage": {
