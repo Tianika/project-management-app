@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <FooterWrapper>
       <Wrapper>
-        <FooterLink href="https://rs.school/react/" rel="noopener noreferrer" />
+        <FooterLink href="https://rs.school/react/" target="_blank" rel="noopener noreferrer" />
       </Wrapper>
       <Wrapper>2022</Wrapper>
       <SectionLink>

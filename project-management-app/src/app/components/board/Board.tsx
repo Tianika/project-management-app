@@ -192,7 +192,7 @@ const Board = () => {
           <StyledLink to={RoutersMap.main} onClick={onLinkClick}>
             &laquo; {t('boardPage.buttonBack')}
           </StyledLink>
-          <Select onChange={changeBackground} image={imgBackground} defaultvalue={img}>
+          <Select onChange={changeBackground} image={imgBackground} value={img}>
             <option value="">{t('boardPage.chooseBackground')}</option>
             <option value="geometry">{t('boardPage.backgroundGeometry')}</option>
             <option value="bubbles">{t('boardPage.backgroundBubbles')}</option>

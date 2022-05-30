@@ -101,7 +101,7 @@
   },
   "mainPageHeader": {
     "editButton": "Редактировать профиль",
-    "createButton": "Создать доску",
+    "createButton": "Создать новую доску",
     "logoutButton": "Выйти"
   },
   "boardPage": {
